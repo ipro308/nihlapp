@@ -1,0 +1,26 @@
+{% extends "_base.htm" %}
+{% block chuck %}
+    Schedules
+{% endblock %}
+{% block bodycontent %}
+      <h2>Schedules</h2>
+      <p>
+      Schedule data here.
+      </p>
+ 	     <table>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Opponent</th>
+          </tr>
+          {% for event in event_list %}
+          <tr>
+            <td>{{ event.date }}</td>
+            <td>{{ event.type }}</td>
+            <td>{{ event.location }}</td>
+            <td>{{ event.opponent }}</td>
+          </tr>
+          {% endfor %}
+         </table>
+{% endblock %}

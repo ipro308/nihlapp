@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+   <title>
+      {% block title %}SportsWebApp{% endblock %}
+   </title>
+   <link href="/static/glike.css" rel="stylesheet"
+         type="text/css" />
+   <script type="text/javascript" 
+           src="/static/js/jquery-1.2.6.min.js">
+   </script>
+ </head>
+ <body>
+ <div id="container">
+   <div id="header">
+      <h1><a href="index.htm">Sports Web App</a></h1>
+   </div>
+   <div id="menu2">
+   <ul>
+        <li><a href="Teams.htm" 
+              {% ifequal path '/teams.htm' %}
+                    class="selected"
+              {% endifequal %}
+            >Teams</a></li>
+        <li><a href="schedules"
+              {% ifequal path '/schedules' %}
+                    class="selected"
+              {% endifequal %}
+             >Schedules</a></li>
+        <li><a href="statistics" 
+              {% ifequal path '/statistics' %}
+                    class="selected"
+              {% endifequal %}
+            >Statistics</a></li>
+      {% ifnotequal username None %}
+        <li><a href="/chat"
+              {% ifequal path '/chat' %}
+                    class="selected"
+              {% endifequal %}
+            >Chat</a></li>
+      {% endifnotequal %}
+      {% ifnotequal username None %}
+        <li><a href="/manage"
+              {% ifequal path '/manage' %}
+                    class="selected"
+              {% endifequal %}
+            >Manage</a></li>
+      {% endifnotequal %}
+      {% ifequal username None %}
+        <li><a href="/login"
+              {% ifequal path '/login' %}
+                    class="selected"
+              {% endifequal %}
+            >Manager Login</a></li>
+      {% else %}
+        <li><a href="/logout">Logout ({{username}})</a></li>
+      {% endifequal %}
+      </ul>
+      </div>
+      <div id="subject_right">
+      <p>Test</p>
+      </div>
+      
+   <div id="subject">
+      {% block bodycontent %}
+           Replace this
+      {% endblock %}
+   </div>
+  <div id="footer">
+  <p>(c) Orbosphere Design 2009</p>
+  </div>
+  </div>
+ </body>
+</html>

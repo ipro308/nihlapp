@@ -1,0 +1,101 @@
+{% extends "_base.htm" %}
+{% block bodycontent %}
+      <h2>Manage Schedule</h2>
+      <ul>
+      	<li><p><a href ="/manageStats">Manage Stats</a></p></li>
+      </ul>
+          {% ifnotequal error None %}
+       <p>
+       {{ error }}
+       </p>
+      {% endifnotequal %}
+	  <p>Here you can manage your team's schedule.</p>
+	       <table>
+          <tr>
+            <th>Year</th>
+            <th>Month</th>
+            <th>Day</th>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Opponent</th>
+          </tr>
+          <form method="post" action="/addEvent">
+          <tr>{% comment %}JS looping here?{%endcomment%}
+          	<td><select name="year" id="year">
+          		<option>2009</option>
+          		<option>2010</option>
+          	</td>	
+          	<td><select name="month" id="month">
+          		<option>01</option>
+          		<option>02</option>
+          		<option>03</option>
+          		<option>04</option>
+          		<option>05</option>
+          		<option>06</option>
+          		<option>07</option>
+          		<option>08</option>
+          		<option>09</option>
+          		<option>10</option>
+          		<option>11</option>
+          		<option>12</option>
+          		</selec>
+          	</td>	
+          	<td><select name="day" id="day">	
+          		<option>01</option>
+          		<option>02</option>
+          		<option>03</option>
+          		<option>04</option>
+          		<option>05</option>
+          		<option>06</option>
+          		<option>07</option>
+          		<option>08</option>
+          		<option>09</option>
+          		<option>10</option>
+          		<option>11</option>
+          		<option>12</option>
+          		<option>13</option>
+          		<option>14</option>
+          		<option>15</option>
+          		<option>16</option>
+          		<option>17</option>
+          		<option>18</option>
+          		<option>19</option>
+          		<option>20</option>
+          		<option>21</option>
+          		<option>22</option>
+          		<option>23</option>
+          		<option>24</option>
+          		<option>25</option>
+          		<option>26</option>
+          		<option>27</option>
+          		<option>28</option>
+          		<option>29</option>
+          		<option>30</option>
+          		<option>31</option>
+          	</td>
+          	<td><select name="type">
+          		<option>Practice</option>
+          		<option>Scrimmage</option>
+          		<option>Game</option>
+          	</select>
+          	</td>
+          	<td><input type="text" name="location" id="location"/></td>
+          	<td><input type="text" name="opponent" id="opponent"/></td>
+          </tr>
+          <tr>
+           	<td align="Right" colspan="6"><input type="submit" value="Add Event" name="AddEvent"/></td>
+           </form>
+          </tr>
+          <tr>
+             <td align="Left" colspan="6">Current Schedule:</td>
+          </tr>
+          {% for event in event_list %}
+          <tr>
+            <td colspan="3">{{ event.date }}</td>
+            <td>{{ event.type }}</td>
+            <td>{{ event.location }}</td>
+            <td>{{ event.opponent }}</td>
+          </tr>
+          {% endfor %}
+         </table>
+{% endblock %}
