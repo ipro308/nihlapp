@@ -1,0 +1,71 @@
+{% extends "_base.htm" %}
+{% block bodycontent %}
+      <h2>Manage Stats</h2>
+      <ul>
+      	<li><p><a href ="/manageSched">Manage Schedule</a></p></li>
+      </ul>
+          {% ifnotequal error None %}
+       <p>
+       {{ error }}
+       </p>
+      {% endifnotequal %}
+	  <p>Here you can manage your team's stats.</p>
+	       <table>
+          <tr>
+            <th>Team</th>
+            <th>GP</th>
+            <th>W</th>
+            <th>L</th>
+            <th>T</th>
+            <th>PTS</th>
+            <th>GF</th>
+            <th>GA</th>
+            <th>+/-</th>
+            <th>SOG</th>
+            <th>TPM</th>
+            <th>GFA</th>
+            <th>GAA</th>
+            <th>AVG</th>
+          </tr>
+          <p>Add Stat Data:</p>
+          <form method="post" action="/addStats">
+          <tr>
+          	<td><input type="text" size="10" name="team"/></td>
+          	<td><input type="text" size="2" name="gp"/></td>
+          	<td><input type="text" size="2" name="w"/></td>
+          	<td><input type="text" size="2" name="l"/></td>
+          	<td><input type="text" size="2" name="t"/></td>
+          	<td><input type="text" size="2" name="pts"/></td>
+          	<td><input type="text" size="2" name="gf"/></td>
+          	<td><input type="text" size="2" name="ga"/></td>
+          	<td><input type="text" size="2" name="plusminus"/></td>
+          	<td><input type="text" size="2" name="sog"/></td>
+          	<td><input type="text" size="2" name="tpm"/></td>
+          	<td><input type="text" size="2" name="gfa"/></td>
+          	<td><input type="text" size="2" name="gaa"/></td>
+          	<td><input type="text" size="2" name="avg"/></td>
+          </tr>
+          <tr>
+           	<td align="Right" colspan="14"><input type="submit" value="Add Stats" name="AddStats"/></td>
+           </form>
+          </tr>
+          {% for item in stats_list %}
+          <tr>
+            <td>{{ item.team }}</td>
+            <td>{{ item.gp }}</td>
+            <td>{{ item.w }}</td>
+            <td>{{ item.l }}</td>
+            <td>{{ item.t }}</td>
+            <td>{{ item.pts }}</td>
+            <td>{{ item.gf }}</td>
+            <td>{{ item.ga }}</td>
+            <td>{{ item.plusminus }}</td>
+            <td>{{ item.sog }}</td>
+            <td>{{ item.tpm }}</td>
+            <td>{{ item.gfa }}</td>
+            <td>{{ item.gaa }}</td>
+            <td>{{ item.avg }}</td>
+          </tr>
+          {% endfor %}
+         </table>
+{% endblock %}

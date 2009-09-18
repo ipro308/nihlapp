@@ -2,6 +2,8 @@ Instructions for deploying nihlapp on local machine in development environment m
 
 1. Install python, django, sqlite, git - operating system specific, see your os for instructions.
 
+Note: you can skip this step if you already have the necessary tools installed.
+
 Linux: [Ubuntu]:
 
 sudo aptitude install git-core python2.5 sqlite3
@@ -42,7 +44,7 @@ git clone git@github.com:ipro308/nihlapp.git
 
 3. Setup nihlapp project database and load test data:
 
-cd dpiweb
+cd nihlapp
 python manage.py syncdb
 # say no when prompted to create a user, fixtures will overwrite the user you create
 python manage.py loaddata fixtures/core.json fixtures/auth.json
