@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block section %}NIHL{% endblock %}
+{% block title %}Models{% endblock %}
+
+{% block content %}
+
+	<p class="title">{% block detailTitle %}Model Detail{% endblock %}: {% block detailName %}{{ object.name }}{% endblock %}</p>
+	<div class="view">
+        <div class="view_container" name="objectView" id="objectView">
+			
+			{% block detailView %}{% endblock %}
+			
+    	</div>
+	</div>
+
+{% endblock %}

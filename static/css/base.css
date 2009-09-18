@@ -1,0 +1,1375 @@
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+}
+
+#canvas {
+    min-height: 100%;
+}
+
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 62.5%; /* 1em = 10px */
+	line-height: 1em;
+	margin: 0;
+	padding: 0;
+}
+
+a, a:visited {
+	color:#104CA6;
+}
+
+#canvas {
+    background-color: #fff;
+}
+
+table.object-list-table {
+    width:100%;
+	border:1px;
+	border-collapse: collapse; 
+}
+
+table.object-list-table td {
+/*    background-color:#eee;*/
+    padding:3px 3px 3px 3px;
+}
+
+table.object-list-table th {
+    padding:2px 2px 2px 2px;
+    text-align:left;
+    font-size:0.85em;
+}
+
+table.object-list-table tr {
+    border-bottom: 1px solid #ccc;
+}
+
+table.object-list-table tr.style-Verified td {
+    background-color: #d3ffd1;
+}
+
+table.object-list-table tr.style-Open td {
+    background-color: #FFFFCC;
+}
+
+table.object-list-table tr.style-Pending td {
+    background-color: #ffb8b8;
+}
+
+table.object-list-table td.object-list-item-menu-td {
+    width:160px;
+}
+
+span.object-list-item-menu {
+    padding:1px;
+}
+
+span.object-list-item-menu img {
+    padding:1px;
+}
+
+ul.errorlist {
+    left:295px;
+    margin:0 !important;
+    padding-bottom:0;
+    position:relative;
+    color:red;
+}
+
+div.object-list-menu {
+    float:right;
+    margin-bottom:15px;
+}
+
+div.login-form {
+	padding-top:50px;
+	width: 250px;
+	height: 150px;
+	border: 0px;
+	margin: auto;
+	position: relative;
+}
+
+#page {
+	margin: auto;
+	width: 982px;
+	position: relative;
+}
+
+p.object-list-pagination {
+    text-align:center;
+    margin-top:10px;
+}
+
+.clearing, .clear {
+	clear: both;
+}
+.font-i {
+    font-style:italic;
+}
+
+.font-b {
+    font-weight:bold;
+}
+
+.font-c {
+    text-align:center;
+}
+
+.font-l {
+    text-align:left;
+}
+
+.font-r {
+    text-align:right;
+}
+
+.font-small {
+    font-size: 0.85em;
+}
+
+.float-left {
+    float:left;
+}
+
+.float-right {
+    float:right;
+}
+
+.font-dk-yellow { color:#C7B55F; }
+.font-dk-red    { color:#880000; }
+.font-dk-blue   { color:#000088; }
+.font-dk-brown  { color:#7f621d; }
+.font-black     { color:#000000; }
+.font-gray      { color:#777777; }
+.font-green     { color:#106A12; }
+
+.hidden {
+    display: none;
+}
+
+div.group {
+    margin:1em;
+}
+
+div.group h3 {
+    font-weight:normal;
+    font-size:115%;
+    margin-left:-.5em;
+    text-decoration:underline;
+    margin-bottom:3px;
+}
+
+p.copy-text {
+    margin:1em .2em;
+}
+
+select optgroup {
+    font-style:normal;
+    font-weight:bold;
+}
+
+select optgroup option {
+    padding-left:1.5em;
+}
+
+a {
+	cursor:pointer;
+	outline:none;
+	text-decoration:none;
+}
+
+a:hover, a:focus, a:visited, a:active {
+	text-decoration:underline;
+}
+
+a.notext span {
+    display: none;
+}
+
+ul.circle {
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:disc;
+	margin:1px 1px 5px 25px;
+	padding:0px;
+}
+
+ul.circle li {
+	list-style-type:circle;
+}
+
+ul.circle li.nobullet {
+	list-style-image:none;
+	list-style-type:none;
+}
+
+ul.comment {
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+	margin:1px 1px 5px 25px;
+	padding:0px;
+}
+
+ul.comment li {
+	list-style-type:none;
+}
+
+dt {
+    font-weight: bold;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 1.1em;
+    margin: 10px 0 5px 0;
+}
+
+#header {
+    padding:10px;
+}
+
+
+#header .logo {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+#apptitle {
+	color:#000000;
+	font-size:24pt;
+	font-weight:bold;
+	margin:10px;
+	padding:15px;
+	position:absolute;
+}
+#header .logo a {
+    display: block;
+    width: 120px;
+    height: 60px;
+    background: url(/static/images/logo.png) no-repeat;
+	margin-bottom:5px;
+	margin-left:5px;   
+	border:1px solid #777777; 
+}
+
+#navbar {
+    border:1px solid #CCCCCC;
+    height: 38px;
+	clear: both;
+}
+
+#navbar .caps div {
+    height: 38px;
+    width: 10px;
+}
+
+#navbar .caps .left {
+    float: left;
+}
+
+#navbar .caps .right {
+    float: right;
+    background-position: -10px 0;
+}
+
+#navbar .fill {
+    height: 38px;
+    position: relative;
+    margin: 0 10px;
+}
+
+#navbar ul {
+    margin: 0;
+    padding: 0;
+	list-style-type: none;
+}
+#navbar ul.left {
+    float: left;
+}
+#navbar ul.right {
+    float: right;
+}
+
+#navbar ul li {
+	display: block;
+    float: left;
+    margin: 5px 0;
+    padding: 0 3px 0 0;
+}
+#navbar ul.right li {
+    padding: 0 0 0 3px;
+}
+#navbar ul.right li {
+    background-position: center left;
+}
+
+#navbar ul.left li {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 0.02em;
+}
+
+#navbar ul li a, #navbar ul li a:hover, #navbar ul li a:focus {
+    display: block;
+    position: relative;
+    height: 20px;
+    padding: 4px 10px;
+    font-size: 1.1em;
+    line-height: 1.6em;
+    color: #000;
+    text-decoration: none;
+}
+#navbar li a:hover, #navbar li.hasMenu.menuOpen a {
+}
+#navbar li a.notext span.text {
+    display: none;
+}
+#navbar li a span {
+    display: block;
+    float: left;
+}
+
+#navbar ul li a span.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    margin-top: 1px;
+}
+#navbar ul li a.notext span.icon {
+    margin: 0;
+}
+#navbar ul li a span.icon.home {
+}
+#navbar ul li a span.icon.applications {
+}
+
+#body {
+    margin: 5px 0;
+    z-index: 0;
+}
+
+#body .header {
+    /*height: 32px;*/
+    cursor: default;
+}
+#body .header .caps div {
+    width: 10px;
+    height: 32px;
+}
+#body .header .caps .left {
+    float: left;
+}
+#body .header .caps .right {
+    float: right;
+    background-position: -10px 0;
+}
+#body .header .fill {
+/*    border:1px solid #CCCCCC;*/
+    height: 27px;
+    margin: 0 10px;
+    padding: 5px 0 0;
+}
+#body .header a, #body .header a:visited, #body .header a:hover {
+    color: #000;
+    text-decoration: none;
+}
+#body .header h2 {
+    margin-left: 6px;
+    padding-top: 8px;
+    line-height: 1em;
+    font-size: 1.2em;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0.02em;
+}
+#body .header h3 {
+    margin-left: 6px;
+    padding-top: 8px;
+    font-size: 1.1em;
+    font-weight: normal;
+    font-family: Verdana;
+}
+#body .header h3 .bullet {
+    display: block;
+    float: left;
+    margin: 3px 8px 0 4px;
+    width: 3px;
+    height: 5px;
+}
+#body .header .left {
+    float: left;
+}
+#body .header ul {
+    list-type: none;
+}
+#body .header .right {
+    float: right;
+}
+#body .header ul li {
+    display: block;
+    float: left;
+}
+#body .header ul li a {
+    display: block;
+}
+#body .header ul li a.icon.notext {
+    width: 20px;
+    height: 20px;
+    margin: 4px 0 0 4px;
+    background: #fff;
+}
+
+
+#body .navmenu {
+    position: relative;
+    margin-bottom: 5px;
+}
+#body .navmenu .sides div {
+    margin-bottom: -5px;
+}
+#body .sides .foo { 
+    top: auto;
+    left: 10px;
+    right: 10px;
+    width: auto;
+    height: 5px;
+}
+#body .navmenu ul {
+    height: 24px;
+    margin: 0 10px;
+    padding: 0 10px;
+    list-type: none;
+}
+#body .navmenu ul li {
+    display: block;
+    float: left;
+    font-size: 1.1em;
+}
+#body .navmenu ul li.first {
+    width: 2px;
+    height: 24px;
+}
+#body .navmenu ul li a, #body .navmenu ul li a:active {
+    display: block;
+    height: 12px;
+    padding: 6px 12px;
+    margin-right: 1px;
+    color: #fff;
+    text-decoration: none;
+}
+#body .navmenu ul li a.current, #body .navmenu ul li a:hover, #body .navmenu ul li.hasMenu.menuOpen a {
+}
+#body .navmenu ul li a span {
+    display: block;
+}
+#body .navmenu ul li.hasMenu a span {
+    padding-right: 12px;
+}
+
+
+#body .content {
+    position: relative;
+}
+#body #content_area {
+    margin: 0 10px;
+    padding: 10px 10px 20px;
+    background: #fff;
+    z-index: 0;
+}
+
+#content_area h1, #content_area h2, #content_area h3, #content_area h4 {
+    /*font-family: Arial,Helvetica,sans-serif;*/
+}
+
+#body .footer .caps div {
+    width: 10px;
+    height: 10px;
+
+}
+#body .footer .caps .left {
+    float: left;
+    background-position: 0 -32px;
+}
+#body .footer .caps .right {
+    float: right;
+    background-position: 10px -32px;
+}
+#body .footer .fill {
+    height: 10px;
+    margin: 0 10px;
+}
+
+#tabs-loading-message {
+    position: absolute;
+    top: 35px;
+    right: 15px;
+    bottom: 5px;
+    left: 15px;
+    z-index: 10000000000;
+}
+#tabs-loading-message .icon {
+    display: block;
+    height: 200px;
+}
+#tabs-loading-message .text {
+    display: none;
+}
+
+#body .sides div {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: 10px;
+    display:block;
+}
+#body .sides .left {
+    left: 0px;
+}
+#body .sides .right {
+    right: 0px;
+    background-position: 10px 0;
+}
+#body .corners div {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+}
+#body .corners.top .left {
+    top: 0;
+    left: 10px;
+}
+#body .corners.top .right {
+    top: 0;
+    right: 10px;
+    background-position: 3px 0;
+}
+#body .corners.bottom .left {
+    bottom: 0;
+    left: 10px;
+    background-position: 0 3px;
+}
+#body .corners.bottom .right {
+    bottom: 0;
+    right: 10px;
+    background-position: 3px 3px;
+}
+
+#content_area {
+	vertical-align: top;
+	font-size: 1.3em;
+	line-height: 1.2em;
+	min-height: 200px;
+}
+
+
+#contentspace {
+	margin:10px;
+	width: 940px; /* compensate for the border and padding */
+	min-height:350px;
+	background-color:transparent;
+}
+
+#tabcontent_fullwidth {
+	margin:10px;
+	width: 940px; /* Tab content stretching across the whole page */
+	clear:left;
+}
+
+#tabcontent {
+	margin:10px;
+	width: 740px; /* compensate for the border and padding */
+	clear:left;
+/*	min-height:350px; 	Now set in .tabs-container */
+}
+
+#tabcontent #maintab {
+	padding-top:23px;
+}
+
+#tooltip {
+    position: absolute;
+    z-index: 3000;
+    border:1px solid black;
+    background-color: #fff;
+    padding: 5px;
+    opacity: 0.85;
+    .font-size:100%;
+}
+
+#tooltip h3 {
+    font-weight:normal;
+    .font-size:120%;
+}
+
+div.view {
+	width:700px;
+	padding:0px;
+	font-size:13px;
+	margin:auto;
+}
+
+* html div.view {
+	position:relative;
+	left:50%;
+	margin-left:-300px;
+}
+
+div.view div.view_container {
+    border-top:1px solid #DDDDDD;
+    padding-top:1px;
+}
+
+div.view div.view_container span.error {
+	color:red;
+	display:block;
+	text-align:center;
+}
+
+div.view div.view_container fieldset {
+	border:0px;
+	border:1px solid #ddd;
+	border-top:0px;
+	margin-top:-2em;
+	padding-bottom:.5em;
+}
+
+div.view div.view_container table.inline-checks {
+    width:60%;
+    margin-left:20%;
+    padding:0px;
+    margin-bottom:1em;
+}
+
+div.view div.view_container table.inline-checks td {
+    padding:2px;
+}
+
+div.view div.view_container table.inline-checks input {
+    display:inline;
+    width:auto;
+    float:none;
+    margin:0px;
+    border:0px;
+    background-image:none;
+}
+
+div.view div.view_container table.inline-checks label {
+    display:inline;
+    width:auto;
+    float:none;
+    margin:0px;
+    font-weight:bold;
+}
+
+div.view div.view_container hr {
+    width:100%;
+    height:1px;
+    color:#DDDDDD;
+    background-color:#DDDDDD;
+    border:0px;
+    margin:.25em 0em;
+    display:block;
+}
+
+div.view div.view_container span.custom {
+    position:relative;
+    top:2px;
+}
+
+div.view div.view_container fieldset p.information {
+	color:#333;
+	margin:.5em 1em 1.25em 1em;
+	font-size:90%;
+	color:#999999;
+}
+
+div.view div.view_container fieldset legend {
+	padding-top:33px;
+	font-size:125%;
+	padding-left:0.4em;
+	/*margin-bottom: 0.5em;*/
+}
+
+div.view div.view_container fieldset legend.first {
+	padding-top:19px;
+	font-size:125%;
+	padding-left:0.4em;
+	margin-top: -0.9em;
+}
+
+div.view div.view_container fieldset ul {
+	list-style:none;
+	line-height:1.3em;
+	margin:.5em 0em 1.5em 0em;
+}
+
+div.view div.view_container fieldset ul li {
+	margin:7px 0px;
+	/*padding:3px 0px;*/
+	clear:left;
+}
+
+div.view div.view_container fieldset ul li label, div.view div.view_container dd ul li label {
+	padding:0px 0.5em 0em 2em;
+	display:block;
+	float:left;
+	width:30%;
+	font-weight:bold;
+	color:#333;
+	/*text-align: right;*/
+}
+
+div.view div.view_container fieldset ul li span.text_area {
+	/*width:420px; breaks for tables with reset widths */
+	width:64%;
+	height:100%;
+	text-align:left;
+	display:block;
+	float:left;
+	position:relative;
+	padding-bottom:15px;
+	text-align:justify;
+    word-wrap: break-word;
+}
+
+div.view div.view_container ul li.companion {
+	font-size:80%;
+	color:#888;
+	margin-top:-8px;
+}
+
+div.view div.view_container ul li.companion span {
+	margin-left:30%;
+	display:block;
+}
+
+div.view div.view_container ul ol {
+	list-style-type:none;
+	display:block;
+	float:left; /* take advantage of the floated labels */
+}
+
+div.view div.view_container .composition-values {
+    margin-left:34.5%;
+}
+
+div.view div.view_container table.list {
+	border:0px;
+	margin:.5em 1em;
+	color:#333;
+	font-size:90%;
+}
+
+div.view div.view_container table.list th, div.view div table.list td {
+	text-align:left;
+}
+
+div.view div.view_container div.actions {
+}
+
+div.view div.view_container p.action-links {
+	margin:0px;
+	padding: 0.4em 0.5em 0.6em 0.5em;
+	text-align:center;
+}
+
+div.view.short {
+	margin-top:2em;
+}
+
+div.view.short fieldset {
+	border-bottom:0px;
+}
+
+div.view.short p.action-links {
+	background-color:transparent;
+	padding-top:0px;
+	border-top:0px;
+}
+
+div.view div.view_container ul.twocol {
+    width:40%;
+    margin:0px 0px .5em 10%;
+}
+
+div.view div.view_container ul.twocol.float-right {
+    margin:0px 10% .5em 0px;
+}
+
+div.view div.view_container ul.twocol li {
+    margin-bottom:-1.5em;
+}
+
+div.view div.view_container ul.twocol label {
+    width:40%;
+}
+
+div.view div.view_container ul.twocol .inline-rating {
+    position:relative;
+    top:-3px;
+}
+
+div.view div.view_container .mark-changed-value {
+    color:red;
+}
+
+div.view div.view_container .mark-this-changed-value {
+    padding-left:18px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+p.title, h1.title {
+	text-align:center;
+	margin:0 25px 25px 25px;
+	padding-top: 10px;
+	font-size:1.4em;
+	font-weight:normal;
+	/*display: none;*/ /* probably isn't wise */ /* no, it wasn't */
+}
+
+p.small.title {
+    font-size:1.2em;
+}
+
+/** text accent color for several interface elements. */
+.primary {
+	color:#999;
+}
+
+div.styled {
+	width:700px;
+	margin: 10px auto 0;
+	padding:0px;
+	font-size:1em;
+}
+
+* html div.styled {
+	position:relative;
+	left:50%;
+	margin-left:-300px;
+}
+
+div.styled form {
+	padding-top:2.6em;
+	.padding-top:0.1em;
+}
+
+div.styled form span.error {
+	color:red;
+	display:block;
+	text-align:center;
+}
+
+div.styled form textarea {
+    border:1px solid #B2B2B2
+}
+
+div.styled form fieldset {
+	margin-top:-2.1em;
+	padding-bottom:.5em;
+}
+
+div.styled form fieldset.nolegend {
+    .margin-bottom:8px;
+    .position:relative;
+    .top:8px;
+}
+
+div.styled form fieldset.nolegend.second {
+    padding-top:35px;
+}
+
+div.styled form input {
+	background: #FFFFFF;
+	border:1px solid #B2B2B2;
+	font-family:Verdana;
+	padding:2px 5px;
+	font-weight:normal;
+	width: 200px;
+}
+
+div.styled form input[type=radio], div.styled form input[type=checkbox], div.styled form input[type=radio]:hover, div.styled form input[type=checkbox]:hover {
+    background-image:none;
+    border-width:0px;
+}
+
+div.styled form input[type=file] {
+    width:295px;
+}
+
+div.styled form input.custom {
+	width: auto;
+}
+
+div.styled form input.popupCalendar {
+    width: 183px;
+}
+
+div.styled form table.inline-checks {
+    width:60%;
+    margin-left:20%;
+    padding:0px;
+    margin-bottom:1em;
+}
+
+div.styled form table.inline-checks td {
+    padding:2px;
+}
+
+div.styled form table.inline-checks input {
+    display:inline;
+    width:auto;
+    float:none;
+    margin:0px;
+    border:0px;
+    background-image:none;
+}
+
+div.styled form table.inline-checks label {
+    display:inline;
+    width:auto;
+    float:none;
+    margin:0px;
+    font-weight:bold;
+}
+
+div.styled form select, div.quickSearchContainer .quickSearch select {
+	background: #FFF;
+	border:1px solid #B2B2B2;
+	font-family:Verdana;
+	padding: 1px;
+	font-weight:normal;
+	min-width: 200px;
+}
+
+div.styled form hr {
+    width:100%;
+    height:1px;
+    color:#DDDDDD;
+    background-color:#DDDDDD;
+    border:0px;
+    margin:.25em 0em;
+    display:block;
+}
+
+div.styled form span.custom {
+    position:relative;
+    top:2px;
+    display:block;
+    float:left;
+    width:65%;
+    margin-bottom:.5em;
+    .margin-bottom:.3em;
+}
+
+div.styled form input:active, div.styled form input:hover, div.styled form input:focus, div.styled form textarea:focus, div.styled form textarea:hover, div.styled form textarea:active {
+	background-color:#FFFFFF;
+	border:1px solid #666666;
+}
+
+div.styled form select:active, div.styled form select:hover, div.styled form select:focus {
+	background-color:#FFFFFF;
+	border:1px solid #666666;
+}
+
+div.styled form fieldset p.instructions {
+	color:#333;
+	margin:.5em 1em 1.25em 1em;
+	font-size:90%;
+}
+
+div.styled form fieldset div.field_instructions {
+	float:right;
+	margin:-19px 0px 0px;
+	width:18%;
+	font-size:90%;
+}
+
+div.styled form fieldset legend {
+	padding-top:33px;
+	font-size:125%;
+	padding-left:0.4em;
+}
+
+div.styled form fieldset legend.first {
+	padding-top:19px;
+	.padding-top:0px;
+	font-size:125%;
+	padding-left:0.4em;
+	margin-top: -0.9em;
+	.margin-top:.9em;
+}
+
+div.styled form fieldset ul {
+	list-style:none;
+	line-height:1.3em;
+	margin:.5em 0em 1.5em 0em;
+}
+
+div.styled form fieldset ul li {
+	margin:7px 0px;
+	clear:both;
+}
+
+div.styled form fieldset ul li label {
+	padding:2px 1em 0em 0em;
+	display:block;
+	float:left;
+	width:40%;
+	/*font-weight:bold;*/
+	color:#333;
+	text-align: right;
+}
+
+div.styled form fieldset ul li input, div.styled form fieldset ul li textarea, div.styled form fieldset ul li select {
+	/*border:1px solid #999;*/
+}
+
+div.styled form fieldset ul li select {
+    min-width:212px;
+    width:212px;
+    vertical-align:bottom;
+}
+
+div.styled form fieldset ul li select option {
+	padding-right:5px;
+}
+
+div.styled form fieldset ul li input.checkbox, div.styled form fieldset ul li input.radio {
+	border:0px;
+	width:auto;
+}
+
+div.styled form fieldset ul li label span.req {
+	color:#f07000;
+	font-weight:bold;
+	vertical-align:middle;
+	padding: 2px;
+	font-size: 140%;
+}
+
+div.styled form fieldset ul li textarea {
+    height:10em;
+    width:28em;
+}
+
+div.styled form fieldset ul li p.errata {
+    color:#333;
+    margin:.2em 4em;
+}
+
+div.styled form fieldset ul li span.instructions {
+	color:#333;
+	font-size:90%;
+}
+
+div.styled form ul li p.clear {
+    clear:both;
+    height:1px;
+    line-height:1px;
+    margin-top:-1px;
+    font-size:1px;
+}
+
+div.styled form ul li.companion {
+	font-size:80%;
+	color:#888;
+	margin-top:-8px;
+}
+
+div.styled form ul li.companion span {
+	margin-left:30%;
+	display:block;
+}
+
+div.styled form ul ol {
+	list-style-type:none;
+	display:block;
+	float:left; /* take advantage of the floated labels */
+}
+
+
+div.styled form table.list {
+	border:0px;
+	margin:.5em 1em;
+	color:#333;
+	font-size:90%;
+}
+
+div.styled form table.list th, div.styled form table.list td {
+	text-align:left;
+}
+
+div.styled form div.submit {
+}
+
+div.styled form p.submit-buttons {
+	margin:0px;
+	padding:1em;
+	text-align:center;
+	padding:1em 0em 1em;
+	text-align:center;
+	.margin-top:-3px;
+}
+
+div.styled form fieldset {
+	padding-bottom:1em;
+}
+
+div.styled form p.submit-buttons input {
+	width: auto;
+}
+
+div.styled form a {
+	color:#f07000;
+	text-decoration:none;
+}
+
+div.styled form a:hover {
+	text-decoration:underline;
+}
+
+form.styled.short {
+	margin-top:2em;
+}
+
+form.styled.short fieldset {
+	border-bottom:0px;
+}
+
+form.styled.short p.submit-buttons {
+	background-color:transparent;
+}
+
+div.styled form ul.twocol {
+    width:40%;
+    margin:0px 0px .5em 10%;
+}
+
+div.styled form ul.twocol.float-right {
+    margin:0px 10% .5em 0px;
+}
+
+div.styled form ul.twocol li {
+    margin-bottom:-1.5em;
+}
+
+div.styled form ul.twocol label {
+    width:40%;
+}
+
+div.styled form ul .inline-rating {
+    position:relative;
+    top:-3px;
+}
+
+input.stylish {
+	border:1px solid #B2B2B2;
+	font-family:Verdana;
+	padding:2px 5px;
+	font-weight:normal;
+}
+
+#footer {
+    width: 500px;
+    height: 24px;
+    margin: auto;
+    padding: 1em 0 2em;
+	text-align: center;
+	font-size: 1em;
+	color: #454545;
+}
+
+#footer .caps div {
+    float: left;
+    width: 5px;
+    height: 24px;
+}
+#footer .caps div.right {
+    float: right;
+    background-position: 5px 0;
+}
+
+#footer p {
+    display: block;
+    height: 12px;
+    margin: 0 5px;
+    padding: 6px;
+    line-height: 12px;
+}
+
+#footer a {
+	color: #222;
+}
+
+
+
+td.padding {
+	padding: 2px;
+}
+
+td.highpadding {
+	padding: 5px;
+}
+
+td.margin {
+	margin: 2px;
+}
+
+div.styled-summary {
+    width:60%;
+    margin:auto;
+    margin-top:2em;
+}
+
+div.styled-summary h3 {
+    font-weight:normal;
+    font-size:120%;
+    border-bottom:1px solid #ccc;
+}
+
+div.styled-summary ul {
+    list-style-type:none;
+    margin-bottom:.5em;
+}
+
+div.styled-summary ul li {
+    display:block;
+    line-height:1.5;
+}
+
+div.styled-summary ul li span.title {
+    float:left;
+    text-align:right;
+    padding-right:2%;
+    width:35%;
+    font-weight:bold;
+    color:#333333;
+}
+
+div.styled-summary ul li span.value {
+
+}
+
+body {
+	color: black;
+}
+
+.blank_body {
+	color: black;
+	background-color:#FFFFFF;
+}
+
+a, a:visited {
+	cursor:pointer;
+	outline:none;
+	text-decoration:none;
+}
+
+a:hover, a:focus {
+	color:#000033;
+	text-decoration:underline;
+}
+
+a img {
+    border: 0;
+}
+
+div.vd {
+	border-bottom:1px dotted #DDDDDD;
+	padding-top:7px;
+	clear:both;
+}
+
+.tabs-nav {
+	height: 22px;
+    list-style: none;
+    margin: -10px -10px 20px -10px;
+    padding: 6px 0 0 4px;
+}
+.tabs-selected a span {
+	/*font-weight: bold;*/
+	/*padding: 6px 3px 0 7px !important;*/
+}
+.tabs-nav:after { /* clearing without presentational markup, IE gets extra treatment */
+    display: block;
+    clear: both;
+    content: " ";
+}
+.tabs-nav li {
+    float: left;
+    margin: 0 0 0 1px;
+    list-style-type:none;
+    /*min-width: 84px;  be nice to Opera */
+}
+.tabs-nav a, .tabs-nav a span {
+    display: block;
+    padding: 0 5px;
+}
+.tabs-nav a {
+    position: relative;
+    height: 22px;
+    color: #000000;
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 0.85em;
+    line-height: 1.2em;
+    text-decoration: none;
+    white-space: nowrap; /* required in IE 6 */
+}
+.tabs-nav .tabs-selected a, .tabs-nav .ui-state-active a {
+    color: #000;
+}
+.tabs-nav .tabs-selected a, .tabs-nav a:hover, .tabs-nav a:focus, .tabs-nav a:active, .tabs-nav .ui-state-active a {
+    background-position: 100% -66px;
+    text-decoration: none;
+    outline: 0; /* prevent dotted border in Firefox */
+}
+.tabs-nav a, .tabs-nav .tabs-disabled a:hover, .tabs-nav .tabs-disabled a:focus, .tabs-nav .tabs-disabled a:active {
+    background-position: 100% -44px;
+}
+.tabs-nav a span {
+    width: 64px; /* IE 6 treats width as min-width */
+    min-width: 64px;
+    height: 16px;
+    padding: 6px 5px 0 9px;
+}
+*>.tabs-nav a span { /* hide from IE 6 */
+    width: auto;
+    min-width: 20px;
+    /*height: auto;*/
+}
+.tabs-nav a span {
+}
+.tabs-nav .tabs-selected a span {
+}
+.tabs-nav .tabs-selected a span, .tabs-nav a:hover span, .tabs-nav a:focus span, .tabs-nav a:active span, .tabs-nav .ui-state-active a span {
+    background-position: 0 -22px;
+}
+.tabs-nav a span, .tabs-nav .tabs-disabled a:hover span, .tabs-nav .tabs-disabled a:focus span, .tabs-nav .tabs-disabled a:active span {
+    background-position: 0 0;
+}
+.tabs-nav .tabs-selected a:link, .tabs-nav .tabs-selected a:visited, .tabs-nav .tabs-disabled a:link, .tabs-nav .tabs-disabled a:visited { /* @ Opera, use pseudo classes otherwise it confuses cursor... */
+    cursor: default;
+}
+.tabs-nav a:hover, .tabs-nav a:focus, .tabs-nav a:active { /* @ Opera, we need to be explicit again here now... */
+    cursor: pointer;
+}
+.tabs-nav .tabs-disabled {
+    opacity: .4;
+}
+.tabs-container {
+    background: #fff; /* declare background color for container to avoid distorted fonts in IE while fading */
+}
+.tabs-nav, .navmenu ul, #nav_menu li a:hover {
+	color:#000000;
+}
+.tabs-nav, .navmenu ul, #nav_menu li a:hover {
+    border-bottom:1px solid #CCCCCC;
+	background-color:#FFF !important;
+	color:#000000;
+}

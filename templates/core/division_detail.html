@@ -1,0 +1,28 @@
+{% extends "core/generic_detail.html" %}
+
+{% block title %}Divisions{% endblock %}
+{% block detailTitle %}Division Detail{% endblock %}
+{% block detailName %}{{ object.name }}{% endblock %}
+
+{% block detailView %}
+	<fieldset>
+	    <legend class="primary">Division Detail</legend>
+	    <ul>
+	        <li><label>Division Name:</label><span>{{ object.name }}</span></li>
+	    </ul>
+	</fieldset> 	     	        
+
+	<fieldset>
+	    <legend class="primary">Division Contact</legend>
+	    <ul>
+	        <li><label>Contact Name:</label><span>{{ object.contactName }}</span><div class="vd" /></li>
+	        <li><label>Contact Email:</label><span>{{ object.contactEmail }}</span></li>
+	    </ul>
+	</fieldset> 	
+
+	<div class="actions">
+	    <p class="action-links">
+	        <a href="../create">Create Division</a> | <a href="../update/{{ object.pk }}">Update Division</a> | <a href="..">List Divisions</a>
+	    </p>
+	</div>
+{% endblock %}

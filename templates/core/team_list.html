@@ -1,0 +1,18 @@
+{% extends "core/generic_list.html" %}
+
+{% block title %}Teams{% endblock %}
+{% block createTitle %}Create Team{% endblock %}
+
+{% block listHeader %}
+	<th>Name</th>
+    <th>Division</th>
+    <th>Skill Level</th>
+    <th>Club</th>
+{% endblock %}
+
+{% block listRow %}
+	<td><a href="detail/{{ object.pk }}">{{ object.name }}</a></td>
+	<td>{{ object.division }}</td>
+	<td>{{ object.skillLevel }}</td>
+	<td>{{ object.club }}</td>
+{% endblock %}

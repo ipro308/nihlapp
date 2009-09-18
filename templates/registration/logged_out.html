@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block section %}NIHL{% endblock %}
+{% block title %}Logged out{% endblock %}
+
+{% block content %}
+
+<div class="login-form">
+	<p style="margin-bottom:20px;">You have successfully logged out. <a href="{% url django.contrib.auth.views.login %}">Click here to login</a>.</p>
+</div>
+
+{% endblock %}
+

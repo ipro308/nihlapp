@@ -1,0 +1,22 @@
+{% extends "core/generic_list.html" %}
+
+{% block title %}Clubs{% endblock %}
+{% block createTitle %}Create Club{% endblock %}
+
+{% block listHeader %}
+	<th>Club Name</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip</th>
+    <th>Contact</th>
+{% endblock %}
+
+{% block listRow %}
+	<td><a href="detail/{{ object.pk }}">{{ object.name }}</a></td>
+	<td>{{ object.address }}</td>
+	<td>{{ object.city }}</td>
+	<td>{{ object.state }}</td>
+    <td>{{ object.zip }}</td>
+    <td>{{ object.contactName }}</td>
+{% endblock %}

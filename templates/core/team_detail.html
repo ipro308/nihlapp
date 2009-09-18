@@ -1,0 +1,47 @@
+{% extends "core/generic_detail.html" %}
+
+{% block title %}Teams{% endblock %}
+{% block detailTitle %}Team Detail{% endblock %}
+{% block detailName %}{{ object.name }}{% endblock %}
+
+{% block detailView %}
+	<fieldset>
+	    <legend class="primary">Team Detail</legend>
+	    <ul>
+	        <li><label>Team Name:</label><span>{{ object.name }}</span><div class="vd" /></li>
+	        <li><label>Division:</label><span>{{ object.division }}</span></li>
+            <li><label>Skill Level:</label><span>{{ object.skillLevel }}</span></li>
+	    </ul>
+	</fieldset> 	     	        
+	
+	<fieldset>
+	    <legend class="primary">Season & Club</legend>
+	    <ul>
+	        <li><label>Season:</label><span>{{ object.season }}</span></li>
+            <li><label>Club:</label><span>{{ object.club }}</span></li>
+	    </ul>
+	</fieldset> 	
+	
+	<fieldset>
+	    <legend class="primary">Team Manager</legend>
+	    <ul>
+	        <li><label>Manager Name:</label><span>{{ object.managerName }}</span><div class="vd" /></li>
+	        <li><label>Manager Email:</label><span>{{ object.managerEmail }}</span></li>
+	    </ul>
+	</fieldset> 	
+
+	<fieldset>
+	    <legend class="primary">Team Coach</legend>
+	    <ul>
+	        <li><label>Coach Name:</label><span>{{ object.coachName }}</span><div class="vd" /></li>
+	        <li><label>Coach Email:</label><span>{{ object.coachEmail }}</span></li>
+	    </ul>
+	</fieldset> 	
+
+
+	<div class="actions">
+	    <p class="action-links">
+	        <a href="../create">Create Team</a> | <a href="../update/{{ object.pk }}">Update Team</a> | <a href="..">List Teams</a>
+	    </p>
+	</div>
+{% endblock %}

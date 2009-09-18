@@ -1,0 +1,25 @@
+- Checking out project files:
+
+If you do not intend on commiting changes, use the following to check out a copy of the project:
+
+git clone git://github.com/ipro308/nihlapp.git 
+
+If you intend on commiting to the github repository, you will need to have your github account added as collaborator to ipro308/nihlapp project, or your public key added to ipro308 user. Once done setting up authentication, use:
+
+git clone git@github.com:ipro308/nihlapp.git 
+
+
+- Checking in new files and updates to existing files:
+
+# you must check out the project with authentication using "git clone git@github.com:ipro308/nihlapp.git" to push changes
+
+# add file or folder to git tracking
+git add <filename or folder>
+
+# save to local git repository
+git commit -m "your commit message here"
+
+# push to project git repository on github
+git push origin master
+
+

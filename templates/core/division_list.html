@@ -1,0 +1,14 @@
+{% extends "core/generic_list.html" %}
+
+{% block title %}Divisions{% endblock %}
+{% block createTitle %}Create Division{% endblock %}
+
+{% block listHeader %}
+	<th>Name</th>
+    <th>Contact</th>
+{% endblock %}
+
+{% block listRow %}
+	<td><a href="detail/{{ object.pk }}">{{ object.name }}</a></td>
+	<td>{{ object.contactName }}</td>
+{% endblock %}

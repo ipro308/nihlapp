@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<title>NIHL</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Language" content="en" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta name="description" content="" />
+	<meta name="copyright" content="" />
+	<meta name="author" content="" />
+	<meta name="keywords" content="" />
+	<meta name="robots" content="noindex, nofollow" />
+	<link rel="shortcut icon" href="/static/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css" media="all" />
+	{% block css %}{% endblock %}
+	
+	<!-- move this to the bottom -->
+	<script type="text/javascript" src="/static/js/jquery.js"></script>	
+</head>
+<body>
+<div id="canvas">    
+    <div id="page">
+        <div id="header">
+            <h1 class="logo"><a href="/" class="notext"><span>NIHL</span></a></h1>
+            <span id="apptitle">NIHL</span>
+        <div id="navbar">
+            <div class="caps">
+                <div class="left"></div>
+                <div class="right"></div>
+            </div>
+            <div class="fill">
+		{% if user.is_authenticated %}
+                <ul class="left">
+                    <li id="developer-menu" class="hasMenu">
+                       <a href="/" class=""><span class="text">Home</span></a>
+                    </li>
+                    <li id="developer-menu" class="hasMenu">
+                       <a href="/stats" class=""><span class="text">Stats</span></a>
+                    </li>     
+                    <li id="developer-menu" class="hasMenu">
+                       <a href="/schedule" class=""><span class="text">Schedule</span></a>
+                    </li>     
+                    <li id="developer-menu" class="hasMenu">
+                       <a href="/teams" class=""><span class="text">Teams</span></a>
+                    </li>    
+                    <li id="developer-menu" class="hasMenu">
+                       <a href="/clubs" class=""><span class="text">Clubs</span></a>
+                    </li>    
+                    <li id="developer-menu" class="hasMenu">
+                       <a href="/divisions" class=""><span class="text">Divisions</span></a>
+                    </li>    
+                    <li id="developer-menu" class="hasMenu">
+                       <a href="/rinks" class=""><span class="text">Rinks</span></a>
+                    </li>    
+                    {% if user.is_superuser %}                                          
+                        <li id="developer-menu" class="hasMenu">
+                           <a href="/accounts" class=""><span class="text">Users</span></a>
+                        </li>
+                    {% endif %}                   
+                </ul>
+		{% endif %}
+                <ul class="right">
+		{% if user.is_authenticated %}
+                    <li><a href="/accounts/detail/{{ user.pk }}">Logged in as <b>{{ user.first_name }} {{ user.last_name }}</b> [<i>{{ user.username }}</i>]</a></li>
+                    <li><a href="/accounts/logout">Logout</a></li>
+		{% else %}
+                    <li><a href="/accounts/login">Login</a></li>			
+		{% endif %}
+                </ul>
+            </div>
+        </ul>
+        </div>
+        <div id="body">
+            <div class="header">
+
+                <div class="caps">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+                <div class="fill">
+                    <h2 class="left"><a href="..">{% block section %}{% endblock %}</a>:</h2>
+                    <h3 class="left"><span class="bullet"></span>{% block title %}{% endblock %}</h3>
+                </div>
+
+            </div>
+            <div class="content">
+                <div class="corners top">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+                <div class="corners bottom">
+                    <div class="left"></div>
+                    <div class="right"></div>
+
+                </div>
+                <div class="sides">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+                <div id="content_area" class="inner_canvas">
+
+		{% block tabs %}{% endblock %}
+
+		{% block content %}{% endblock %}
+	
+		<div class="clear"></div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="caps">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+                <div class="fill"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

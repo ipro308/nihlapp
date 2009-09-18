@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block css %}<link rel="stylesheet" type="text/css" href="/static/css/jquery.ui.css" media="all" />{% endblock %}
+
+{% block section %}Settings{% endblock %}
+
+{% block tabs %}
+	<ul class="tabs-nav">
+	    <li{% block selectedTab1 %}{% endblock %}><a href="/parameters"><span>Parameters</span></a></li>
+	    <li{% block selectedTab2 %}{% endblock %}><a href="/filters"><span>Filters</span></a></li>
+	    <li{% block selectedTab3 %}{% endblock %}><a href="/applications"><span>Applications</span></a></li>
+	    <li{% block selectedTab4 %}{% endblock %}><a href="/applicationclasses"><span>Application Classes</span></a></li>
+	    <li{% block selectedTab5 %}{% endblock %}><a href="/capturedevices"><span>Capture Devices</span></a></li>
+	</ul>
+{% endblock %}
