@@ -24,7 +24,18 @@ sudo python setup.py install
 
 MacOS X:
 
-- Someone with a mac please fill this in, thanks!
+Get the GIT installer from:
+http://code.google.com/p/git-osx-installer/downloads/list?can=3
+
+OR
+
+use macports
+
+THEN
+
+wget http://www.djangoproject.com/download/1.0.3/tarball/
+tar zxvf Django-1.0.3.tar.gzcd Django-1.0.3
+sudo python setup.py install
 
 Windows:
 
