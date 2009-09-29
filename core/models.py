@@ -10,6 +10,7 @@ from nihlapp.core.models import *
 
 class Club(models.Model):
     name = models.CharField("Club Name", max_length = 30, unique = True)
+	#contact = models.ForeignKey(UserProfile, "Contact")
     contactName = models.CharField("Contact Name", max_length = 30, blank = True)
     contactEmail = models.EmailField("Contact Email", blank = True)
     address = models.CharField("Address", max_length = 30, blank = True)
@@ -25,7 +26,8 @@ class Club(models.Model):
 
 class Division(models.Model):
     name = models.CharField("Division Name", max_length = 30, unique = True)
-    #ages = models.CharField("Ages", max_length = 10, blank = False)
+	#num_teams = models.IntegerField("Number of Teams")
+	#contact = models.ForeignKey(UserProfile, "Contact")
     contactName = models.CharField("Contact Name", max_length = 30, blank = True)
     contactEmail = models.EmailField("Contact Email", blank = True)
 
@@ -36,7 +38,7 @@ class Division(models.Model):
         return "/%s/%s/%s" % ('divisions', 'detail', self.pk)
 
 class Season(models.Model):
-    year = models.CharField("Season Year", max_length = 4, unique = True)
+    year = models.CharField("Season Year", max_length = 4, unique = True) # essentially the name
     seedingBeginDate = models.DateField("Seeding Begin Date")
     seedingSchedDeadline = models.DateField("Seeding Schedule Deadline")
     seedingStatDeadline = models.DateField("Seeding Stat Deadline")
@@ -44,6 +46,7 @@ class Season(models.Model):
     seasonSchedDeadline = models.DateField("Season Schedule Deadline")
     seasonStatDeadline = models.DateField("Season Stat Deadline")
     seasonEnd = models.DateField("Season Ends")
+	#isCurrentSeason = models.BooleanField("Is Current Season")
 
     def __str__(self):
         return "%s Season" % (self.year)
@@ -67,7 +70,9 @@ class Team(models.Model):
     division = models.ForeignKey(Division, verbose_name = "Division")
     club = models.ForeignKey(Club, verbose_name = "Club")
     skillLevel = models.ForeignKey(SkillLevel, verbose_name = "Skill Level")
-    managerName = models.CharField("Manager Name", max_length = 30)
+	#manager = models.ForeignKey(UserProfile, verbose_name = "Manager")
+	#coach = models.ForeignKey(UserProfile, verbose_name = "Coach")
+	managerName = models.CharField("Manager Name", max_length = 30)
     managerEmail = models.EmailField("Manager Email")
     coachName = models.CharField("Coach Name", max_length = 30, blank = True)
     coachEmail = models.EmailField("Coach Email", blank = True)
@@ -102,6 +107,7 @@ class Rink(models.Model):
     zip = models.CharField("Zipcode", max_length = 5, blank = True)
     contactName = models.CharField("Contact Name", max_length = 30, blank = True)
     contactEmail = models.EmailField("Contact Name", max_length = 30, blank = True)
+	#contactPhone = models.CharField("Contact Phone Number", max_length = 15, blank = True)
 
     def __str__(self):
         return self.name
