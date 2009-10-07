@@ -1,0 +1,20 @@
+{% extends "core/generic_list.html" %}
+
+{% block title %}Seasons{% endblock %}
+{% block createTitle %}Create Season{% endblock %}
+
+{% block listHeader %}
+	<th>Year</th>
+    <th>Season Begin</th>
+    <th>Season End</th>
+    <th>State</th>
+    <th>Zip</th>
+{% endblock %}
+
+{% block listRow %}
+	<td><a href="detail/{{ object.pk }}">{{ object.name }}</a></td>
+	<td>{{ object.address }}</td>
+	<td>{{ object.city }}</td>
+	<td>{{ object.state }}</td>
+    <td>{{ object.zip }}</td>
+{% endblock %}

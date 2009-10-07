@@ -1,0 +1,22 @@
+{% extends "core/generic_detail.html" %}
+
+{% block title %}Seasons{% endblock %}
+{% block detailTitle %}Season Detail{% endblock %}
+{% block detailName %}{{ object.name }}{% endblock %}
+
+{% block detailView %}
+	<fieldset>
+	    <legend class="primary">Season Detail</legend>
+	    <ul>
+	        <li><label>Rink Name:</label><span>{{ object.name }}</span></li>
+	    </ul>
+	</fieldset> 	     	        
+	
+
+
+	<div class="actions">
+	    <p class="action-links">
+	        <a href="../create">Create Season</a> | <a href="../update/{{ object.pk }}">Update Season</a> | <a href="..">List Seasons</a>
+	    </p>
+	</div>
+{% endblock %}

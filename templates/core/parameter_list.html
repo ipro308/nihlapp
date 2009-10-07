@@ -1,0 +1,20 @@
+{% extends "core/generic_list.html" %}
+
+{% block title %}Parameters{% endblock %}
+{% block createTitle %}Create Parameter{% endblock %}
+
+{% block listHeader %}
+	<th>Name</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip</th>
+{% endblock %}
+
+{% block listRow %}
+	<td><a href="detail/{{ object.pk }}">{{ object.name }}</a></td>
+	<td>{{ object.address }}</td>
+	<td>{{ object.city }}</td>
+	<td>{{ object.state }}</td>
+    <td>{{ object.zip }}</td>
+{% endblock %}
