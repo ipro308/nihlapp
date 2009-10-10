@@ -141,8 +141,8 @@ class EventStats(models.Model):
     event = models.ForeignKey(Event, verbose_name = "Event")
     homeTeamGoals = models.PositiveSmallIntegerField("Home Team Goals")
     awayTeamGoals = models.PositiveSmallIntegerField("Away Team Goals")
-    
-    # need rest of the stat fields here
+    teamHome = models.ForeignKey(Team, verbose_name = "Home Team")
+    teamAway = models.ForeignKey(Team, verbose_name = "Away Team")
     
     def __str__(self):
         return "Event %s Stats" % (self.event)
