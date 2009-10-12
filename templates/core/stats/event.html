@@ -1,0 +1,57 @@
+{% extends "core/schedule.html" %}
+
+{% block selectedTab4 %} class="tabs-selected"{% endblock %}
+
+{% block section %}Record Stats{% endblock %}
+{% block title %}Record Stats{% endblock %}
+
+{% block content %}
+
+<script type="text/javascript">
+	$(function() {
+		$("#event_date").datepicker(
+        {
+            showOn:             'button',
+            buttonImage:        '/static/images/icons/calendar.png',
+            buttonImageOnly:    true,
+            showAnim:           'slideDown',
+            duration:           'fast'
+        }		
+		);
+	});
+</script>
+
+<p>
+** @todo: Help and description of what is going on goes here - we're recording stats for a game **
+</p>
+<br/>
+
+<h3 style="color: #aaa; text-align:middle;">Record Stats: <a href="{{ event.homeTeam.get_absolute_url }}">{{ event.homeTeam }}</a> vs. <a href="{{ event.awayTeam.get_absolute_url }}">{{ event.awayTeam }}</a> at <a href="{{ event.rink.get_absolute_url }}">{{ event.rink }}</a> on dateTime</h3>
+<br/>
+
+<h4>Referees</h4>
+<hr/>
+<br/>
+** @todo ** 
+
+<h4>Goals</h4>
+<hr/>
+<br/>
+** @todo ** 
+
+<h4>Penalties</h4>
+<hr/>
+<br/>
+** @todo ** 
+
+<h4>Suspensions</h4>
+<hr/>
+<br/>
+** @todo ** 
+
+<h4>Goalkeeper Saves</h4>
+<hr/>
+<br/>
+** @todo ** 
+
+{% endblock %}

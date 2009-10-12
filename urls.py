@@ -4,10 +4,19 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import *
 from django.views.generic.list_detail import *
+from django.contrib import databrowse
+from nihlapp.core.models import SeasonStatus, EventType, EventStatus, Parameter, Season
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
+
+# databrowse models
+databrowse.site.register(Parameter)
+databrowse.site.register(SeasonStatus)
+databrowse.site.register(EventType)
+databrowse.site.register(EventStatus)
+databrowse.site.register(Season)
 
 urlpatterns = patterns('',
 
@@ -45,6 +54,16 @@ urlpatterns = patterns('',
 
     # schedule module
     (r'^schedule', include('nihlapp.core.urls.schedule')),
+  
+    # services module
+    (r'^services', include('nihlapp.core.urls.services')),  
+  
+    # databrowse
+    (r'^db/(.*)', login_required(databrowse.site.root)),  
+  
+    # email notify
+    (r'^notify/', 'nihlapp.core.views.notify.index'),    
+    (r'^notify/send', 'nihlapp.core.views.notify.send'),    
   
     # index
     (r'^$', 'nihlapp.core.views.home.summary'),

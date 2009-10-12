@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block section %}Send Email{% endblock %}
+{% block title %}Send Email{% endblock %}
+
+{% block content %}
+
+** Here you can send emails to other users in the system **
+
+<div class='styled'>
+    <form class="styled" method="post" action="/notify/send">
+    	<div><strong>To: </strong>
+			<select id="to" name="to">
+			{% for object in users %}
+				<option value="{{ object.id }}">{{ object.first_name }} {{ object.last_name }} [{{ object.username }}]</option>
+			{% endfor %}
+			</select>    	
+    	</div>
+    	<br/>
+    	<div><strong>Subject: </strong>{{ emailPrefix }}<input id="subject" type="text" size="40" name="subject" value="" style="width: 400px;"/></div>
+    	<br/>
+    	<div><textarea rows=10 cols=100 id="message" name="message" value=""></textarea></div>
+    	<br/>
+		<input type="submit" name="submit" value="Send Email" style="width:100px;" /> 
+    </form>
+</div>
+
+{% endblock %}

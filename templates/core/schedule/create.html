@@ -1,0 +1,107 @@
+{% extends "core/schedule.html" %}
+
+{% block selectedTab4 %} class="tabs-selected"{% endblock %}
+
+{% block section %}Schedule{% endblock %}
+{% block title %}Create Schedule{% endblock %}
+
+{% block content %}
+
+<script type="text/javascript">
+	$(function() {
+		$("#event_date").datepicker(
+        {
+            showOn:             'button',
+            buttonImage:        '/static/images/icons/calendar.png',
+            buttonImageOnly:    true,
+            showAnim:           'slideDown',
+            duration:           'fast'
+        }		
+		);
+	});
+</script>
+
+<p>
+** @todo: Help and description of what is going on goes here **
+</p>
+<br/>
+
+<h3>Enter Home Rink Schedule</h3>
+<hr/>
+<br/>
+
+<form id="create_event">
+	<table cellspacing="5" style="border: 1px dotted #aaa;">
+		<tr>
+			<th></th>
+			<th>Game Type</th>			
+			<th>Rink</th>
+			<th>Date</th>
+			<th>Time</th>	
+		</tr>
+		<tr id="create_form">
+			<td>Add Time Slot:</td>
+			<td>
+				<select id="event_type" name="event_type">
+				{% for object in event_types %}
+					<option value="{{ object.id }}">{{ object.name }}</option>
+				{% endfor %}
+				</select>
+			</td>
+			<td>
+				<select id="event_rink" name="event_rink">
+				{% for object in rinks %}
+					<option value="{{ object.id }}">{{ object.name }}</option>
+				{% endfor %}
+				</select>
+			</td>			
+			<td><input id="event_date" type="text" size="8" name="event_date" value="{% now "m/d/Y" %}"/></td>
+			<td>
+				<select id="event_hour" name="event_hour">
+					<option value="01">01</option>
+					<option value="02">02</option>
+					<option value="03">03</option>
+					<option value="04">04</option>
+					<option value="05">05</option>
+					<option value="06">06</option>
+					<option value="07">07</option>
+					<option value="08">08</option>
+					<option value="09">09</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+				</select>		
+				:
+				<select id="event_minute" name="event_minute">
+					<option value="00">00</option>
+					<option value="05">05</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="20">20</option>
+					<option value="25">25</option>
+					<option value="30">30</option>
+					<option value="35">35</option>
+					<option value="40">40</option>
+					<option value="45">45</option>
+					<option value="50">50</option>
+					<option value="55">55</option>
+				</select>						
+				<select id="event_am" name="event_am">
+					<option value="PM">PM</option>
+					<option value="AM">AM</option>
+				</select>						
+			</td>			
+			<td><input type="button" name="save_event" id="save_event" value="Save Time Slot" onClick="createTimeSlot()"/></td>						
+		</tr>	
+		{% for object in events %}
+			<tr>
+				<td>Time Slot:</td>
+				<td>{{ object.eventType }}</td>
+				<td>{{ object.rink }}</td>
+				<td colspan=2>{{ object.dateTimeEvent }}</td>
+				<td><input type="button" name="edit_event" id="edit_event" value="Edit Time Slot" onClick="editTimeSlot()"/></td>		
+		{% endfor %}
+	</table>
+</form>
+
+{% endblock %}
