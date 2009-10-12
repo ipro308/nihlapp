@@ -37,6 +37,19 @@ class Division(models.Model):
     def get_absolute_url(self):
         return "/%s/%s/%s" % ('divisions', 'detail', self.pk)
 
+# Season Statuses
+# 1. Preparation [data entry - teams, etc]
+# 2. Scheduling Seeding Games [teams set up seeding game schedules]
+# 3. Seeding Games [seeding round is being played]
+# 4. Scheduling Season Games [teams set up regular season game schedules]    
+# 5. Season Games [season games are being played]
+# 6. Completed [season has been completed, stats have been entered]
+class SeasonStatus(models.Model):
+    name = models.CharField("Season Status", max_length = 30, unique = True)    
+    
+    def __str__(self):
+        return self.name
+
 class Season(models.Model):
     year = models.CharField("Season Year", max_length = 4, unique = True) # essentially the name
     seedingBeginDate = models.DateField("Seeding Begin Date")
@@ -46,7 +59,8 @@ class Season(models.Model):
     seasonSchedDeadline = models.DateField("Season Schedule Deadline")
     seasonStatDeadline = models.DateField("Season Stat Deadline")
     seasonEnd = models.DateField("Season Ends")
-	#isCurrentSeason = models.BooleanField("Is Current Season")
+    isCurrentSeason = models.BooleanField("Is Current Season")
+    seasonStatus = models.ForeignKey(SeasonStatus, verbose_name = "Season Status")
 
     def __str__(self):
         return "%s Season" % (self.year)
@@ -72,7 +86,7 @@ class Team(models.Model):
     skillLevel = models.ForeignKey(SkillLevel, verbose_name = "Skill Level")
 	#manager = models.ForeignKey(UserProfile, verbose_name = "Manager")
 	#coach = models.ForeignKey(UserProfile, verbose_name = "Coach")
-	managerName = models.CharField("Manager Name", max_length = 30)
+    managerName = models.CharField("Manager Name", max_length = 30)
     managerEmail = models.EmailField("Manager Email")
     coachName = models.CharField("Coach Name", max_length = 30, blank = True)
     coachEmail = models.EmailField("Coach Email", blank = True)
@@ -93,11 +107,26 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def get_absolute_url(self):
+        return "/%s/%s/%s" % ('accounts', 'detail', self.pk)
+
+# Event Types
+# 1. Seeding Game
+# 2. Season Game
+# 3. Practice Game
 class EventType(models.Model):
-    name = models.CharField("Event Type Name", max_length = 30, unique = True)
+    name = models.CharField("Event Type", max_length = 30, unique = True)
     
+    def __str__(self):
+        return self.name
+    
+# Event Statuses
+# 1. Available [for scheduling]
+# 2. Scheduled [another team picked this time]
+# 3. Confirmed [home team confirmed game with away team]
+# 4. Completed [stats entered]
 class EventStatus(models.Model):
-    name = models.CharField("Event Status Name", max_length = 30, unique = True)
+    name = models.CharField("Event Status", max_length = 30, unique = True)
     
 class Rink(models.Model):
     name = models.CharField("Rink Name", max_length = 30, unique = True)
@@ -117,18 +146,19 @@ class Rink(models.Model):
     
 class Event(models.Model):
     dateTimeEvent = models.DateTimeField("Event Date and Time")
-    dateTimeScheduled = models.DateTimeField("Scheduled Timestamp")
-    dateTimeConfirmed = models.DateTimeField("Confirmed Timestamp")
-    dateTimeCancelled = models.DateTimeField("Cancelled Timestamp")
+    dateTimeCreated = models.DateTimeField("Created Timestamp", blank = True, null = True)
+    dateTimeScheduled = models.DateTimeField("Scheduled Timestamp", blank = True, null = True)
+    dateTimeConfirmed = models.DateTimeField("Confirmed Timestamp", blank = True, null = True)
+    dateTimeCancelled = models.DateTimeField("Cancelled Timestamp", blank = True, null = True)
     eventType = models.ForeignKey(EventType, verbose_name = "Event Type")
     eventStatus = models.ForeignKey(EventStatus, verbose_name = "Event Status")
     homeTeam = models.ForeignKey(Team, verbose_name = "Home Team", related_name = "Home Team")
-    awayTeam = models.ForeignKey(Team, verbose_name = "Away Team", related_name = "Away Team")
+    awayTeam = models.ForeignKey(Team, verbose_name = "Away Team", related_name = "Away Team", blank = True, null = True)
     rink = models.ForeignKey(Rink, verbose_name = "Rink")
     season = models.ForeignKey(Season, verbose_name = "Season")
 
     def __str__(self):
-        return self.dateTimeEvent
+        return "%s vs. %s" % (self.homeTeam, self.awayTeam)
     
     def get_absolute_url(self):
         return "/%s/%s/%s" % ('events', 'detail', self.pk)
@@ -137,16 +167,98 @@ class Parameter(models.Model):
     name = models.CharField("Event Type Name", max_length = 30, unique = True)
     value = models.CharField("Event Type Name", max_length = 30)
     
+    def __str__(self):
+        return self.value
+    
+    def get_absolute_url(self):
+        return "/%s/%s/%s" % ('parameters', 'detail', self.pk)    
+    
 class EventStats(models.Model):
     event = models.ForeignKey(Event, verbose_name = "Event")
-    homeTeamGoals = models.PositiveSmallIntegerField("Home Team Goals")
-    awayTeamGoals = models.PositiveSmallIntegerField("Away Team Goals")
-    
-    # need rest of the stat fields here
-    
+#    homeTeamGoals = models.PositiveSmallIntegerField("Home Team Goals")
+#    awayTeamGoals = models.PositiveSmallIntegerField("Away Team Goals")
+    majorPenaltiesAssessed = models.BooleanField("Major Penalties Assessed")
+    referee1Name = models.CharField("Event Type Name", max_length = 30)
+    referee2Name = models.CharField("Event Type Name", max_length = 30)
+    referee3Name = models.CharField("Event Type Name", max_length = 30)
+    referee1Level = models.CharField("Event Type Name", max_length = 30)
+    referee2Level = models.CharField("Event Type Name", max_length = 30)
+    referee3Level = models.CharField("Event Type Name", max_length = 30)
+    referee1IHOANum = models.CharField("Event Type Name", max_length = 30)
+    referee2IHOANum = models.CharField("Event Type Name", max_length = 30)
+    referee3IHOANum = models.CharField("Event Type Name", max_length = 30)
+
     def __str__(self):
         return "Event %s Stats" % (self.event)
     
     def get_absolute_url(self):
         return "/%s/%s/%s" % ('eventstats', 'detail', self.pk)
     
+class EventGoal(models.Model):
+    event = models.ForeignKey(Event, verbose_name = "Event")
+    team = models.ForeignKey(Team, verbose_name = "Team")
+    player = models.PositiveSmallIntegerField("Player Number")
+    period = models.PositiveSmallIntegerField("Period")
+    time = models.TimeField("Time")
+        
+    def __str__(self):
+        return "Event %s Goal by %s player %d" % (self.event, self.team, self.player)
+    
+    def get_absolute_url(self):
+        return "/%s/%s/%s" % ('eventgoals', 'detail', self.pk)        
+        
+class PenaltyOffense(models.Model):
+    name = models.CharField("Penalty Offense", max_length = 30)
+    
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return "/%s/%s/%s" % ('penaltyoffenses', 'detail', self.pk)    
+        
+        
+class EventPenalty(models.Model):
+    event = models.ForeignKey(Event, verbose_name = "Event")
+    team = models.ForeignKey(Team, verbose_name = "Team")
+    player = models.PositiveSmallIntegerField("Player Number")
+    period = models.PositiveSmallIntegerField("Period")
+    penaltyTime = models.TimeField("Penalty Time")
+    penaltyOffense = models.ForeignKey(PenaltyOffense, verbose_name = "Penalty Offense")
+    timeOn = models.TimeField("Time ON")
+    timeOff = models.TimeField("Time OFF")
+    
+    def __str__(self):
+        return "Event %s Penalty for %s player %d" % (self.event, self.team, self.player)
+    
+    def get_absolute_url(self):
+        return "/%s/%s/%s" % ('eventpenalties', 'detail', self.pk)       
+    
+class EventSuspension(models.Model):
+    event = models.ForeignKey(Event, verbose_name = "Event")
+    team = models.ForeignKey(Team, verbose_name = "Team")
+    player = models.PositiveSmallIntegerField("Player Number")
+#    playerFirstName = models.CharField("Player's First Name", max_length = 30)
+    playerLastName = models.CharField("Player's Last Name", max_length = 30)
+    
+    def __str__(self):
+        return "Event %s Suspension for %s player %d" % (self.event, self.team, self.player)
+    
+    def get_absolute_url(self):
+        return "/%s/%s/%s" % ('eventsuspensions', 'detail', self.pk)      
+    
+class EventGoalkeeperSaves(models.Model):
+    event = models.ForeignKey(Event, verbose_name = "Event")
+    team = models.ForeignKey(Team, verbose_name = "Team")
+    player = models.PositiveSmallIntegerField("Player Number")
+    firstPeriodSaves = models.PositiveSmallIntegerField("First Period Saves")
+    secondPeriodSaves = models.PositiveSmallIntegerField("Second Period Saves")
+    thirdPeriodSaves = models.PositiveSmallIntegerField("Third Period Saves")
+    overtimeSaves = models.PositiveSmallIntegerField("Overtime Saves")
+
+    def __str__(self):
+        return "Event %s Goalkeeper Saves by %s player %d" % (self.event, self.team, self.player)
+    
+    def get_absolute_url(self):
+        return "/%s/%s/%s" % ('eventgoalkeepersaves', 'detail', self.pk)  
+
+
