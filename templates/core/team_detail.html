@@ -37,11 +37,55 @@
 	        <li><label>Coach Email:</label><span>{{ object.coachEmail }}</span></li>
 	    </ul>
 	</fieldset> 	
-
+	
+	<fieldset>
+		<legend class="primary">Schedule</legend>
+		<table style="width:100%;">
+			<tr>
+				<th>Date</th>
+				<th>Type</th>
+				<th>Rink</th>
+				<th>Opponent</th>
+				
+			</tr>
+			{% for event in schedule_queryset %}
+			<tr>
+				<td>{{ event.dateTimeEvent }}</td>
+				<td>{{ event.eventType }}</td>
+				<td>{{ event.rink }}</td>
+				<td>{{ event.awayTeam }}</td>
+			</tr>
+			{% endfor %}
+		<legend>
+	<fieldset>
+		<fieldset>
+		<legend class="primary">Statistics</legend>
+		<table style="width:100%;">
+			<tr>
+				<th>Date</th>
+				<th>Type</th>
+				<th>Rink</th>
+				<th>Opponent</th>
+				
+			</tr>
+			{% for event in schedule_queryset %}
+			<tr>
+				<td>{{ event.dateTimeEvent }}</td>
+				<td>{{ event.eventType }}</td>
+				<td>{{ event.rink }}</td>
+				<td>{{ event.awayTeam }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		<legend>
+	<fieldset>
 
 	<div class="actions">
 	    <p class="action-links">
 	        <a href="../create">Create Team</a> | <a href="../update/{{ object.pk }}">Update Team</a> | <a href="..">List Teams</a>
 	    </p>
 	</div>
+
+	
+		
 {% endblock %}
