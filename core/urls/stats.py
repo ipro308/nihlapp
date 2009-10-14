@@ -7,5 +7,5 @@ urlpatterns = patterns('',
     (r'^/playoffs$', 'nihlapp.core.views.stats.playoffs'),
     (r'^/tournament$', 'nihlapp.core.views.stats.tournament'),
     (r'^/record$', 'nihlapp.core.views.stats.record'),
-    (r'^/event/(?P<object_id>\d+)/?$', 'nihlapp.core.views.stats.event'),
+    (r'^/record/event/(?P<object_id>\d+)/?$', 'nihlapp.core.views.stats.record_event'),
 )

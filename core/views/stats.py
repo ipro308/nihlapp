@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from nihlapp.core.models import Event, Season, EventStatus
+from django.db.models import Q
+from nihlapp.core.models import Event, Season, EventStatus, Team, PenaltyOffense
 
 @login_required
 def summary(request):
@@ -29,6 +30,8 @@ def record(request):
     return render_to_response('core/stats/record.html', {'user': request.user, 'events': events})
 
 @login_required
-def event(request, object_id):
-    
-    return render_to_response('core/stats/event.html', {'user': request.user, 'event': Event.objects.get(id = object_id)})
+def record_event(request, object_id):
+    event = Event.objects.get(id = object_id)
+    teams = Team.objects.filter(Q(id = event.homeTeam.id) | Q(id = event.awayTeam.id))
+    penaltyOffenses = PenaltyOffense.objects.all()
+    return render_to_response('core/stats/event.html', {'user': request.user, 'event': event, 'teams': teams, 'penaltyOffenses': penaltyOffenses})

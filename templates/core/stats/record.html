@@ -15,8 +15,8 @@
 	</tr>
 	{% for object in events %}
 	<tr>
-		<td><a href="/stats/event/{{ object.id }}">Record Stats</a></td>
-		<td><a href="/stats/event/{{ object.id }}">{{ object.homeTeam }} vs. {{ object.awatTeam }} at {{ object.rink }}</a></td>
+		<td><a href="/stats/record/event/{{ object.id }}">Record Stats</a></td>
+		<td><a href="/stats/record/event/{{ object.id }}">{{ object.homeTeam }} vs. {{ object.awatTeam }} at {{ object.rink }}</a></td>
 		<td>{{ object.dateTimeEvent }}</td>
 	</tr>	
 	{% endfor %}
