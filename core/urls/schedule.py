@@ -4,4 +4,5 @@ urlpatterns = patterns('',
     (r'^/$', 'nihlapp.core.views.schedule.upcoming'),
     (r'^/recent$', 'nihlapp.core.views.schedule.recent'),
     (r'^/matchups$', 'nihlapp.core.views.schedule.matchups'),
+    (r'^/create$', 'nihlapp.core.views.schedule.create'),    
 )

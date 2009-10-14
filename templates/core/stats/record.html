@@ -1,0 +1,25 @@
+{% extends "core/stats.html" %}
+
+{% block selectedTab4 %} class="tabs-selected"{% endblock %}
+
+{% block section %}Record Stats{% endblock %}
+{% block title %}Record Stats{% endblock %}
+
+{% block content %}
+
+<table style="width:100%;">
+	<tr>
+		<th></th>
+		<th>Game</th>
+		<th>Game Time</th>
+	</tr>
+	{% for object in events %}
+	<tr>
+		<td><a href="/stats/record/event/{{ object.id }}">Record Stats</a></td>
+		<td><a href="/stats/record/event/{{ object.id }}">{{ object.homeTeam }} vs. {{ object.awatTeam }} at {{ object.rink }}</a></td>
+		<td>{{ object.dateTimeEvent }}</td>
+	</tr>	
+	{% endfor %}
+</table>
+
+{% endblock %}

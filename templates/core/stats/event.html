@@ -1,0 +1,206 @@
+{% extends "core/schedule.html" %}
+
+{% block selectedTab4 %} class="tabs-selected"{% endblock %}
+
+{% block section %}Record Stats{% endblock %}
+{% block title %}Record Stats{% endblock %}
+
+{% block content %}
+
+<p>
+** @todo: Help and description of what is going on goes here - we're recording stats for a game **
+</p>
+<br/>
+
+<h3 style="color: #aaa; text-align:middle;">Record Stats: <a href="{{ event.homeTeam.get_absolute_url }}">{{ event.homeTeam }}</a> vs. <a href="{{ event.awayTeam.get_absolute_url }}">{{ event.awayTeam }}</a> at <a href="{{ event.rink.get_absolute_url }}">{{ event.rink }}</a> on dateTime</h3>
+<br/>
+
+<form id="record_event">
+
+<h4>Referees</h4>
+<hr/>
+<br/>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Level</th>
+		<th>IHOA No.</th>				
+	</tr>
+	<tr>
+		<td><input type="text" name="referee1Name" id="referee1Name" /></td>
+		<td><input type="text" name="referee1Level" id="referee1Level" /></td>
+		<td><input type="text" name="referee1IHOANum" id="referee1IHOANum" /></td>				
+	</tr>	
+	<tr>
+		<td><input type="text" name="referee2Name" id="referee2Name" /></td>
+		<td><input type="text" name="referee2Level" id="referee2Level" /></td>
+		<td><input type="text" name="referee2IHOANum" id="referee2IHOANum" /></td>				
+	</tr>	
+	<tr>
+		<td><input type="text" name="referee3Name" id="referee3Name" /></td>
+		<td><input type="text" name="referee3Level" id="referee3Level" /></td>
+		<td><input type="text" name="referee3IHOANum" id="referee3IHOANum" /></td>				
+	</tr>			
+</table><br/>
+
+<h4>Goals</h4>
+<hr/>
+	<table cellspacing="5">
+		<tr>
+			<th>Team</th>
+			<th>Player</th>			
+			<th>Period</th>
+			<th>Time</th>	
+		</tr>
+		<tr id="goals">
+			<td>
+				<select id="goal_team" name="goal_team">
+				{% for object in teams %}
+					<option value="{{ object.id }}">{{ object.name }}</option>
+				{% endfor %}
+				</select>
+			</td>
+			<td>
+				<input id="goal_player" type="text" size="8" name="goal_player"/>
+			</td>			
+			<td>
+				<select id="goal_period" name="goal_period">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="OT">Overtime</option>
+				</select>
+			</td>
+			<td>
+				<input id="goal_time_hour" type="text" size="2" name="goal_time_hour"/>:<input id="goal_time_minute" type="text" size="2" name="goal_time_minute"/>
+			</td>
+			<td><input type="button" name="save_goal" id="save_goal" value="Save Goal" onClick="saveGoal()"/></td>		
+		</tr>	
+	</table><br/>
+
+<h4>Penalties</h4>
+<hr/>
+	<table cellspacing="5">
+		<tr>
+			<th>Team</th>
+			<th>Player</th>			
+			<th>Period</th>
+			<th>Penalty Time</th>	
+			<th>Penalty Offense</th>	
+			<th>Time ON</th>	
+			<th>Time OFF</th>	
+		</tr>
+		<tr id="goals">
+			<td>
+				<select id="goal_team" name="goal_team">
+				{% for object in teams %}
+					<option value="{{ object.id }}">{{ object.name }}</option>
+				{% endfor %}
+				</select>
+			</td>
+			<td>
+				<input id="goal_player" type="text" size="8" name="goal_player"/>
+			</td>			
+			<td>
+				<select id="goal_period" name="goal_period">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="OT">Overtime</option>
+				</select>
+			</td>
+			<td>
+				<input id="goal_time_hour" type="text" size="2" name="goal_time_hour"/>:<input id="goal_time_minute" type="text" size="2" name="goal_time_minute"/>
+			</td>
+			<td>
+				<select id="penalty_offense" name="goal_team">
+				{% for object in penaltyOffenses %}
+					<option value="{{ object.id }}">{{ object.name }}</option>
+				{% endfor %}
+				</select>
+			</td>	
+			<td>
+				<input id="goal_time_hour" type="text" size="2" name="goal_time_hour"/>:<input id="goal_time_minute" type="text" size="2" name="goal_time_minute"/>
+			</td>
+			<td>
+				<input id="goal_time_hour" type="text" size="2" name="goal_time_hour"/>:<input id="goal_time_minute" type="text" size="2" name="goal_time_minute"/>
+			</td>								
+			<td><input type="button" name="save_goal" id="save_goal" value="Save Penalty" onClick="savePenalty()"/></td>		
+		</tr>	
+	</table><br/>
+
+<h4>Suspensions</h4>
+<hr/>
+	<table cellspacing="5">
+		<tr>
+			<th>Team</th>
+			<th>Player</th>			
+			<th>Player's Last Name</th>
+		</tr>
+		<tr id="goals">
+			<td>
+				<select id="goal_team" name="goal_team">
+				{% for object in teams %}
+					<option value="{{ object.id }}">{{ object.name }}</option>
+				{% endfor %}
+				</select>
+			</td>
+			<td>
+				<input id="goal_player" type="text" size="8" name="goal_player"/>
+			</td>			
+			<td>
+				<input id="goal_player" type="text" size="15" name="goal_player"/>
+			</td>							
+			<td><input type="button" name="save_goal" id="save_goal" value="Save Suspension" onClick="saveSuspension()"/></td>		
+		</tr>	
+	</table><br/>
+
+<h4>Goalkeeper Saves</h4>
+<hr/>
+	<table cellspacing="5">
+		<tr>
+			<th>Team</th>
+			<th>Player</th>			
+			<th>1st Period</th>
+			<th>2nd Period</th>
+			<th>3rd Period</th>
+			<th>Overtime</th>
+		</tr>
+		<tr id="goals">
+			<td>
+				<select id="goal_team" name="goal_team">
+				{% for object in teams %}
+					<option value="{{ object.id }}">{{ object.name }}</option>
+				{% endfor %}
+				</select>
+			</td>
+			<td>
+				<input id="goal_player" type="text" size="8" name="goal_player"/>
+			</td>			
+			<td>
+				<input id="goal_player" type="text" size="4" name="goal_player"/>
+			</td>				
+			<td>
+				<input id="goal_player" type="text" size="4" name="goal_player"/>
+			</td>	
+			<td>
+				<input id="goal_player" type="text" size="4" name="goal_player"/>
+			</td>	
+			<td>
+				<input id="goal_player" type="text" size="4" name="goal_player"/>
+			</td>													
+			<td><input type="button" name="save_goal" id="save_goal" value="Save Goalkeeper Saves" onClick="saveGoalkeeperSaves()"/></td>		
+		</tr>	
+	</table><br/>
+
+<div style="margin: 10px;">
+	<input type="checkbox" name="majorPenaltiesAssessed" id="majorPenaltiesAssessed" /> Major Penalties Assessed
+</div>
+
+<div style="margin: 10px; text-align: center;">
+	<input type="submit" name="submitStats" id="submitStats" value="Record Event Stats" />
+</div>
+
+</form>
+
+{% endblock %}
