@@ -19,6 +19,28 @@
 	        <li><label>Contact Email:</label><span>{{ object.contactEmail }}</span></li>
 	    </ul>
 	</fieldset> 	
+	
+	<fieldset>
+	    <legend class="primary">Teams</legend>
+	      <table style="width:100%;">
+			<tr>
+				<th>Team Detail</th>
+				<th>Division</th>
+				<th>Skill</th>
+				<th>Coach</th>
+				<th>Manager</th>
+			</tr>
+			{% for team in team_queryset %}
+			<tr>
+				<td><a href="/teams/detail/{{ team.pk }}">{{ team.name }}</a></td>
+				<td>{{ team.division }}</td>
+				<td>{{ team.skillLevel }}</td>
+				<td>{{ team.coachName}}</td>
+				<td>{{ team.managerName}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</fieldset> 
 
 	<div class="actions">
 	    <p class="action-links">

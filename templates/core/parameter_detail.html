@@ -1,0 +1,37 @@
+{% extends "core/generic_detail.html" %}
+
+{% block title %}Rinks{% endblock %}
+{% block detailTitle %}Rink Detail{% endblock %}
+{% block detailName %}{{ object.name }}{% endblock %}
+
+{% block detailView %}
+	<fieldset>
+	    <legend class="primary">Parameter Detail</legend>
+	    <ul>
+	        <li><label>Parameter Name:</label><span>{{ object.name }}</span></li>
+	    </ul>
+	</fieldset> 	     	        
+	
+	<fieldset>
+	    <legend class="primary">Parameter Address</legend>
+	    <ul>
+	        <li><label>Address:</label><span>{{ object.address }}</span><div class="vd" /></li>
+	        <li><label>State:</label><span>{{ object.state }}</span><div class="vd" /></li>
+	        <li><label>Zipcode:</label><span>{{ object.zip }}</span></li>
+	    </ul>
+	</fieldset> 	
+
+	<fieldset>
+	    <legend class="primary">Parameter Contact</legend>
+	    <ul>
+	        <li><label>Contact Name:</label><span>{{ object.contactName }}</span><div class="vd" /></li>
+	        <li><label>Contact Email:</label><span>{{ object.contactEmail }}</span></li>
+	    </ul>
+	</fieldset> 	
+
+	<div class="actions">
+	    <p class="action-links">
+	        <a href="../create">Create Parameter</a> | <a href="../update/{{ object.pk }}">Update Parameter</a> | <a href="..">List Parameter</a>
+	    </p>
+	</div>
+{% endblock %}

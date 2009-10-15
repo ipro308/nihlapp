@@ -45,7 +45,9 @@ urlpatterns = patterns('',
     (r'^clubs', include('nihlapp.core.urls.clubs')),
     (r'^divisions', include('nihlapp.core.urls.divisions')),
     (r'^rinks', include('nihlapp.core.urls.rinks')),
-  
+    (r'^seasons', include('nihlapp.core.urls.seasons')),
+    (r'^parameters', include('nihlapp.core.urls.parameters')),
+    
     # home module
     (r'^home', include('nihlapp.core.urls.home')),
 
