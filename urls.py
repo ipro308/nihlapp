@@ -64,7 +64,10 @@ urlpatterns = patterns('',
     # email notify
     (r'^notify/', 'nihlapp.core.views.notify.index'),    
     (r'^notify/send', 'nihlapp.core.views.notify.send'),    
-  
+ 
+    # github post-commit hook
+    (r'^githook/pull', 'nihlapp.core.views.githook.pull'),
+ 
     # index
     (r'^$', 'nihlapp.core.views.home.summary'),
 )
