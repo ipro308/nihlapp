@@ -21,5 +21,3 @@ git commit -m "your commit message here"
 
 # push to project git repository on github
 git push origin master
-
-

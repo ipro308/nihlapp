@@ -50,13 +50,13 @@ function saveGoal() {
 } // saveGoal()
 
 function savePenalty() {
-	var postVars = $('#penalties :input:not(:checkbox), #goals :input:checkbox:checked').serialize();
+	var postVars = $('#event_id, #penalties :input:not(:checkbox), #goals :input:checkbox:checked').serialize();
 	$.post('/services/eventpenalties/create', postVars,
 		function(response) {
 			if(response.error) {
-				$("#create_form").after("<tr><td colspan=6>Error occured while saving goal: " + response.error + "</td></tr>");
+				$("#penalties").after("<tr><td colspan=6>Error occured while saving goal: " + response.error + "</td></tr>");
 			} else {
-				$("#create_form").after("<tr><td>Time Slot:</td><td>" + response.eventType + "</td><td>" +
+				$("#penalties").after("<tr><td>Time Slot:</td><td>" + response.eventType + "</td><td>" +
 					response.rink + "</td><td colspan=2>" + response.date + "</td></tr>");
 			}
 		}, "json"
@@ -65,13 +65,13 @@ function savePenalty() {
 } // savePenalty()
 
 function saveSuspension() {
-	var postVars = $('#suspensions :input:not(:checkbox), #goals :input:checkbox:checked').serialize();
+	var postVars = $('#event_id, #suspensions :input:not(:checkbox), #goals :input:checkbox:checked').serialize();
 	$.post('/services/eventsuspensions/create', postVars,
 		function(response) {
 			if(response.error) {
-				$("#create_form").after("<tr><td colspan=6>Error occured while saving goal: " + response.error + "</td></tr>");
+				$("#suspensions").after("<tr><td colspan=6>Error occured while saving goal: " + response.error + "</td></tr>");
 			} else {
-				$("#create_form").after("<tr><td>Time Slot:</td><td>" + response.eventType + "</td><td>" +
+				$("#suspensions").after(#event_id, "<tr><td>Time Slot:</td><td>" + response.eventType + "</td><td>" +
 					response.rink + "</td><td colspan=2>" + response.date + "</td></tr>");
 			}
 		}, "json"
@@ -80,13 +80,13 @@ function saveSuspension() {
 } // saveSuspension()
 
 function saveGoalkeeperSaves() {
-	var postVars = $('#saves :input:not(:checkbox), #goals :input:checkbox:checked').serialize();
+	var postVars = $('#event_id, #saves :input:not(:checkbox), #goals :input:checkbox:checked').serialize();
 	$.post('/services/eventgoalkeepersaves/create', postVars,
 		function(response) {
 			if(response.error) {
-				$("#create_form").after("<tr><td colspan=6>Error occured while saving goal: " + response.error + "</td></tr>");
+				$("#goalkeepersaves").after("<tr><td colspan=6>Error occured while saving goal: " + response.error + "</td></tr>");
 			} else {
-				$("#create_form").after("<tr><td>Time Slot:</td><td>" + response.eventType + "</td><td>" +
+				$("#goalkeepersaves").after("<tr><td>Time Slot:</td><td>" + response.eventType + "</td><td>" +
 					response.rink + "</td><td colspan=2>" + response.date + "</td></tr>");
 			}
 		}, "json"
