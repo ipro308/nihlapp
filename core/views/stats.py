@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from nihlapp.core.models import Event, Season, EventStatus, Team, PenaltyOffense
 from nihlapp.core.utils import TeamStats
+from django.db.models import Q
 
 @login_required
 def summary(request):
