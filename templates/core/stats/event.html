@@ -16,6 +16,7 @@
 <br/>
 
 <form id="record_event">
+<input type="hidden" name="event_id" id="event_id" value="{{ event.id }}" />
 
 <h4>Referees</h4>
 <hr/>
@@ -72,7 +73,7 @@
 				</select>
 			</td>
 			<td>
-				<input id="goal_time_hour" type="text" size="2" name="goal_time_hour"/>:<input id="goal_time_minute" type="text" size="2" name="goal_time_minute"/>
+				<input id="goal_time_minute" type="text" size="2" name="goal_time_minute"/>:<input id="goal_time_second" type="text" size="2" name="goal_time_second"/>
 			</td>
 			<td><input type="button" name="save_goal" id="save_goal" value="Save Goal" onClick="saveGoal()"/></td>		
 		</tr>	
