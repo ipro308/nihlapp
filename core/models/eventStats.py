@@ -13,6 +13,9 @@ class EventStats(models.Model):
     referee1IHOANum = models.CharField("Event Type Name", max_length = 30)
     referee2IHOANum = models.CharField("Event Type Name", max_length = 30)
     referee3IHOANum = models.CharField("Event Type Name", max_length = 30)
+    winner = models.ForeignKey(Team, verbose_name = "Winning Team", related_name = "Winning Team", blank = True, null = True)
+    loser = models.ForeignKey(Team, verbose_name = "Losing Team", related_name = "Losing Team", blank = True, null = True)
+    tie = models.BooleanField("Tie", default = False)
     
     class Meta:
 		app_label = "core"

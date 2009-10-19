@@ -1,12 +1,17 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
 from nihlapp.core.models import Event, Season, EventStatus, Team, PenaltyOffense
+from nihlapp.core.utils import TeamStats
 
 @login_required
 def summary(request):
-    return render_to_response('core/stats/summary.html', {'user': request.user})
+    teams = TeamStats.objects.filter(season = Season.objects.get(isCurrentSeason = True))
+    stats = list()
+    for team in teams:
+        stats.append(team.get_stats())
+    
+    return render_to_response('core/stats/summary.html', {'user': request.user, 'stats': stats})
 
 @login_required
 def seeding(request):
@@ -35,3 +40,5 @@ def record_event(request, object_id):
     teams = Team.objects.filter(Q(id = event.homeTeam.id) | Q(id = event.awayTeam.id))
     penaltyOffenses = PenaltyOffense.objects.all()
     return render_to_response('core/stats/event.html', {'user': request.user, 'event': event, 'teams': teams, 'penaltyOffenses': penaltyOffenses})
+
+    

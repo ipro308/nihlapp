@@ -8,7 +8,42 @@
 {% block content %}
 
 <div style="text-align:center;">
-	Sortable table with stats by team goes here?
+	Dummy stat display -- testing get_stats() method.
 </div>
+
+<table style="width:100%;">
+	<tr>
+		<th>teamName</th>
+		<th>gamesPlayed</th>
+		<th>wins</th>
+		<th>losses</th>
+		<th>ties</th>
+		<th>points</th>
+		<th>goalsFor</th>
+		<th>goalsAgainst</th>
+		<th>plusMinus</th>
+		<th>shotsOnGoal</th>
+		<th>totalPenaltyMinutes</th>
+		<th>goalsForAverage</th>
+		<th>average</th>
+	</tr>
+	{% for team in stats %}
+	<tr>
+		<td>{{ team.teamName }}</td>
+		<td>{{ team.gamesPlayed }}</td>
+		<td>{{ team.wins }}</td>
+		<td>{{ team.losses }}</td>
+		<td>{{ team.ties }}</td>
+		<td>{{ team.points }}</td>
+		<td>{{ team.goalsFor }}</td>
+		<td>{{ team.goalsAgainst }}</td>
+		<td>{{ team.plusMinus }}</td>
+		<td>{{ team.shotsOnGoal }}</td>
+		<td>{{ team.totalPenaltyMinutes }}</td>
+		<td>{{ team.goalsForAverage }}</td>
+		<td>{{ team.average }}</td>
+	</tr>
+	{% endfor %}
+</table>
 
 {% endblock %}

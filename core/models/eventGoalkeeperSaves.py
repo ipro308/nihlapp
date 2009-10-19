@@ -3,7 +3,8 @@ from nihlapp.core.models import *
 
 class EventGoalkeeperSaves(models.Model):
     event = models.ForeignKey(Event, verbose_name = "Event")
-    team = models.ForeignKey(Team, verbose_name = "Team")
+    team = models.ForeignKey(Team, verbose_name = "For Team", related_name = "Saves For Team")
+    againstTeam = models.ForeignKey(Team, verbose_name = "Against Team", related_name = "Saves Against Team")
     player = models.PositiveSmallIntegerField("Player Number")
     firstPeriodSaves = models.PositiveSmallIntegerField("First Period Saves")
     secondPeriodSaves = models.PositiveSmallIntegerField("Second Period Saves")

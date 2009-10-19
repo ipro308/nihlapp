@@ -5,6 +5,12 @@
 
 {% block content %}
 
+<script type="text/javascript">
+	$(function() {
+		$('#id_username').focus()
+	});
+</script>
+
 <div style="text-align:center;">
 	{% if form.errors %}
 	<p style="color:red;margin-bottom:20px;">Your username and password did not match. Please try again.</p>
