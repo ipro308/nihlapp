@@ -40,6 +40,11 @@ def record_event(request, object_id):
     event = Event.objects.get(id = object_id)
     teams = Team.objects.filter(Q(id = event.homeTeam.id) | Q(id = event.awayTeam.id))
     penaltyOffenses = PenaltyOffense.objects.all()
-    return render_to_response('core/stats/event.html', {'user': request.user, 'event': event, 'teams': teams, 'penaltyOffenses': penaltyOffenses})
+    goals = EventGoal.objects.filter(event = event)
+    return render_to_response('core/stats/event.html', {'user': request.user, 
+                                                        'event': event, 
+                                                        'teams': teams, 
+                                                        'penaltyOffenses': penaltyOffenses,
+                                                        'goals': goals})
 
     

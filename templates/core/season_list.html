@@ -7,14 +7,14 @@
 	<th>Year</th>
     <th>Season Begin</th>
     <th>Season End</th>
-    <th>State</th>
-    <th>Zip</th>
+    <th>Status</th>
+    <th>Current Season</th>
 {% endblock %}
 
 {% block listRow %}
-	<td><a href="detail/{{ object.pk }}">{{ object.name }}</a></td>
-	<td>{{ object.address }}</td>
-	<td>{{ object.city }}</td>
-	<td>{{ object.state }}</td>
-    <td>{{ object.zip }}</td>
+	<td>{{ object.year }}</td>
+	<td>{{ object.seedingBeginDate }}</td>
+	<td>{{ object.seasonEnd }}</td>
+    <td>{{ object.seasonStatus }}</td>
+    <td>{{ object.isCurrentSeason }}</td>
 {% endblock %}
