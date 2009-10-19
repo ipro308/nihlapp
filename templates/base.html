@@ -31,7 +31,6 @@
                 <div class="right"></div>
             </div>
             <div class="fill">
-		{% if user.is_authenticated %}
                 <ul class="left">
                     <li id="developer-menu" class="hasMenu">
                        <a href="/" class=""><span class="text">Home</span></a>
@@ -44,7 +43,8 @@
                     </li>     
                     <li id="developer-menu" class="hasMenu">
                        <a href="/schedule" class=""><span class="text">Schedule</span></a>
-                    </li>     
+                    </li>    
+		{% if user.is_authenticated %}                     
                     <li id="developer-menu" class="hasMenu">
                        <a href="/teams" class=""><span class="text">Teams</span></a>
                     </li>    
@@ -62,8 +62,8 @@
                            <a href="/accounts" class=""><span class="text">Users</span></a>
                         </li>
                     {% endif %}                   
-                </ul>
 		{% endif %}
+		        </ul>
                 <ul class="right">
 		{% if user.is_authenticated %}
                     <li><a href="/accounts/detail/{{ user.pk }}">Logged in as <b>{{ user.first_name }} {{ user.last_name }}</b> [<i>{{ user.username }}</i>]</a></li>

@@ -7,9 +7,50 @@
 
 {% block content %}
 
-<div style="text-align:center;">
-	League summary page, navigation starts here.
-</div>
+<p style="margin-bottom: 10px; font-style: italic;">
+	** @todo: this is a dummy homepage - please style me **
+</p>
+
+<p style="margin-bottom:10px;">
+	{% if user.is_authenticated %}
+		You are logged in as: <strong>{{ user.username }}</strong> ({{ user.get_full_name }})<br/>
+		Your Email: {{ user.get_profile.email }}<br/>
+		Your Team: <a href="{{ user.get_profile.team.get_absolute_url }}">{{ user.get_profile.team }}</a><br/>
+		Your Groups: {{ user.groups.all }}<br/>
+		Your Permissions: {{ user.get_all_permissions }}<br/>
+		Your Group Permissions: {{ user.get_group_permissions }}
+	{% else %}
+		You are not logged in.
+	{% endif %}
+</p> 
+
+<p style="margin-bottom:10px;">
+	Current season: <strong>{{ currentSeason }}</strong> in state: <strong>{{ currentSeason.seasonStatus }}</strong>
+</p> 
+
+<p style="margin-bottom:10px;">
+	Teams this season: {{ numTeams }}
+</p> 
+
+<p style="margin-bottom:10px;">
+	Games played: {{ numGames }}
+</p> 
+
+<p style="margin-bottom:10px;">
+	<a href="/stats">Click here</a> to view team stats
+</p> 
+
+<p style="margin-bottom:10px;">
+	<a href="/schedule">Click here</a> to view schedules
+</p> 
+
+<p style="margin-bottom:10px;">
+	<a href="/help">Click here</a> for help
+</p> 
+
+<p style="margin-bottom:10px;">
+	Reminder: you need to do... ** @todo **
+</p> 
 
 {% endblock %}
 

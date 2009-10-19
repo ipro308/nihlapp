@@ -7,8 +7,15 @@
 
 {% block content %}
 
-<div style="text-align:center;">
-	Sample list of teams to show off how django templates owrk.
-</div>
+<table style="width:100%;">
+	<tr>
+		<th>Team Name</th>
+	</tr>
+	{% for team in teams %}
+	<tr>
+		<td>{{ team.name }}</td>
+	</tr>
+	{% endfor %}
+</table>
 
 {% endblock %}

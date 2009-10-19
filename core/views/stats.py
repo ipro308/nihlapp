@@ -5,7 +5,7 @@ from nihlapp.core.models import Event, Season, EventStatus, Team, PenaltyOffense
 from nihlapp.core.utils import TeamStats
 from django.db.models import Q
 
-@login_required
+
 def summary(request):
     teams = TeamStats.objects.filter(season = Season.objects.get(isCurrentSeason = True))
     stats = list()
@@ -14,11 +14,11 @@ def summary(request):
     
     return render_to_response('core/stats/summary.html', {'user': request.user, 'stats': stats})
 
-@login_required
+
 def seeding(request):
     return render_to_response('core/stats/seeding.html', {'user': request.user})
 
-@login_required
+
 def season(request):
     return render_to_response('core/stats/season.html', {'user': request.user})
 

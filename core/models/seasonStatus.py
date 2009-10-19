@@ -8,4 +8,4 @@ class SeasonStatus(models.Model):
 		app_label = "core"
 	
 	def __str__(self):
-		return self.status
+		return self.name
