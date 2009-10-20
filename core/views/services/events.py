@@ -38,3 +38,9 @@ def create(request):
     
     json = simplejson.dumps(response)
     return HttpResponse(json, mimetype = 'application/json')    
+
+@login_required
+def update(request): pass
+
+@login_required
+def delete(request): pass

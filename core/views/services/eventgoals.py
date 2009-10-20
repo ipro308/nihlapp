@@ -7,6 +7,21 @@ from time import strptime, strftime
 from datetime import datetime
 
 @login_required
+def detail(request):
+    try:
+        object = EventGoal.objects.get(id = request.POST['object_id'])
+        response = {'team': object.team.id, 
+                    'player': object.player, 
+                    'period': object.period,
+                    'time_minute': strftime("%M", object.time.timetuple()),
+                    'time_second': strftime("%S", object.time.timetuple())}
+    except Exception, error:
+        response = {'error': str(error)}
+        
+    json = simplejson.dumps(response)
+    return HttpResponse(json, mimetype = 'application/json')       
+    
+@login_required
 def create(request): 
 
     # attempt to save a goal
@@ -21,20 +36,21 @@ def create(request):
             teamAgainst = event.homeTeam
             
         # populate goal object and call save
-        goal = EventGoal()
-        goal.event = event
-        goal.time = datetime(*strptime("%s:%s" % (request.POST['goal_time_minute'], request.POST['goal_time_second']), "%M:%S")[:6])
-        goal.team = teamFor
-        goal.againstTeam = teamAgainst
-        goal.period = request.POST['goal_period']
-        goal.player = request.POST['goal_player']
-        event.save()
+        object = EventGoal()
+        object.event = event
+        object.time = datetime(*strptime("01/01/0001 01:%s:%s" % (request.POST['goal_time_minute'], request.POST['goal_time_second']), "%m/%d/%Y %I:%M:%S")[:6])
+        object.team = teamFor
+        object.againstTeam = teamAgainst
+        object.period = request.POST['goal_period']
+        object.player = request.POST['goal_player']
+        object.save()
         
-        response = {'team': str(goal.team), 
-                    'player': goal.player, 
-                    'period': goal.period,
-                    'time_minute': strftime("%M", goal.time.timetuple()),
-                    'time_second': strftime("%S", goal.time.timetuple())}
+        response = {'goal_id': object.id,
+                    'team': str(object.team), 
+                    'player': object.player, 
+                    'period': object.period,
+                    'time_minute': strftime("%M", object.time.timetuple()),
+                    'time_second': strftime("%S", object.time.timetuple())}
         
     except Exception, error:
         response = {'error': str(error)}
@@ -43,3 +59,17 @@ def create(request):
     
     json = simplejson.dumps(response)
     return HttpResponse(json, mimetype = 'application/json')    
+
+@login_required
+def delete(request): 
+    try:
+        object = EventGoal(id = request.POST['object_id'])
+        object.delete()
+        response = {}
+    except Exception, error:
+        response = {'error': str(error)}
+        
+    json = simplejson.dumps(response)
+    return HttpResponse(json, mimetype = 'application/json')    
+
+        

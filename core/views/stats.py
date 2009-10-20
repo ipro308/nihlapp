@@ -38,13 +38,52 @@ def record(request):
 @login_required
 def record_event(request, object_id):
     event = Event.objects.get(id = object_id)
-    teams = Team.objects.filter(Q(id = event.homeTeam.id) | Q(id = event.awayTeam.id))
-    penaltyOffenses = PenaltyOffense.objects.all()
-    goals = EventGoal.objects.filter(event = event)
-    return render_to_response('core/stats/event.html', {'user': request.user, 
-                                                        'event': event, 
-                                                        'teams': teams, 
-                                                        'penaltyOffenses': penaltyOffenses,
-                                                        'goals': goals})
+    
+    if request.method == 'GET':
+        teams = Team.objects.filter(Q(id = event.homeTeam.id) | Q(id = event.awayTeam.id))
+        penaltyOffenses = PenaltyOffense.objects.all()
+        goals = EventGoal.objects.filter(event = event).order_by('-id')
+        #penalties
+        #suspensions
+        #goalkeepers
+        return render_to_response('core/stats/event.html', {'user': request.user, 
+                                                            'event': event, 
+                                                            'teams': teams, 
+                                                            'penaltyOffenses': penaltyOffenses,
+                                                            'goals': goals})
+    elif request.method == 'POST':
+        eventStats = EventStats()
+        eventStats.event = event
 
+        if request.POST['majorPenaltiesAssessed'] == 'on':
+            eventStats.majorPenaltiesAssessed = True
+        else:
+            eventStats.majorPenaltiesAssessed = False
+            
+        eventStats.referee1Name = request.POST['referee1Name']
+        eventStats.referee2Name = request.POST['referee2Name']
+        eventStats.referee3Name = request.POST['referee3Name']
+        eventStats.referee1Level = request.POST['referee1Level']
+        eventStats.referee2Level = request.POST['referee2Level']
+        eventStats.referee3Level = request.POST['referee3Level']
+        eventStats.referee1IHOANum = request.POST['referee1IHOANum']
+        eventStats.referee2IHOANum = request.POST['referee2IHOANum']
+        eventStats.referee3IHOANum = request.POST['referee3IHOANum']
+            
+        goalsHome = EventGoal.objects.filter(Q(event = event) & Q(team = event.homeTeam)).count()
+        goalsAway = EventGoal.objects.filter(Q(event = event) & Q(team = event.awayTeam)).count()
+        
+        if goalsHome > goalsAway:
+            eventStats.winner = event.homeTeam
+            eventStats.loser = event.awayTeam
+        elif goalsHome < goalsAway:
+            eventStats.winner = event.awayTeam
+            eventStats.loser = event.homeTeam
+        else:
+            eventStats.tie = True
+                        
+        eventStats.save()
+
+    
+    
     
