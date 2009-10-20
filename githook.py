@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from time import strftime
 
 def pull(request):
-       
     try:
         file = open("/home/vsemenov/hooks/githook.log", 'a')
         file.write("%s: Git pull request via %s\n" % (strftime("%Y-%m-%d %H:%M:%S"), request.META['REQUEST_METHOD']))
