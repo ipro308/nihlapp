@@ -7,13 +7,13 @@ class EventGoal(models.Model):
     againstTeam = models.ForeignKey(Team, verbose_name = "Against Team", related_name = "Goal Against Team")
     player = models.PositiveSmallIntegerField("Player Number")
     period = models.PositiveSmallIntegerField("Period")
-    time = models.TimeField("Time")
+    time = models.DateTimeField("Time")
         
     class Meta:
         app_label = "core"
         
     def __str__(self):
-        return "Event %s Goal by %s player %d" % (self.event, self.team, self.player)
+        return "Event %s Goal by %s player %s" % (self.event, self.team, self.player)
     
     def get_absolute_url(self):
         return "/%s/%s/%s" % ('eventgoals', 'detail', self.pk)

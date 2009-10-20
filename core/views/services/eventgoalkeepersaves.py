@@ -8,3 +8,9 @@ from datetime import datetime
 
 @login_required
 def create(request): pass
+
+@login_required
+def update(request): pass
+
+@login_required
+def delete(request): pass

@@ -1,5 +1,6 @@
 from django.db import models
 from nihlapp.core.models import *
+from time import strftime
 
 class Event(models.Model):
     dateTimeEvent = models.DateTimeField("Event Date and Time")
@@ -18,7 +19,7 @@ class Event(models.Model):
 		app_label = "core"
 
     def __str__(self):
-        return self.dateTimeEvent
+        return strftime("%m/%d/%Y %I:%M %p", self.dateTimeEvent.timetuple())
     
     def get_absolute_url(self):
         return "/%s/%s/%s" % ('events', 'detail', self.pk)

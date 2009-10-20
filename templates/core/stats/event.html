@@ -1,4 +1,4 @@
-{% extends "core/schedule.html" %}
+{% extends "core/stats.html" %}
 
 {% block selectedTab4 %} class="tabs-selected"{% endblock %}
 
@@ -15,7 +15,7 @@
 <h3 style="color: #aaa; text-align:middle;">Record Stats: <a href="{{ event.homeTeam.get_absolute_url }}">{{ event.homeTeam }}</a> vs. <a href="{{ event.awayTeam.get_absolute_url }}">{{ event.awayTeam }}</a> at <a href="{{ event.rink.get_absolute_url }}">{{ event.rink }}</a> on dateTime</h3>
 <br/>
 
-<form id="record_event">
+<form id="record_event" method="post" target="">
 <input type="hidden" name="event_id" id="event_id" value="{{ event.id }}" />
 
 <h4>Referees</h4>
@@ -69,14 +69,26 @@
 					<option value="1">1st</option>
 					<option value="2">2nd</option>
 					<option value="3">3rd</option>
-					<option value="OT">Overtime</option>
+					<option value="4">Overtime</option>
 				</select>
 			</td>
 			<td>
-				<input id="goal_time_minute" type="text" size="2" name="goal_time_minute"/>:<input id="goal_time_second" type="text" size="2" name="goal_time_second"/>
+				<input id="goal_time_minute" type="text" size="2" maxlength="2" name="goal_time_minute"/>:<input id="goal_time_second" type="text" size="2" maxlength="2" name="goal_time_second"/>
 			</td>
 			<td><input type="button" name="save_goal" id="save_goal" value="Save Goal" onClick="saveGoal()"/></td>		
-		</tr>	
+		</tr>
+		{% for object in goals %}
+		<tr id="goal_object_{{ object.id }}">
+			<td>{{ object.team }}</td>
+			<td>{{ object.player }}</td>			
+			<td>{{ object.period }}</td>
+			<td>{{ object.time|date:"i:s" }}</td>
+			<td>
+				<input type='button' name='edit_goal' id='edit_goal' value='Edit' onClick='editGoal({{ object.id }})'/>
+				<input type='button' name='delete_goal' id='delete_goal' value='Delete' onClick='deleteGoal({{ object.id }})'/>
+			</td>		
+		</tr>		
+		{% endfor %}
 	</table><br/>
 
 <h4>Penalties</h4>
@@ -107,7 +119,7 @@
 					<option value="1">1st</option>
 					<option value="2">2nd</option>
 					<option value="3">3rd</option>
-					<option value="OT">Overtime</option>
+					<option value="4">Overtime</option>
 				</select>
 			</td>
 			<td>
@@ -195,7 +207,7 @@
 	</table><br/>
 
 <div style="margin: 10px;">
-	<input type="checkbox" name="majorPenaltiesAssessed" id="majorPenaltiesAssessed" /> Major Penalties Assessed
+	<input type="checkbox" name="majorPenaltiesAssessed" id="majorPenaltiesAssessed" value="on" /> Major Penalties Assessed
 </div>
 
 <div style="margin: 10px; text-align: center;">
