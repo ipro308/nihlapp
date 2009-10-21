@@ -3,12 +3,34 @@
 {% block selectedTab3 %} class="tabs-selected"{% endblock %}
 
 {% block section %}Stats{% endblock %}
-{% block title %}Season Stats{% endblock %}
+{% block title %}Season Games{% endblock %}
 
 {% block content %}
 
-<div style="text-align:center;">
-	Season stats
+<div style="margin: 10px;">
+	<h3 class="subtitle">Season Games</h3>
+	<table style="width:100%;">
+		<tr>
+			<th></th>
+			<th>Game</th>
+			<th>Type</th>
+			<th>Date and Time</th>
+			<th>Rink</th>		
+			<th>Status</th>		
+			<th>Score</th>	
+		</tr>
+		{% for object in events %}
+		<tr>			
+			<td><a href="/stats/event/{{ object.id }}"><img src="/static/images/icons/application_view_list.png" title="View Stats" /></a></td>
+			<td><a href="/stats/event/{{ object.id }}">{{ object.homeTeam }} <i>v.</i> {{ object.awayTeam }}</a></td>
+			<td>{{ object.eventType }}</td>
+			<td>{{ object.dateTimeEvent|date:"M j, Y m:i A" }}</td>
+			<td><a href="{{ object.rink.get_absolute_url }}">{{ object.rink }}</a></td>		
+			<td>{{ object.eventStatus }}</td>	
+			<td>{{ object.score }}</td>
+		</tr>	
+		{% endfor %}
+	</table>	
 </div>
 
 {% endblock %}

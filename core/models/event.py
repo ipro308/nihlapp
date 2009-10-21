@@ -22,4 +22,4 @@ class Event(models.Model):
         return strftime("%m/%d/%Y %I:%M %p", self.dateTimeEvent.timetuple())
     
     def get_absolute_url(self):
-        return "/%s/%s/%s" % ('events', 'detail', self.pk)
+        return "/%s/%s/%s" % ('stats', 'event', self.pk)

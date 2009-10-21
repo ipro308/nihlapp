@@ -21,26 +21,22 @@
 	});
 </script>
 
-<p>
+<h2 class="title">Create Home Rink Schedule</h2>
+
+<p class="help">
 ** @todo: Help and description of what is going on goes here **
 </p>
-<br/>
 
-<h3>Enter Home Rink Schedule</h3>
-<hr/>
-<br/>
-
+<h3 class="subtitle">Enter Home Rink Schedule</h3>
 <form id="create_event">
-	<table cellspacing="5" style="border: 1px dotted #aaa;">
+	<table cellspacing="5">
 		<tr>
-			<th></th>
 			<th>Game Type</th>			
 			<th>Rink</th>
 			<th>Date</th>
 			<th>Time</th>	
 		</tr>
 		<tr id="create_form">
-			<td>Add Time Slot:</td>
 			<td>
 				<select id="event_type" name="event_type">
 				{% for object in event_types %}
@@ -95,11 +91,13 @@
 		</tr>	
 		{% for object in events %}
 			<tr>
-				<td>Time Slot:</td>
 				<td>{{ object.eventType }}</td>
 				<td>{{ object.rink }}</td>
 				<td colspan=2>{{ object.dateTimeEvent }}</td>
-				<td><input type="button" name="edit_event" id="edit_event" value="Edit Time Slot" onClick="editTimeSlot()"/></td>		
+				<td>
+					<input type='button' name='edit_event' id='edit_event' value='Edit' onClick='editTimeSlot({{ object.id }})'/>
+					<input type='button' name='delete_event' id='delete_event' value='Delete' onClick='deleteTimeSlot({{ object.id }})'/>
+				</td>		
 		{% endfor %}
 	</table>
 </form>

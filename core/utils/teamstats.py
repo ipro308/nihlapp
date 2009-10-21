@@ -1,5 +1,6 @@
 from nihlapp.core.models import *
 from django.db.models import Count, Q, Sum
+from time import strptime, strftime
 
 class TeamStats(Team):
 
@@ -54,11 +55,13 @@ class TeamStats(Team):
         else: 
             result['shotsOnGoal'] = 0
         
-        q = EventPenalty.objects.filter(Q(team = self)).aggregate(Sum('penaltyTime'))
-        if q['penaltyTime__sum'] != None:
-            result['totalPenaltyMinutes'] = q['penaltyTime__sum']
-        else:
-            result['totalPenaltyMinutes'] = float(0)
+        
+        result['totalPenaltyMinutes'] = float(0)
+        qs = EventPenalty.objects.filter(Q(team = self))
+        for object in qs:
+            result['totalPenaltyMinutes'] = result['totalPenaltyMinutes'] + float(strftime("%M", object.penaltyTime.timetuple())) + float(strftime("%S", object.penaltyTime.timetuple())) / 60
+        
+        result['totalPenaltyMinutes'] = round(result['totalPenaltyMinutes'], 1)
         
         # make sure division by zero does not occur
         if result['gamesPlayed'] != 0:

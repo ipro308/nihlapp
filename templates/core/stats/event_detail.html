@@ -1,0 +1,140 @@
+{% extends "core/stats.html" %}
+{% load coretags %}
+
+{% block selectedTab4 %} class="tabs-selected"{% endblock %}
+
+{% block section %}Record Stats{% endblock %}
+{% block title %}Record Stats{% endblock %}
+
+{% block content %}
+
+<h2 class="title">Game Stats: <a href="{{ event.homeTeam.get_absolute_url }}">{{ event.homeTeam }}</a> <i>v.</i> <a href="{{ event.awayTeam.get_absolute_url }}">{{ event.awayTeam }}</a></h2>
+<p style="text-align:center; position:relative; top:-5px; margin-bottom:20px;">
+	<span style="margin-right:30px"><b>Game Type:</b> {{ event.eventType }}</span>
+	<span style="margin-right:30px"><b>Game Date/Time:</b> {{ event.dateTimeEvent|date:"M j, Y m:i A" }}</span>
+	<span style="margin-right:30px"><b>Rink:</b> <a href="{{ event.rink.get_absolute_url }}">{{ event.rink }}</a></span>
+	<span><b>Status:</b> {{ event.eventStatus }}</span>
+</p>
+
+<p style="text-align:center;">
+	<span style="font-size:20px;">Score - <span style="font-size:24px;font-weight:bold;">{{ homeGoals }}:{{ awayGoals }}</span>, Winner - <a href="{{ eventStats.winner.get_absolute_url }}">{{ eventStats.winner }}</a></span>
+</p>
+
+<h3 class="subtitle">Referees</h3>
+<table style="width:60%">
+	<tr>
+		<th>Full Name</th>
+		<th>Level</th>
+		<th>IHOA No.</th>				
+	</tr>
+	<tr>
+		<td>{{ eventStats.referee1Name }}</td>
+		<td>{{ eventStats.referee1Level }}</td>
+		<td>{{ eventStats.referee1IHOANum }}</td>				
+	</tr>	
+	<tr>
+		<td>{{ eventStats.referee2Name }}</td>
+		<td>{{ eventStats.referee2Level }}</td>
+		<td>{{ eventStats.referee2IHOANum }}</td>				
+	</tr>	
+	<tr>
+		<td>{{ eventStats.referee3Name }}</td>
+		<td>{{ eventStats.referee3Level }}</td>
+		<td>{{ eventStats.referee3IHOANum }}</td>					
+	</tr>			
+</table>
+
+<h3 class="subtitle">Goals</h3>
+<table cellspacing="5" style="width:80%">
+	<tr>
+		<th>Team</th>
+		<th>Player</th>			
+		<th>Period</th>
+		<th>Time</th>	
+	</tr>
+	{% for object in goals %}
+	<tr id="goal_object_{{ object.id }}">
+		<td>{{ object.team }}</td>
+		<td>{{ object.player }}</td>			
+		<td>{{ object.period|formatPeriod }}</td>
+		<td>{{ object.time|date:"i:s" }}</td>	
+	</tr>		
+	{% endfor %}
+</table>
+
+<h3 class="subtitle">Penalties</h3>
+<table cellspacing="5" style="width:80%">
+	<tr>
+		<th>Team</th>
+		<th>Player</th>			
+		<th>Period</th>
+		<th>Penalty Time</th>	
+		<th>Penalty Offense</th>	
+		<th>Time ON</th>	
+		<th>Time OFF</th>	
+	</tr>
+	{% for object in penalties %}
+	<tr id="penalty_object_{{ object.id }}">
+		<td>{{ object.team }}</td>
+		<td>{{ object.player }}</td>			
+		<td>{{ object.period|formatPeriod }}</td>
+		<td>{{ object.penaltyTime|date:"i:s" }}</td>
+		<td>{{ object.penaltyOffense }}</td>
+		<td>{{ object.timeOn|date:"i:s" }}</td>
+		<td>{{ object.timeOff|date:"i:s" }}</td>	
+	</tr>		
+	{% endfor %}	
+</table>
+
+<h3 class="subtitle">Suspensions</h3>
+<table cellspacing="5" style="width:80%">
+	<tr>
+		<th>Team</th>
+		<th>Player</th>			
+		<th>Player's Last Name</th>
+	</tr>
+	{% for object in suspensions %}
+	<tr id="suspension_object_{{ object.id }}">
+		<td>{{ object.team }}</td>
+		<td>{{ object.player }}</td>			
+		<td>{{ object.playerLastName }}</td>	
+	</tr>		
+	{% endfor %}
+</table>
+
+<h3 class="subtitle">Goalkeeper Saves</h3>
+<table cellspacing="5" style="width:80%">
+	<tr>
+		<th>Team</th>
+		<th>Player</th>			
+		<th>1st Period</th>
+		<th>2nd Period</th>
+		<th>3rd Period</th>
+		<th>Overtime</th>
+	</tr>
+	{% for object in goalkeepersaves %}
+	<tr id="saves_object_{{ object.id }}">
+		<td>{{ object.team }}</td>
+		<td>{{ object.player }}</td>			
+		<td>{{ object.firstPeriodSaves }}</td>
+		<td>{{ object.secondPeriodSaves }}</td>
+		<td>{{ object.thirdPeriodSaves }}</td>
+		<td>{{ object.overtimeSaves }}</td>	
+	</tr>		
+	{% endfor %}	
+</table>
+	
+<div style="margin-left: 10px; margin-top: 20px; margin-bottom: 20px;">
+	Major Penalties Assessed:
+	{% if eventStats.majorPenaltiesAssessed %}
+		Yes
+	{% else %}
+		No
+	{% endif %}	
+</div>
+
+<div style="margin: 10px; text-align: center;">
+	<a href="/stats/record/event/{{ event.id }}">Update Event Stats</a> | <a href="/stats/record">List Events</a>
+</div>
+
+{% endblock %}

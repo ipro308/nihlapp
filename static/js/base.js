@@ -306,19 +306,74 @@ function deleteSuspension(id) {
 } // deleteSuspension()
 
 function saveGoalkeeperSaves() {
+	if($('#saves_team').val() == 0) {
+		alert("Please select a team.");
+		return false;
+	}	
+	if(!$('#saves_player').val()) {
+		alert("Please provide player number.");
+		return false;
+	}		
+	if(isNaN($('#saves_player').val()) || $('#saves_player').val() < 0 ) {
+		alert("Invalid player number.");
+		return false;
+	}	
+	if(!($('#saves_1st').val()) || isNaN($('#saves_1st').val()) || $('#saves_1st').val() < 0 ) {
+		alert("Please provide a valid number for 1st period saves.");
+		return false;
+	}
+	if(!($('#saves_2nd').val()) || isNaN($('#saves_2nd').val()) || $('#saves_2nd').val() < 0 ) {
+		alert("Please provide a valid number for 2nd period saves.");
+		return false;
+	}
+	if(!($('#saves_3rd').val()) || isNaN($('#saves_3rd').val()) || $('#saves_3rd').val() < 0 ) {
+		alert("Please provide a valid number for 3rd period saves.");
+		return false;
+	}
+	if(!($('#saves_ot').val()) || isNaN($('#saves_ot').val()) || $('#saves_ot').val() < 0 ) {
+		alert("Please provide a valid number for overtime saves.");
+		return false;
+	}	
 	var postVars = $('#event_id, #saves :input:not(:checkbox), #saves :input:checkbox:checked').serialize();
 	$.post('/services/eventgoalkeepersaves/create', postVars,
 		function(response) {
 			if(response.error) {
-				$("#goalkeepersaves").after("<tr><td colspan=6>Error occured while saving goal: " + response.error + "</td></tr>");
+				$("#saves").after("<tr><td colspan=6>Error occured while saving goalkeeper: " + response.error + "</td></tr>");
 			} else {
-				$("#goalkeepersaves").after("<tr><td>Time Slot:</td><td>" + response.eventType + "</td><td>" +
-					response.rink + "</td><td colspan=2>" + response.date + "</td></tr>");
+				$("#saves").after("<tr id='saves_object_" + response.object_id + "'><td>" + response.team + "</td><td>" + 
+						response.player + "</td><td>" + response.first + "</td><td>" + response.second + "</td><td>" + response.third + "</td><td>" + response.ot + "</td>" +
+						"<td><input type='button' name='edit_saves' id='edit_saves' value='Edit' onClick='editGoalkeeperSaves(" + response.object_id + ")'/> " +
+						"<input type='button' name='delete_saves' id='delete_saves' value='Delete' onClick='deleteGoalkeeperSaves(" + response.object_id + ")'/></td></tr>");
+				$('#saves_team').val(0);
+				$('#saves_player').val(null);
+				$('#saves_1st').val(null);
+				$('#saves_2nd').val(null);
+				$('#saves_3rd').val(null);
+				$('#saves_ot').val(null);
 			}
 		}, "json"
 	);
 	return false;
 } // saveGoalkeeperSaves()
+
+function editGoalkeeperSaves(id) {
+	$.post('/services/eventgoalkeepersaves/detail', {'object_id': id},
+		function(response) {	
+			if(response.error) {
+				alert("Error: unable to edit goalkeeper.");
+			} else {
+				deleteGoalkeeperSaves(id);
+				$('#saves_team').val(response.team);
+				$('#saves_player').val(response.player);
+				$('#saves_1st').val(response.first);
+				$('#saves_2nd').val(response.second);
+				$('#saves_3rd').val(response.third);
+				$('#saves_ot').val(response.ot);
+			}
+		}, "json"
+	);
+	return false;
+} // editGoalkeeperSaves()
 
 function deleteGoalkeeperSaves(id) {
 	$.post('/services/eventgoalkeepersaves/delete', {'object_id': id},

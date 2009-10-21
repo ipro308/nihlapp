@@ -1,10 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from nihlapp.core.models import Event, Season, EventStatus, Team, PenaltyOffense, EventGoal, EventPenalty, EventSuspension, EventGoalkeeperSaves
+from nihlapp.core.models import Event, Season, EventStatus, Team, PenaltyOffense, EventGoal, EventPenalty, EventSuspension, EventGoalkeeperSaves, EventStats, Parameter, EventType
 from nihlapp.core.utils import TeamStats
 from django.db.models import Q
-
+from django.http import HttpResponseRedirect
+from datetime import datetime, timedelta
 
 def summary(request):
     teams = TeamStats.objects.filter(season = Season.objects.get(isCurrentSeason = True))
@@ -12,15 +13,53 @@ def summary(request):
     for team in teams:
         stats.append(team.get_stats())
     
-    return render_to_response('core/stats/summary.html', {'user': request.user, 'stats': stats})
+    return render_to_response('core/stats/summary.html', {'user': request.user, 
+                                                          'stats': stats})
 
 
 def seeding(request):
-    return render_to_response('core/stats/seeding.html', {'user': request.user})
-
+    completedStatus = EventStatus.objects.get(name = "Completed")    
+    seedingType = EventType.objects.get(name = "Seeding Game")
+    currentSeason = Season.objects.get(isCurrentSeason = True)
+    
+    # completed events (seeding game type) (current season)
+    events = Event.objects.filter(eventStatus = completedStatus, eventType = seedingType, season = currentSeason).order_by('-dateTimeEvent')
+    eventList = list()
+    for object in events:
+        homeGoals = EventGoal.objects.filter(event = object, team = object.homeTeam).count()
+        awayGoals = EventGoal.objects.filter(event = object, team = object.awayTeam).count()
+        eventList.append({'id': object.id,
+                               'homeTeam': object.homeTeam,
+                               'awayTeam': object.awayTeam,
+                               'eventType': object.eventType,
+                               'dateTimeEvent': object.dateTimeEvent,
+                               'rink': object.rink,
+                               'eventStatus': object.eventStatus,
+                               'score': "%s:%s" % (homeGoals, awayGoals)})
+            
+    return render_to_response('core/stats/seeding.html', {'user': request.user, 'events': eventList})
 
 def season(request):
-    return render_to_response('core/stats/season.html', {'user': request.user})
+    completedStatus = EventStatus.objects.get(name = "Completed")    
+    seasonType = EventType.objects.get(name = "Season Game")
+    currentSeason = Season.objects.get(isCurrentSeason = True)
+    
+    # completed events (season game type) (current season)
+    events = Event.objects.filter(eventStatus = completedStatus, eventType = seasonType, season = currentSeason).order_by('-dateTimeEvent')
+    eventList = list()
+    for object in events:
+        homeGoals = EventGoal.objects.filter(event = object, team = object.homeTeam).count()
+        awayGoals = EventGoal.objects.filter(event = object, team = object.awayTeam).count()
+        eventList.append({'id': object.id,
+                               'homeTeam': object.homeTeam,
+                               'awayTeam': object.awayTeam,
+                               'eventType': object.eventType,
+                               'dateTimeEvent': object.dateTimeEvent,
+                               'rink': object.rink,
+                               'eventStatus': object.eventStatus,
+                               'score': "%s:%s" % (homeGoals, awayGoals)})
+            
+    return render_to_response('core/stats/season.html', {'user': request.user, 'events': eventList})
 
 @login_required
 def playoffs(request):
@@ -32,14 +71,80 @@ def tournament(request):
 
 @login_required
 def record(request):
-    events = Event.objects.all().filter(eventStatus = EventStatus.objects.get(name = "Completed"), homeTeam = request.user.get_profile().team, season = Season.objects.get(isCurrentSeason = True))
-    return render_to_response('core/stats/record.html', {'user': request.user, 'events': events})
+    confirmedStatus = EventStatus.objects.get(name = "Confirmed")
+    completedStatus = EventStatus.objects.get(name = "Completed")
+    team = request.user.get_profile().team
+    currentSeason = Season.objects.get(isCurrentSeason = True)
+    
+    # calculate entry limit
+    nowMinusEntryLimit = datetime.now() - timedelta(hours = int(Parameter.objects.get(name = 'stats.entry.limit').value))
+    
+    # confirmed events
+    confirmedEvents = Event.objects.filter(eventStatus = confirmedStatus, homeTeam = team, season = currentSeason, dateTimeEvent__gt = nowMinusEntryLimit)
+    confirmedEventsList = list()
+    for object in confirmedEvents:
+        homeGoals = EventGoal.objects.filter(event = object, team = object.homeTeam).count()
+        awayGoals = EventGoal.objects.filter(event = object, team = object.awayTeam).count()
+        confirmedEventsList.append({'id': object.id,
+                               'homeTeam': object.homeTeam,
+                               'awayTeam': object.awayTeam,
+                               'eventType': object.eventType,
+                               'dateTimeEvent': object.dateTimeEvent,
+                               'rink': object.rink,
+                               'eventStatus': object.eventStatus,
+                               'score': "%s:%s" % (homeGoals, awayGoals)})
+
+    # past due events
+    pastdueEvents = Event.objects.filter(eventStatus = confirmedStatus, homeTeam = team, season = currentSeason, dateTimeEvent__lt = nowMinusEntryLimit)
+    pastdueEventsList = list()
+    for object in pastdueEvents:
+        homeGoals = EventGoal.objects.filter(event = object, team = object.homeTeam).count()
+        awayGoals = EventGoal.objects.filter(event = object, team = object.awayTeam).count()
+        pastdueEventsList.append({'id': object.id,
+                               'homeTeam': object.homeTeam,
+                               'awayTeam': object.awayTeam,
+                               'eventType': object.eventType,
+                               'dateTimeEvent': object.dateTimeEvent,
+                               'rink': object.rink,
+                               'eventStatus': object.eventStatus,
+                               'score': "%s:%s" % (homeGoals, awayGoals)})
+    
+    # completed events
+    completedEvents = Event.objects.filter(eventStatus = completedStatus, homeTeam = team, season = currentSeason)
+    completedEventsList = list()
+    for object in completedEvents:
+        canEdit = False
+        if object.dateTimeEvent >= nowMinusEntryLimit:
+            canEdit = True
+            
+        homeGoals = EventGoal.objects.filter(event = object, team = object.homeTeam).count()
+        awayGoals = EventGoal.objects.filter(event = object, team = object.awayTeam).count()
+        completedEventsList.append({'id': object.id,
+                               'homeTeam': object.homeTeam,
+                               'awayTeam': object.awayTeam,
+                               'eventType': object.eventType,
+                               'dateTimeEvent': object.dateTimeEvent,
+                               'rink': object.rink,
+                               'eventStatus': object.eventStatus,
+                               'score': "%s:%s" % (homeGoals, awayGoals),
+                               'canEdit': canEdit})
+            
+    return render_to_response('core/stats/record.html', {'user': request.user, 
+                                                         'confirmedEvents': confirmedEventsList,
+                                                         'pastdueEvents': pastdueEventsList,
+                                                         'completedEvents': completedEventsList,
+                                                         'hourLimit': Parameter.objects.get(name = 'stats.entry.limit'),
+                                                         'currentSeason': Season.objects.get(isCurrentSeason = True)})
 
 @login_required
 def record_event(request, object_id):
     event = Event.objects.get(id = object_id)
-    
-    if request.method == 'GET':
+    try:
+        eventStats = EventStats.objects.get(event = event)
+    except:
+        eventStats = EventStats()    
+        
+    if request.method == 'GET':     
         teams = Team.objects.filter(Q(id = event.homeTeam.id) | Q(id = event.awayTeam.id))
         penaltyOffenses = PenaltyOffense.objects.all()
         goals = EventGoal.objects.filter(event = event).order_by('-id')
@@ -47,7 +152,9 @@ def record_event(request, object_id):
         suspensions = EventSuspension.objects.filter(event = event).order_by('-id')
         goalkeepersaves = EventGoalkeeperSaves.objects.filter(event = event).order_by('-id')
         
-        return render_to_response('core/stats/event.html', {'user': request.user, 
+        return render_to_response('core/stats/event_record.html', 
+                                                           {'user': request.user, 
+                                                            'eventStats': eventStats,
                                                             'event': event, 
                                                             'teams': teams, 
                                                             'penaltyOffenses': penaltyOffenses,
@@ -56,10 +163,13 @@ def record_event(request, object_id):
                                                             'suspensions': suspensions,
                                                             'goalkeepersaves': goalkeepersaves})
     elif request.method == 'POST':
-        eventStats = EventStats()
+            
+        event.eventStatus = EventStatus.objects.get(name = "Completed")
+        event.save()
+        
         eventStats.event = event
 
-        if request.POST['majorPenaltiesAssessed'] == 'on':
+        if 'majorPenaltiesAssessed' in request.POST and not (request.POST['majorPenaltiesAssessed'] is None):
             eventStats.majorPenaltiesAssessed = True
         else:
             eventStats.majorPenaltiesAssessed = False
@@ -87,7 +197,33 @@ def record_event(request, object_id):
             eventStats.tie = True
                         
         eventStats.save()
+        
+        return HttpResponseRedirect('/stats/event/%s' % event.id)
+    
+@login_required
+def event(request, object_id):
+    event = Event.objects.get(id = object_id)
+    eventStats = EventStats.objects.get(event = event)
+    teams = Team.objects.filter(Q(id = event.homeTeam.id) | Q(id = event.awayTeam.id))
+    penaltyOffenses = PenaltyOffense.objects.all()
+    goals = EventGoal.objects.filter(event = event).order_by('-id')
+    penalties = EventPenalty.objects.filter(event = event).order_by('-id')
+    suspensions = EventSuspension.objects.filter(event = event).order_by('-id')
+    goalkeepersaves = EventGoalkeeperSaves.objects.filter(event = event).order_by('-id')
+    
+    homeGoals = EventGoal.objects.filter(event = event, team = event.homeTeam).count()
+    awayGoals = EventGoal.objects.filter(event = event, team = event.awayTeam).count()
+    
+    return render_to_response('core/stats/event_detail.html', {
+                                                                'user': request.user, 
+                                                                'eventStats': eventStats,
+                                                                'event': event, 
+                                                                'teams': teams, 
+                                                                'penaltyOffenses': penaltyOffenses,
+                                                                'goals': goals,
+                                                                'penalties': penalties,
+                                                                'suspensions': suspensions,
+                                                                'goalkeepersaves': goalkeepersaves,
+                                                                'homeGoals': homeGoals,
+                                                                'awayGoals': awayGoals})
 
-    
-    
-    
