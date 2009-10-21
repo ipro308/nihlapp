@@ -10,7 +10,7 @@ from datetime import datetime
 def create(request): pass
 
 @login_required
-def update(request): pass
+def detail(request): pass
 
 @login_required
 def delete(request): pass

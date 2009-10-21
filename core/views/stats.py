@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from nihlapp.core.models import Event, Season, EventStatus, Team, PenaltyOffense, EventGoal
+from nihlapp.core.models import Event, Season, EventStatus, Team, PenaltyOffense, EventGoal, EventPenalty, EventSuspension, EventGoalkeeperSaves
 from nihlapp.core.utils import TeamStats
 from django.db.models import Q
 
@@ -43,14 +43,18 @@ def record_event(request, object_id):
         teams = Team.objects.filter(Q(id = event.homeTeam.id) | Q(id = event.awayTeam.id))
         penaltyOffenses = PenaltyOffense.objects.all()
         goals = EventGoal.objects.filter(event = event).order_by('-id')
-        #penalties
-        #suspensions
-        #goalkeepers
+        penalties = EventPenalty.objects.filter(event = event).order_by('-id')
+        suspensions = EventSuspension.objects.filter(event = event).order_by('-id')
+        goalkeepersaves = EventGoalkeeperSaves.objects.filter(event = event).order_by('-id')
+        
         return render_to_response('core/stats/event.html', {'user': request.user, 
                                                             'event': event, 
                                                             'teams': teams, 
                                                             'penaltyOffenses': penaltyOffenses,
-                                                            'goals': goals})
+                                                            'goals': goals,
+                                                            'penalties': penalties,
+                                                            'suspensions': suspensions,
+                                                            'goalkeepersaves': goalkeepersaves})
     elif request.method == 'POST':
         eventStats = EventStats()
         eventStats.event = event

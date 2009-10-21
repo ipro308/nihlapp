@@ -1,4 +1,5 @@
 {% extends "core/stats.html" %}
+{% load coretags %}
 
 {% block selectedTab4 %} class="tabs-selected"{% endblock %}
 
@@ -56,6 +57,7 @@
 	<tr id="goals">
 		<td>
 			<select id="goal_team" name="goal_team">
+			<option value="0">- Select Team -</option>
 			{% for object in teams %}
 				<option value="{{ object.id }}">{{ object.name }}</option>
 			{% endfor %}
@@ -66,9 +68,10 @@
 		</td>			
 		<td>
 			<select id="goal_period" name="goal_period">
-				<option value="1">1st</option>
-				<option value="2">2nd</option>
-				<option value="3">3rd</option>
+				<option value="0">- Select Period -</option>
+				<option value="1">1st Period</option>
+				<option value="2">2nd Period</option>
+				<option value="3">3rd Period</option>
 				<option value="4">Overtime</option>
 			</select>
 		</td>
@@ -81,7 +84,7 @@
 	<tr id="goal_object_{{ object.id }}">
 		<td>{{ object.team }}</td>
 		<td>{{ object.player }}</td>			
-		<td>{{ object.period }}</td>
+		<td>{{ object.period|formatPeriod }}</td>
 		<td>{{ object.time|date:"i:s" }}</td>
 		<td>
 			<input type='button' name='edit_goal' id='edit_goal' value='Edit' onClick='editGoal({{ object.id }})'/>
@@ -105,6 +108,7 @@
 	<tr id="penalties">
 		<td>
 			<select id="penalty_team" name="penalty_team">
+			<option value="0">- Select Team -</option>
 			{% for object in teams %}
 				<option value="{{ object.id }}">{{ object.name }}</option>
 			{% endfor %}
@@ -115,30 +119,47 @@
 		</td>			
 		<td>
 			<select id="penalty_period" name="penalty_period">
-				<option value="1">1st</option>
-				<option value="2">2nd</option>
-				<option value="3">3rd</option>
+				<option value="0">- Select Period -</option>
+				<option value="1">1st Period</option>
+				<option value="2">2nd Period</option>
+				<option value="3">3rd Period</option>
 				<option value="4">Overtime</option>
 			</select>
 		</td>
 		<td>
-			<input id="penalty_time_hour" type="text" size="2" name="penalty_time_hour"/>:<input id="penalty_time_minute" type="text" size="2" name="goal_time_minute"/>
+			<input id="penalty_time_minute" type="text" size="2" name="penalty_time_minute"/>:<input id="penalty_time_second" type="text" size="2" name="penalty_time_second"/>
 		</td>
 		<td>
 			<select id="penalty_offense" name="penalty_offense">
+			<option value="0">- Select Offense -</option>
 			{% for object in penaltyOffenses %}
 				<option value="{{ object.id }}">{{ object.name }}</option>
 			{% endfor %}
 			</select>
 		</td>	
 		<td>
-			<input id="penalty_time_hour" type="text" size="2" name="goal_time_hour"/>:<input id="goal_time_minute" type="text" size="2" name="goal_time_minute"/>
+			<input id="penalty_time_on_minute" type="text" size="2" name="penalty_time_on_minute"/>:<input id="penalty_time_on_second" type="text" size="2" name="penalty_time_on_second"/>
 		</td>
 		<td>
-			<input id="peanlty_time_hour" type="text" size="2" name="goal_time_hour"/>:<input id="goal_time_minute" type="text" size="2" name="goal_time_minute"/>
+			<input id="penalty_time_off_minute" type="text" size="2" name="penalty_time_off_minute"/>:<input id="penalty_time_off_second" type="text" size="2" name="penalty_time_off_second"/>
 		</td>								
 		<td><input type="button" name="penalty_goal" id="penalty_goal" value="Save Penalty" onClick="savePenalty()"/></td>		
 	</tr>	
+	{% for object in penalties %}
+	<tr id="penalty_object_{{ object.id }}">
+		<td>{{ object.team }}</td>
+		<td>{{ object.player }}</td>			
+		<td>{{ object.period|formatPeriod }}</td>
+		<td>{{ object.penaltyTime|date:"i:s" }}</td>
+		<td>{{ object.penaltyOffense }}</td>
+		<td>{{ object.timeOn|date:"i:s" }}</td>
+		<td>{{ object.timeOff|date:"i:s" }}</td>
+		<td>
+			<input type='button' name='edit_penalty' id='edit_penalty' value='Edit' onClick='editPenalty({{ object.id }})'/>
+			<input type='button' name='delete_penalty' id='delete_penalty' value='Delete' onClick='deletePenalty({{ object.id }})'/>
+		</td>		
+	</tr>		
+	{% endfor %}	
 </table>
 
 <h3 class="subtitle">Suspensions</h3>
@@ -151,19 +172,31 @@
 	<tr id="suspensions">
 		<td>
 			<select id="suspension_team" name="suspension_team">
+			<option value="0">- Select Team -</option>
 			{% for object in teams %}
 				<option value="{{ object.id }}">{{ object.name }}</option>
 			{% endfor %}
 			</select>
 		</td>
 		<td>
-			<input id="suspension_player" type="text" size="8" name="goal_player"/>
+			<input id="suspension_player" type="text" size="8" name="suspension_player"/>
 		</td>			
 		<td>
-			<input id="suspension_player_lastname" type="text" size="15" name="suspension_player_lastname"/>
+			<input id="suspension_player_lastname" type="text" size="15" maxlength="30" name="suspension_player_lastname"/>
 		</td>							
 		<td><input type="button" name="save_suspension" id="save_suspension" value="Save Suspension" onClick="saveSuspension()"/></td>		
-	</tr>	
+	</tr>
+	{% for object in suspensions %}
+	<tr id="suspension_object_{{ object.id }}">
+		<td>{{ object.team }}</td>
+		<td>{{ object.player }}</td>			
+		<td>{{ object.playerLastName }}</td>
+		<td>
+			<input type='button' name='edit_suspension' id='edit_suspension' value='Edit' onClick='editSuspension({{ object.id }})'/>
+			<input type='button' name='delete_suspension' id='delete_suspension' value='Delete' onClick='deleteSuspension({{ object.id }})'/>
+		</td>		
+	</tr>		
+	{% endfor %}		
 </table>
 
 <h3 class="subtitle">Goalkeeper Saves</h3>
@@ -179,6 +212,7 @@
 	<tr id="saves">
 		<td>
 			<select id="saves_team" name="goal_team">
+			<option value="0">- Select Team -</option>
 			{% for object in teams %}
 				<option value="{{ object.id }}">{{ object.name }}</option>
 			{% endfor %}
@@ -188,22 +222,22 @@
 			<input id="saves_player" type="text" size="8" name="saves_player"/>
 		</td>			
 		<td>
-			<input id="saves_1st" type="text" size="4" name="saves_1st"/>
+			<input id="saves_1st" type="text" size="8" name="saves_1st"/>
 		</td>				
 		<td>
-			<input id="saves_2nd" type="text" size="4" name="saves_2nd"/>
+			<input id="saves_2nd" type="text" size="8" name="saves_2nd"/>
 		</td>	
 		<td>
-			<input id="saves_3rd" type="text" size="4" name="saves_3rd"/>
+			<input id="saves_3rd" type="text" size="8" name="saves_3rd"/>
 		</td>	
 		<td>
-			<input id="saves_ot" type="text" size="4" name="saves_ot"/>
+			<input id="saves_ot" type="text" size="8" name="saves_ot"/>
 		</td>													
 		<td><input type="button" name="save_saves" id="save_saves" value="Save Goalkeeper Saves" onClick="saveGoalkeeperSaves()"/></td>		
 	</tr>	
 </table>
 	
-<div style="margin: 10px;">
+<div style="margin-left: 10px; margin-top: 20px; margin-bottom: 20px;">
 	<input type="checkbox" name="majorPenaltiesAssessed" id="majorPenaltiesAssessed" value="on" /> Major Penalties Assessed
 </div>
 

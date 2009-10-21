@@ -95,5 +95,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.comments',
     'django.contrib.databrowse',
-    'nihlapp.core'
+    'nihlapp.core',
+    'nihlapp.core.templatetags'
 )

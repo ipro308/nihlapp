@@ -7,6 +7,9 @@ from time import strptime, strftime
 from datetime import datetime
 
 @login_required
+def detail(request): pass
+
+@login_required
 def create(request):
     
     # attempt to create a new event

@@ -38,14 +38,16 @@ def create(request):
         # populate goal object and call save
         object = EventGoal()
         object.event = event
-        object.time = datetime(*strptime("01/01/0001 01:%s:%s" % (request.POST['goal_time_minute'], request.POST['goal_time_second']), "%m/%d/%Y %I:%M:%S")[:6])
+        object.time = datetime(*strptime("01/01/2001 01:%s:%s" % (request.POST['goal_time_minute'], 
+                                                                  request.POST['goal_time_second']), 
+                                                                  "%m/%d/%Y %I:%M:%S")[:6])
         object.team = teamFor
         object.againstTeam = teamAgainst
         object.period = request.POST['goal_period']
         object.player = request.POST['goal_player']
         object.save()
         
-        response = {'goal_id': object.id,
+        response = {'object_id': object.id,
                     'team': str(object.team), 
                     'player': object.player, 
                     'period': object.period,

@@ -6,10 +6,10 @@ class EventPenalty(models.Model):
     team = models.ForeignKey(Team, verbose_name = "Team")
     player = models.PositiveSmallIntegerField("Player Number")
     period = models.PositiveSmallIntegerField("Period")
-    penaltyTime = models.TimeField("Penalty Time")
+    penaltyTime = models.DateTimeField("Penalty Time")
     penaltyOffense = models.ForeignKey(PenaltyOffense, verbose_name = "Penalty Offense")
-    timeOn = models.TimeField("Time ON")
-    timeOff = models.TimeField("Time OFF")
+    timeOn = models.DateTimeField("Time ON")
+    timeOff = models.DateTimeField("Time OFF")
     
     class Meta:
         app_label = "core"
