@@ -7,3 +7,9 @@ class Parameter(models.Model):
 
     class Meta:
 		app_label = "core"
+        
+    def __str__(self):
+        return self.value        
+    
+    def get_absolute_url(self):
+        return "/%s/%s/%s" % ('parameters', 'detail', self.pk)    

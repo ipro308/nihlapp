@@ -6,3 +6,6 @@ class EventType(models.Model):
 
     class Meta:
 		app_label = "core"
+        
+    def __str__(self):
+        return self.name

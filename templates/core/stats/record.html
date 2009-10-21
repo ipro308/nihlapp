@@ -7,19 +7,38 @@
 
 {% block content %}
 
-<table style="width:100%;">
-	<tr>
-		<th></th>
-		<th>Game</th>
-		<th>Game Time</th>
-	</tr>
-	{% for object in events %}
-	<tr>
-		<td><a href="/stats/record/event/{{ object.id }}">Record Stats</a></td>
-		<td><a href="/stats/record/event/{{ object.id }}">{{ object.homeTeam }} vs. {{ object.awatTeam }} at {{ object.rink }}</a></td>
-		<td>{{ object.dateTimeEvent }}</td>
-	</tr>	
-	{% endfor %}
-</table>
+<div style="margin: 10px;">
+	<h3 class="subtitle">Games for which stats need to be recorded</h3>
+	<table style="width:100%;">
+		<tr>
+			<th></th>
+			<th>Game</th>
+			<th>Type</th>
+			<th>Date and Time</th>
+			<th>Rink</th>				
+			<th>Winning Team</th>
+			<th>Losing Team</th>		
+		</tr>
+		{% for object in events %}
+		<tr>
+			<td><a href="/stats/record/event/{{ object.id }}"><img src="/static/images/icons/application_edit.png" title="Record Stats" /></a></td>
+			<td><a href="/stats/record/event/{{ object.id }}">{{ object.homeTeam }} <i>v.</i> {{ object.awayTeam }}</a></td>
+			<td>{{ object.eventType }}</td>
+			<td>{{ object.dateTimeEvent|date:"M j, Y m:i A" }}</td>
+			<td><a href="{{ object.rink.get_absolute_url }}">{{ object.rink }}</a></td>			
+			<td></td>
+			<td></td>
+		</tr>	
+		{% endfor %}
+	</table>
+</div>
+
+<div style="margin: 10px;">
+	<h3 class="subtitle">Past due games (stats were not entered within {{ hourLimit }} hours)</h3>
+</div>
+
+<div style="margin: 10px;">
+	<h3 class="subtitle">Completed games ({{ currentSeason }})</h3>
+</div>
 
 {% endblock %}

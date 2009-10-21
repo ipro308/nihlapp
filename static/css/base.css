@@ -12,6 +12,11 @@ html, body {
     min-height: 100%;
 }
 
+.tooltip {
+	font-size: 12pt;
+	line-height: 14pt;	
+}
+
 body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 62.5%; /* 1em = 10px */
@@ -20,12 +25,45 @@ body {
 	padding: 0;
 }
 
+table tr th {
+	text-align: left;
+}
+
 a, a:visited {
 	color:#104CA6;
 }
 
 #canvas {
     background-color: #fff;
+}
+
+p.help {
+	background-color: #EEEEEE;
+	border: 1px dashed #999999;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+h2.title {
+	color:#000000;
+	font-size:20px;
+	font-weight:normal;
+	margin:0.5em auto 1em;
+	text-align:center;
+	width:100%;
+}
+
+h3.subtitle {
+	border-bottom: 2px solid #DDDDDD;
+	color: #999999;
+	font-size: 18px;
+	font-weight: normal;
+	margin:1.5em auto 8px;
+	padding-bottom: 4px;
+	text-align: left;
+	width: 100%;
 }
 
 table.object-list-table {

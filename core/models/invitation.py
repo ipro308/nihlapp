@@ -14,3 +14,5 @@ class Invitation(models.Model):
     class Meta:
         app_label = "core"
         
+    def __str__(self):
+        return "Invitation: %s" % (self.key)        
