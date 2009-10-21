@@ -1,13 +1,33 @@
 // creates game event
-function createTimeSlot() {
+function saveTimeSlot() {
+	if($('#event_type').val() == 0) {
+		alert("Please select game type.");
+		return false;
+	}		
+	if($('#event_rink').val() == 0) {
+		alert("Please select rink.");
+		return false;
+	}		
+	if(!$('#event_date').val()) {
+		alert("Please select date.");
+		return false;
+	}		
 	var postVars = $('#create_event :input:not(:checkbox), #create_event :input:checkbox:checked').serialize();
 	$.post('/services/events/create', postVars,
 		function(response) {
 			if(response.error) {
 				$("#create_form").after("<tr><td colspan=6>Error occured while saving timeslot: " + response.error + "</td></tr>");
 			} else {
-				$("#create_form").after("<tr><td>Time Slot:</td><td>" + response.eventType + "</td><td>" +
-					response.rink + "</td><td colspan=2>" + response.date + "</td></tr>");
+				$("#create_form").after("<tr id='event_object_" + response.object_id + "'><td>" + response.eventType + "</td><td>" +
+					response.rink + "</td><td>" + response.date + "</td><td>" + response.time + "</td>" +
+					"<td><input type='button' name='edit_event' id='edit_event' value='Edit' onClick='editTimeSlot(" + response.object_id + ")'/> " +
+					"<input type='button' name='delete_event' id='delete_event' value='Delete' onClick='deleteTimeSlot(" + response.object_id + ")'/></td></tr>");					
+				$('#event_type').val(0);
+				$('#event_rink').val(0);
+				$('#event_date').val(null);
+				$('#event_hour').val('01');
+				$('#event_minute').val('00');
+				$('#event_am').val('PM');
 			}
 		}, "json"
 	);
@@ -15,10 +35,46 @@ function createTimeSlot() {
 } // createTimeSlot()
 
 // edits game event
-function editTimeSlot() {
-	alert("Not implemented yet");
+function editTimeSlot(id) {
+	$.post('/services/events/detail', {'object_id': id},
+		function(response) {	
+			if(response.error) {
+				alert("Unable to edit time slot: " + response.error);
+			} else {
+				$.post('/services/events/delete', {'object_id': id},
+					function(responseDelete) {	
+						if(responseDelete.error) {
+							alert("Unable to edit time slot: " + responseDelete.error);
+						} else {
+							$('#event_object_'+id).remove();
+							$('#event_type').val(response.type);
+							$('#event_rink').val(response.rink);
+							$('#event_date').val(response.date);
+							$('#event_hour').val(response.hour);
+							$('#event_minute').val(response.minute);
+							$('#event_am').val(response.am);								
+						}
+					}, "json"
+				);
+			}
+		}, "json"
+	);
 	return false;
 } // editTimeSlot()
+
+//deletes game event
+function deleteTimeSlot(id) {
+	$.post('/services/events/delete', {'object_id': id},
+		function(response) {	
+			if(response.error) {
+				alert("Unable to delete time slot: " + response.error);
+			} else {
+				$('#event_object_'+id).remove();
+			}
+		}, "json"
+	);
+	return false;
+} // deleteTimeSlot()
 
 //saves a goal record
 function saveGoal() {

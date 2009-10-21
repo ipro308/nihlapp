@@ -27,7 +27,7 @@
 ** @todo: Help and description of what is going on goes here **
 </p>
 
-<h3 class="subtitle">Enter Home Rink Schedule</h3>
+<h3 class="subtitle">Home Rink Schedule</h3>
 <form id="create_event">
 	<table cellspacing="5">
 		<tr>
@@ -39,6 +39,7 @@
 		<tr id="create_form">
 			<td>
 				<select id="event_type" name="event_type">
+				<option value="0">- Select Type -</option>
 				{% for object in event_types %}
 					<option value="{{ object.id }}">{{ object.name }}</option>
 				{% endfor %}
@@ -46,12 +47,13 @@
 			</td>
 			<td>
 				<select id="event_rink" name="event_rink">
+				<option value="0">- Select Rink -</option>
 				{% for object in rinks %}
 					<option value="{{ object.id }}">{{ object.name }}</option>
 				{% endfor %}
 				</select>
 			</td>			
-			<td><input id="event_date" type="text" size="8" name="event_date" value="{% now "m/d/Y" %}"/></td>
+			<td><input id="event_date" type="text" size="8" name="event_date" value=""/></td>
 			<td>
 				<select id="event_hour" name="event_hour">
 					<option value="01">01</option>
@@ -87,17 +89,19 @@
 					<option value="AM">AM</option>
 				</select>						
 			</td>			
-			<td><input type="button" name="save_event" id="save_event" value="Save Time Slot" onClick="createTimeSlot()"/></td>						
+			<td><input type="button" name="save_event" id="save_event" value="Save" onClick="saveTimeSlot()"/></td>						
 		</tr>	
 		{% for object in events %}
-			<tr>
+			<tr id="event_object_{{ object.id }}">
 				<td>{{ object.eventType }}</td>
 				<td>{{ object.rink }}</td>
-				<td colspan=2>{{ object.dateTimeEvent }}</td>
+				<td>{{ object.dateTimeEvent|date:"M j, Y" }}</td>
+				<td>{{ object.dateTimeEvent|date:"h:i A" }}</td>
 				<td>
 					<input type='button' name='edit_event' id='edit_event' value='Edit' onClick='editTimeSlot({{ object.id }})'/>
 					<input type='button' name='delete_event' id='delete_event' value='Delete' onClick='deleteTimeSlot({{ object.id }})'/>
 				</td>		
+			</tr>
 		{% endfor %}
 	</table>
 </form>

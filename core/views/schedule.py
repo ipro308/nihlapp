@@ -17,6 +17,6 @@ def create(request):
     
     rinks = Rink.objects.all()
     event_types = EventType.objects.filter(name = "Seeding Game")
-    events = Event.objects.all().filter(homeTeam = request.user.get_profile().team, season = Season.objects.get(isCurrentSeason = True))
+    events = Event.objects.all().filter(homeTeam = request.user.get_profile().team, season = Season.objects.get(isCurrentSeason = True)).order_by('-id')
     
     return render_to_response('core/schedule/create.html', {'user': request.user, 'event_types': event_types, 'rinks': rinks, 'events': events})    

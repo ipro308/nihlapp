@@ -7,8 +7,21 @@ from time import strptime, strftime
 from datetime import datetime
 
 @login_required
-def detail(request): pass
-
+def detail(request):
+    try:
+        object = Event.objects.get(id = request.POST['object_id'])
+        response = {'type': object.eventType.id, 
+                    'rink': object.rink.id, 
+                    'date': strftime("%m/%d/%Y", object.dateTimeEvent.timetuple()),
+                    'hour': strftime("%I", object.dateTimeEvent.timetuple()),
+                    'minute': strftime("%M", object.dateTimeEvent.timetuple()),
+                    'am': strftime("%p", object.dateTimeEvent.timetuple())}
+    except Exception, error:
+        response = {'error': str(error)}
+        
+    json = simplejson.dumps(response)
+    return HttpResponse(json, mimetype = 'application/json')       
+    
 @login_required
 def create(request):
     
@@ -28,22 +41,34 @@ def create(request):
         
         #timeSlots = Event.objects.all().filter(eventType = request.POST['event_type'], homeTeam = request.user.get_profile().team, season = Season.objects.get(isCurrentSeason = True)).count()
         #timeSlot = timeSlots + 1
-        eventType = event.eventType
-        rink = event.rink
-        date = event.dateTimeEvent
         
-        response = {'eventType': eventType.name, 'rink': rink.name, 'date': strftime("%m/%d/%Y %I:%M %p", date.timetuple())}
+        response = {'object_id': event.id,
+                    'eventType': str(event.eventType), 
+                    'rink': str(event.rink), 
+                    'date': strftime("%b %e, %Y", event.dateTimeEvent.timetuple()),
+                    'time': strftime("%I:%M %p", event.dateTimeEvent.timetuple())}
         
     except Exception, error:
         response = {'error': str(error)}
-    
-    #response = {'error': "got this: %s!" % (request.POST['event_am'])}
     
     json = simplejson.dumps(response)
     return HttpResponse(json, mimetype = 'application/json')    
 
 @login_required
-def update(request): pass
+def delete(request): 
+    try:
+        object = Event.objects.get(id = request.POST['object_id'])
+        availableStatus = EventStatus.objects.get(name = "Available")
+        
+        # check to see if event has already progressed into scheduling, in that case we can not delete it
+        if object.eventStatus != availableStatus:
+            raise Exception, "Game has already been scheduled for this time slot."
 
-@login_required
-def delete(request): pass
+        object.delete()
+        response = {}
+    except Exception, error:
+        response = {'error': str(error)}
+        
+    json = simplejson.dumps(response)
+    return HttpResponse(json, mimetype = 'application/json')    
+
