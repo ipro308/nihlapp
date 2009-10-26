@@ -1,5 +1,5 @@
 from django.db import models
-from nihlapp.core.models import *
+from nihlapp.core.models import Season, Division, Club, SkillLevel
 
 class Team(models.Model):
     name = models.CharField("Team Name", max_length = 30, unique = True)

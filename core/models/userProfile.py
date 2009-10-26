@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from nihlapp.core.models import *
+from nihlapp.core.models import Team, Club
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User, unique = True)

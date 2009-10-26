@@ -1,5 +1,5 @@
 from django.db import models
-from nihlapp.core.models import *
+#from nihlapp.core.models import *
 
 class PenaltyOffense(models.Model):
     name = models.CharField("Penalty Offense", max_length = 30)

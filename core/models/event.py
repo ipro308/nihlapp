@@ -1,5 +1,5 @@
 from django.db import models
-from nihlapp.core.models import *
+from nihlapp.core.models import EventyType, EventStatus, Team, Rink, Season
 from time import strftime
 
 class Event(models.Model):

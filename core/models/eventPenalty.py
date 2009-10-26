@@ -1,5 +1,5 @@
 from django.db import models
-from nihlapp.core.models import *
+from nihlapp.core.models import Event, Team, PenaltyOffense
 
 class EventPenalty(models.Model):
     event = models.ForeignKey(Event, verbose_name = "Event")

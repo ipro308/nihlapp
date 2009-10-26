@@ -1,5 +1,5 @@
 from django.db import models
-from nihlapp.core.models import *
+#from nihlapp.core.models import *
 
 class SkillLevel(models.Model):
     name = models.CharField("Skill Level Name", max_length = 30, unique = True)

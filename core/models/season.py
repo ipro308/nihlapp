@@ -1,5 +1,5 @@
 from django.db import models
-from nihlapp.core.models import *
+from nihlapp.core.models import SeasonStatus
 
 class Season(models.Model):
     year = models.CharField("Season Year", max_length = 4, unique = True) # essentially the name

@@ -1,5 +1,5 @@
 from django.db import models
-from nihlapp.core.models import *
+#from nihlapp.core.models import *
 
 class Rink(models.Model):
     name = models.CharField("Rink Name", max_length = 30, unique = True)
