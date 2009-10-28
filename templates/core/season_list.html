@@ -3,6 +3,32 @@
 {% block title %}Seasons{% endblock %}
 {% block createTitle %}Create Season{% endblock %}
 
+{% block selectedTabSeasons %} class="selected"{% endblock %}
+
+{% block extraContent %}
+<h3 class="subtitle">Current Season</h3>
+<p>
+	<span>Year: ...</span><br/>
+	<span style="white-space: nowrap">
+		Status:
+		<a href="/seasons/preparation">Preparation</a> &raquo; 
+		<span style="color: #999">Scheduling Seeding Games</span> &raquo; 
+		<span style="color: #999">Seeding Games</span> &raquo; 
+		<span style="color: #999">Scheduling Season Games</span> &raquo; 
+		<span style="color: #999">Season Games</span> &raquo; 
+		<span style="color: #999">Completed</span>
+		
+		<!-- <a href="/seasons/scheduling-seeding">Scheduling Seeding Games</a> &raquo; 
+		<a href="/seasons/seeding-games">Seeding Games</a> &raquo;
+		<a href="/seasons/scheduling-season">Scheduling Season Games</a> &raquo;
+		<a href="/seasons/season-games">Season Games</a> &raquo;
+		<a href="/seasons/completed">Completed</a>-->
+	</span>
+</p>
+
+<h3 class="subtitle">Manage Seasons</h3>
+{% endblock %}
+
 {% block listHeader %}
 	<th>Year</th>
     <th>Season Begin</th>

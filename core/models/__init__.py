@@ -22,4 +22,4 @@ from eventGoal import EventGoal
 from eventPenalty import EventPenalty
 from eventSuspension import EventSuspension
 from eventGoalkeeperSaves import EventGoalkeeperSaves
-
+from invitation import Invitation, InvitationForm

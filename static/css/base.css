@@ -4,8 +4,17 @@
 	padding: 0;
 }
 
-html, body {
+html {
+	background-color:#EBEBEB;
 	height: 100%;
+	font-family:"Trebuchet MS",Verdana,"Lucida Grande",Georgia,Sans-Serif;
+	font-size:10px;
+	font-size-adjust:none;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:normal;	
+	border-top:3px solid #2B3240;
 }
 
 #canvas {
@@ -18,23 +27,55 @@ html, body {
 }
 
 body {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 62.5%; /* 1em = 10px */
-	line-height: 1em;
-	margin: 0;
-	padding: 0;
+	margin:0;
+	padding:0;
+	background-image:url(/static/images/ui/body_bg_1024.png);
+	background-position:left top;
+	background-repeat:repeat-y;
+	margin:0 auto;
+	padding:0;
+	width:1024px;	
 }
 
 table tr th {
 	text-align: left;
 }
 
-a, a:visited {
-	color:#104CA6;
+a:link, a:visited {
+	border-bottom-color:#336699;
+	color:#336699;
+	text-decoration:none;
 }
 
-#canvas {
-    background-color: #fff;
+a {
+	/*border-bottom:1px dotted transparent;*/
+	font-weight:bold;
+}
+
+div.bottom-area {
+	margin-bottom:5px;
+	margin-top:20px;
+	position:relative;
+	text-align:center;
+	top:25px;
+	width:100%;
+}
+
+div.bottom-area-bg {
+	background-image:url(/static/images/ui/body_bg_bottom.png);
+	background-position:left top;
+	background-repeat:repeat-x;
+	height:30px;
+	left:30px;
+	position:relative;
+	top:30px;
+	width:964px;
+}
+
+div.bottom-area div {
+	padding: 5px;
+	font-size: 13px;
+	color: #666;
 }
 
 p.help {
@@ -43,7 +84,7 @@ p.help {
 	padding: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	width: 100%;
+	/*width: 100%;*/
 }
 
 h2.title {
@@ -120,8 +161,10 @@ ul.errorlist {
 }
 
 div.object-list-menu {
-    float:right;
-    margin-bottom:15px;
+	margin-bottom:15px;
+	padding:0;
+	text-align:right;
+	width:100%;
 }
 
 div.login-form {
@@ -135,7 +178,7 @@ div.login-form {
 
 #page {
 	margin: auto;
-	width: 982px;
+	width:964px;
 	position: relative;
 }
 
@@ -276,27 +319,25 @@ dt {
     margin: 0;
     padding: 0;
 }
+
 #apptitle {
 	color:#000000;
 	font-size:24pt;
 	font-weight:bold;
-	margin:10px;
+	margin:10px 10px 0 0;
 	padding:15px;
 	position:absolute;
 }
 #header .logo a {
     display: block;
-    width: 120px;
-    height: 60px;
-    background: url(/static/images/logo.png) no-repeat;
+    width: 102px;
+    height:94px;
+    background: url(/static/images/ui/nihl.gif) no-repeat;
 	margin-bottom:5px;
 	margin-left:5px;   
-	border:1px solid #777777; 
 }
 
 #navbar {
-    border:1px solid #CCCCCC;
-    height: 38px;
 	clear: both;
 }
 
@@ -513,7 +554,7 @@ dt {
     position: relative;
 }
 #body #content_area {
-    margin: 0 10px;
+    /*margin: 0 10px;*/
     padding: 10px 10px 20px;
     background: #fff;
     z-index: 0;
@@ -1325,10 +1366,10 @@ div.vd {
 }
 
 .tabs-nav {
-	height: 22px;
+	height:25px;
     list-style: none;
-    margin: -10px -10px 20px -10px;
-    padding: 6px 0 0 4px;
+	margin:-15px -10px 20px;
+	padding:0 0 0 10px;
 }
 .tabs-selected a span {
 	/*font-weight: bold;*/
@@ -1353,7 +1394,7 @@ div.vd {
     position: relative;
     height: 22px;
     color: #000000;
-    font-family: Verdana, Helvetica, sans-serif;
+    /*font-family: Verdana, Helvetica, sans-serif;*/
     font-size: 0.85em;
     line-height: 1.2em;
     text-decoration: none;
@@ -1390,6 +1431,8 @@ div.vd {
 }
 .tabs-nav a span, .tabs-nav .tabs-disabled a:hover span, .tabs-nav .tabs-disabled a:focus span, .tabs-nav .tabs-disabled a:active span {
     background-position: 0 0;
+    font-size:14px;
+    line-height:16px;
 }
 .tabs-nav .tabs-selected a:link, .tabs-nav .tabs-selected a:visited, .tabs-nav .tabs-disabled a:link, .tabs-nav .tabs-disabled a:visited { /* @ Opera, use pseudo classes otherwise it confuses cursor... */
     cursor: default;
@@ -1408,6 +1451,75 @@ div.vd {
 }
 .tabs-nav, .navmenu ul, #nav_menu li a:hover {
     border-bottom:1px solid #CCCCCC;
-	background-color:#FFF !important;
+	background-color:#ECECEC !important;
 	color:#000000;
+	padding-bottom:2px;
+	padding-top:2px;	
+}
+
+div#nav-container {
+	padding-left:5px;
+	background:#2B3240 none repeat scroll 0 0;
+	font-size:18px;
+}
+
+/** test **/
+/* header & nav */
+div#nav {
+	height:43px;
+	background:#2B3240;
+}
+div#nav ul {
+	list-style:none;
+	padding:0;
+	height:100%;
+	margin:0;
+	position:relative;
+}
+div#nav ul li {
+	display:inline;
+	float:left;
+}
+div#nav ul li.selected {
+
+	background-color:#2B3240;
+}
+div#nav ul li.selected a, div#nav ul li.selected a:visited {
+	color:#203147;
+	background:transparent url('/static/images/ui/tab_right.jpg') no-repeat scroll right 9px;
+	margin:0;
+	padding:0;
+}
+div#nav ul li.selected a span, div#nav ul li.selected a:hover span {
+	background:transparent url('/static/images/ui/tab_left.jpg') no-repeat scroll left 9px;
+	display:block;
+	cursor:pointer;
+	padding:15px 15px 9px 15px;
+	border-bottom:2px solid #2B3240;
+}
+div#nav ul li a, div.nav ul li a:visited {
+	float:left;
+	margin:0 5px;
+	padding:15px 15px 9px 15px;
+	text-decoration:none;
+	color:#ffffff;
+	font-weight:normal;
+	font-size:0.9em;
+	font-family:Arial, Helvetica, sans-serif;
+}
+div#nav ul li a:hover {
+	background:transparent url('/static/images/ui/tab_right_over.jpg') no-repeat scroll right 9px;
+	padding:0;
+}
+div#nav ul li a:hover span {
+	background:transparent url('/static/images/ui/tab_left_over.jpg') no-repeat scroll left 9px;
+	display:block;
+	padding:15px 15px 9px 15px;
+	cursor:pointer;
+}
+
+div#login-panel {
+	position: absolute;
+	right:20px;
+	top:15px;
 }
