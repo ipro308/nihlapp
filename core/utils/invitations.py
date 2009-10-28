@@ -16,6 +16,7 @@ def generate_invitation(full_name, email, club, team, group = None):
     invitation.email = email
     invitation.club = club
     invitation.team = team
+    invitation.group = group
     invitation.used = False
     invitation.save()
     

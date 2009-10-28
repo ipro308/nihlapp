@@ -19,7 +19,7 @@
 	<fieldset>
 	    <legend class="primary">Season & Club</legend>
 	    <ul>
-	        <li><label>Season:</label><span>{{ object.season }}</span></li>
+	        <li><label>Season:</label><span>{{ object.season }}</span><div class="vd" /></li>
             <li><label>Club:</label><span>{{ object.club }}</span></li>
 	    </ul>
 	</fieldset> 	
@@ -28,7 +28,7 @@
 	    <legend class="primary">Team Manager</legend>
 	    <ul>
 	        <li><label>Manager Name:</label><span>{{ object.managerName }}</span><div class="vd" /></li>
-	        <li><label>Manager Email:</label><span>{{ object.managerEmail }}</span></li>
+	        <li><label>Manager Email:</label><span>{{ object.managerEmail }}</span> [ <a href="/invitation/generate?club_id={{ object.club.id }}&team_id={{ object.id }}&name={{ object.managerName }}&email={{ object.managerEmail }}"><img src="/static/images/icons/email_go.png" style="position:relative; top:3px;" /> Generate Invitation</a> ]</li>
 	    </ul>
 	</fieldset> 	
 

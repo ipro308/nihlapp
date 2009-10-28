@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block section %}Invitation{% endblock %}
+{% block title %}Invitation{% endblock %}
+
+{% block content %}
+
+	{% if invitationFound %}
+
+	    {% if form.has_errors %}
+	        <h2>Please correct the following error{{ form.errors|pluralize }}:</h2>
+	    {% endif %}
+	
+	    <div class='styled'>
+	    <form class="styled validate" method="POST" action="">
+	        <fieldset>
+	    	    <legend class="primary first">Create NIHL Account</legend>
+	            <ul>
+	    		    {{ form.as_ul }}
+					<li>
+						<label for="id_username">Full Name:</label>
+						{{ invitation.name }}
+					</li>	    		    
+					<li>
+						<label for="id_username">Team:</label>
+						<a href="{{ invitation.team.get_absolute_url }}">{{ invitation.team }}</a>
+					</li>
+					<li>
+						<label for="id_username">Club:</label>
+						<a href="{{ invitation.club.get_absolute_url }}">{{ invitation.club }}</a>
+					</li>
+	            </ul>
+	        </fieldset>
+	        <div class="submit">
+	            <p class="submit-buttons">
+			        <input type="submit" name="submit" value="Create Account" />            	
+	            </p>
+	        </div>
+	    </form>
+	    </div>
+	   
+	{% else %}
+		
+		Invitation not found, or has already been used.
+		<br/><br/>
+		Key: {{ key }}
+		
+	{% endif %}
+
+{% endblock %}

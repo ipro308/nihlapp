@@ -19,7 +19,6 @@ class Invitation(models.Model):
         return "Invitation: %s" % (self.key)
     
 class InvitationForm(forms.Form):
-    name = forms.CharField(label = "Full Name", max_length = 30)
     username = forms.CharField(label = "Username", max_length = 30)
     password = forms.CharField(label = "Password", widget = forms.PasswordInput(render_value = False), min_length = 6, max_length = 30)
     password_confirm = forms.CharField(label = "Confirm Password", widget = forms.PasswordInput(render_value = False), min_length = 6, max_length = 30)

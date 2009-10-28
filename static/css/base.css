@@ -1204,15 +1204,6 @@ div.styled form p.submit-buttons input {
 	width: auto;
 }
 
-div.styled form a {
-	color:#f07000;
-	text-decoration:none;
-}
-
-div.styled form a:hover {
-	text-decoration:underline;
-}
-
 form.styled.short {
 	margin-top:2em;
 }

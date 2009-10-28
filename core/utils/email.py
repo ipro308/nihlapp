@@ -12,7 +12,7 @@ def send_invitation(invitation_id):
     try:
         template = loader.get_template('email/invitation.html')
         context = Context({
-                           'siteHostname': new_data['first_name'],
+                           'siteHostname': Parameter.objects.get(name = "site.hostname"),
                            'invitation': invitation
                            })
         send_mail('%s Please register with NIHL' % Parameter.objects.get(name = "email.prefix"), 
@@ -20,7 +20,7 @@ def send_invitation(invitation_id):
                   "%s <%s>" % (Parameter.objects.get(name = "email.from"), Parameter.objects.get(name = "email.noreply")), 
                   [invitation.email], 
                   fail_silently=False)
-    except error:
+    except Exception, error:
         raise Exception, "Unable to send invitation: %s." % error
     
 def send_event_scheduled_notification():

@@ -65,8 +65,12 @@ urlpatterns = patterns('',
   
     # email notify
     (r'^notify/', 'nihlapp.core.views.notify.index'),    
-    (r'^notify/send', 'nihlapp.core.views.notify.send'),    
- 
+    (r'^notify/send', 'nihlapp.core.views.notify.send'),   
+    
+    # invitations
+    (r'^invitation/(?P<key>[0-9A-Za-z]+)/$', 'nihlapp.core.views.invitations.invitation'),
+    (r'^invitation/generate$', 'nihlapp.core.views.invitations.generate'),  
+    
     # github post-commit hook
     (r'^githook/pull', 'nihlapp.githook.pull'),
  
