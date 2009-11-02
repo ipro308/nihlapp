@@ -1,6 +1,6 @@
 from django.db import models
 from django import forms
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import User, Group
 from nihlapp.core.models import Team, Club
 
 class Invitation(models.Model):
@@ -23,3 +23,25 @@ class InvitationForm(forms.Form):
     password = forms.CharField(label = "Password", widget = forms.PasswordInput(render_value = False), min_length = 6, max_length = 30)
     password_confirm = forms.CharField(label = "Confirm Password", widget = forms.PasswordInput(render_value = False), min_length = 6, max_length = 30)
     
+    def clean_username(self):
+        data = self.cleaned_data['username']
+        
+        # check if this username is available
+        try:
+            checkUser = User.objects.get(username = data)
+            raise forms.ValidationError("This username is not available, please choose a different username for your account.")
+        except DoesNotExist, error:
+            pass
+        
+        return data
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
+        
+        if password != confirm_password:
+            raise forms.ValidationError("Passwords you have entered do not match. Please re-enter your password.")
+        
+        return cleaned_data

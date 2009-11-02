@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block section %}Account Created{% endblock %}
+{% block title %}Account Created{% endblock %}
+
+{% block content %}
+
+	{% if confirmationFound %}
+
+		Your email address has been confirmed and your account is now active. You can go ahead and <a href="/accounts/login">login</a>.
+	   
+	{% else %}
+		
+		Confirmation not found, or has already been used.
+		<br/><br/>
+		Key: {{ key }}
+		
+	{% endif %}
+
+{% endblock %}
