@@ -8,9 +8,7 @@
 {% block content %}
 
 <div style="text-align:center;">
-	Dummy stat display -- testing get_stats() method.
-	<br />
-	{{division_filter}}
+	Add multiple options, remove options that would not contribute
 </div>
 
 <form name="filter" action="" method="get">
@@ -49,10 +47,6 @@
 	<input type="submit" value="Filter" />
 </form>
 
-{% for team in stats %}
-{{team.name}}: id: {{team.id}}, div: {{team.division.id}}/ 
-{% endfor %}
-
 <table style="width:100%;">
 	<tr>
 		<th>teamName</th>
@@ -89,7 +83,7 @@
 </table>
 
 <div style="text-align:center;">
-<a href="{{url}}">Permalink</a> {{url}}
+<a href="{{url}}">Permalink</a>
 </div>
 
 {% endblock %}
