@@ -9,7 +9,49 @@
 
 <div style="text-align:center;">
 	Dummy stat display -- testing get_stats() method.
+	<br />
+	{{division_filter}}
 </div>
+
+<form name="filter" action="" method="get">
+	Division:
+	<select name="division" size="3" multiple="multiple">
+		<option value='0'>Any</option>
+		{% for division in divisions %}
+		<option value="{{division.id}}">{{division.name}}</option>
+		{% endfor %}
+	</select>
+	
+	Level:
+	<select name="level" >
+		<option value='0'>Any</option>
+		{% for level in levels %}
+		<option value="{{level.id}}">{{level.name}}</option>
+		{% endfor %}
+	</select>
+	
+	Club:
+	<select name="club" >
+		<option value='0'>Any</option>
+		{% for club in clubs %}
+		<option value="{{club.id}}">{{club.name}}</option>
+		{% endfor %}
+	</select>
+	
+	Team:
+	<select name="team" >
+		<option value='0'>Any</option>
+		{% for team in teams %}
+		<option value="{{team.id}}">{{team.name}}</option>
+		{% endfor %}
+	</select>
+	
+	<input type="submit" value="Filter" />
+</form>
+
+{% for team in stats %}
+{{team.name}}: id: {{team.id}}, div: {{team.division.id}}/ 
+{% endfor %}
 
 <table style="width:100%;">
 	<tr>
@@ -45,5 +87,9 @@
 	</tr>
 	{% endfor %}
 </table>
+
+<div style="text-align:center;">
+<a href="{{url}}">Permalink</a> {{url}}
+</div>
 
 {% endblock %}

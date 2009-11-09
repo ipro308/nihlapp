@@ -1,20 +1,63 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest, QueryDict, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from nihlapp.core.models import Event, Season, EventStatus, Team, PenaltyOffense, EventGoal, EventPenalty, EventSuspension, EventGoalkeeperSaves, EventStats, Parameter, EventType
+from nihlapp.core.models import Event, Season, EventStatus, Team, PenaltyOffense, EventGoal, EventPenalty, EventSuspension, EventGoalkeeperSaves, EventStats, Parameter, EventType, Division, SkillLevel, Club
 from nihlapp.core.utils import TeamStats
 from django.db.models import Q
-from django.http import HttpResponseRedirect
 from datetime import datetime, timedelta
 
 def summary(request):
+    # variables
+    url = request.get_full_path()
+    
+    # dictionaries
     teams = TeamStats.objects.filter(season = Season.objects.get(isCurrentSeason = True))
     stats = list()
+    divisions = Division.objects.all()
+    levels = SkillLevel.objects.all()
+    clubs = Club.objects.all()
+    
+    # filters
+    division_filter = 0
+    level_filter = 0
+    club_filter = 0
+    team_filter = 0
+    
+    if len(request.GET.getlist('division')) == 0:
+        division_filter = 0
+    else:
+        division_filter = request.GET.getlist('division').pop()
+        
+    if len(request.GET.getlist('level')) == 0:
+        level_filter = 0
+    else:
+        level_filter = request.GET.getlist('level').pop()
+        
+    if len(request.GET.getlist('club')) == 0:
+        club_filter = 0
+    else:
+        club_filter = request.GET.getlist('club').pop()
+        
+    if len(request.GET.getlist('team')) == 0:
+        team_filter = 0
+    else:    
+        team_filter = request.GET.getlist('team').pop()
+    
     for team in teams:
-        stats.append(team.get_stats())
+        if (team.division.id == int(division_filter)) | (int(division_filter) == 0):
+            if (team.skillLevel.id == int(level_filter)) | (int(level_filter) == 0):
+                if (team.club.id == int(club_filter)) | (int(club_filter) == 0):
+                    if (team.id == int(team_filter)) | (int(team_filter) == 0):
+                        stats.append(team.get_stats())
     
     return render_to_response('core/stats/summary.html', {'user': request.user, 
-                                                          'stats': stats})
+                                                          'stats': stats,
+                                                          'teams': teams,
+                                                          'levels': levels,
+                                                          'clubs': clubs,
+                                                          'divisions': divisions,
+                                                          'division_filter': division_filter,
+                                                          'url': url})
 
 
 def seeding(request):
