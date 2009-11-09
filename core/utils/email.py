@@ -39,7 +39,7 @@ def send_confirmation(userProfile_id):
         send_mail('%s Please confirm your email address' % Parameter.objects.get(name = "email.prefix"), 
                   template.render(context), 
                   "%s <%s>" % (Parameter.objects.get(name = "email.from"), Parameter.objects.get(name = "email.noreply")), 
-                  [invitation.email], 
+                  [userProfile.email], 
                   fail_silently=False)
     except Exception, error:
         raise Exception, "Unable to send confirmation: %s." % error    

@@ -6,26 +6,24 @@ from django.db.models import Q
 from nihlapp.core.utils.invitations import generate_invitation
 from nihlapp.core.utils.email import send_invitation, send_confirmation
 from django.contrib.auth.models import User, Group
-#from datetime import datetime, timedelta
+import hashlib
 
 def invitation(request, key):
     
+    try:
+        invitation = Invitation.objects.get(key = key)
+        invitationFound = True
+        form = InvitationForm()
+    except Exception, error:
+        invitation = None
+        invitationFound = False
+        form = None
+    
     if request.method == 'GET':
-        try:
-            invitation = Invitation.objects.get(key = key)
-            invitationFound = True
-            form = InvitationForm()
-        except Exception, error:
-            invitation = None
-            invitationFound = False
-            form = None
-            
-        return render_to_response('core/invitations/invite.html', {'invitation': invitation, 
-                                                                   'invitationFound': invitationFound,
-                                                                   'form': form,
-                                                                   'key': key})            
+        pass
+    
     else:
-        form = ContactForm(request.POST)
+        form = InvitationForm(request.POST)
         if form.is_valid():
             
             # create user account for invitee
@@ -63,7 +61,12 @@ def invitation(request, key):
             
             send_confirmation(userProfile.id)
             
-            return HttpResponseRedirect('/invitation/done/%s' %(invitation.email))
+            return HttpResponseRedirect('/invitation/done/%s' % (userProfile.id))
+        
+    return render_to_response('core/invitations/invite.html', {'invitation': invitation, 
+                                                               'invitationFound': invitationFound,
+                                                               'form': form,
+                                                               'key': key})         
         
 """
 class UserProfile(models.Model):
@@ -84,20 +87,34 @@ class Invitation(models.Model):
 """
 
 
-def invitation_done(request):
-    return render_to_response('core/invitations/invite_done.html')
+def invitation_done(request, user_profile_id):
+    
+    try:
+        userProfile = UserProfile.objects.get(id = user_profile_id)
+    except:
+        raise Exception, "Unable to find confirmation id: %s." % user_profile_id
+    
+    return render_to_response('core/invitations/invitation_done.html', {'email': userProfile.email})
 
-def confirm_email(reqest):
+def confirm_email(reqest, key):
     
     try:
         confirmation = UserProfile.objects.get(confirmation = key)
         confirmationFound = True
+        # activate user's account
+        confirmation.user.is_active = True
+        confirmation.user.save()
+        # set email confirmed flag in user profile
+        confirmation.confirmed = True
+        confirmation.save()
     except Exception, error:
+        key = str()
         confirmation = None
         confirmationFound = False 
     
     return render_to_response('core/invitations/confirm_email.html', {'confirmation': confirmation, 
-                                                                      'confirmationFound': confirmationFound})
+                                                                      'confirmationFound': confirmationFound,
+                                                                      'key': key})
 
 @login_required
 def generate(request):

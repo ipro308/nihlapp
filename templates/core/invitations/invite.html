@@ -20,7 +20,11 @@
 					<li>
 						<label for="id_username">Full Name:</label>
 						{{ invitation.name }}
-					</li>	    		    
+					</li>
+					<li>
+						<label for="id_username">Email:</label>
+						{{ invitation.email }}
+					</li>							    		    
 					<li>
 						<label for="id_username">Team:</label>
 						<a href="{{ invitation.team.get_absolute_url }}">{{ invitation.team }}</a>

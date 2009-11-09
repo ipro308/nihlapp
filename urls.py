@@ -70,7 +70,7 @@ urlpatterns = patterns('',
     # invitations
     (r'^invitation/(?P<key>[0-9A-Za-z]+)/$', 'nihlapp.core.views.invitations.invitation'),
     (r'^invitation/generate$', 'nihlapp.core.views.invitations.generate'),  
-    (r'^invitation/done$', 'nihlapp.core.views.invitations.invitation_done'),  
+    (r'^invitation/done/(?P<user_profile_id>\d+)/?$', 'nihlapp.core.views.invitations.invitation_done'),  
     (r'^confirm/(?P<key>[0-9A-Za-z]+)/$', 'nihlapp.core.views.invitations.confirm_email'),    
     
     # github post-commit hook
