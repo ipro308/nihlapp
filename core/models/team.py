@@ -2,7 +2,7 @@ from django.db import models
 from nihlapp.core.models import Season, Division, Club, SkillLevel
 
 class Team(models.Model):
-    name = models.CharField("Team Name", max_length = 30, unique = True)
+    name = models.CharField("Team Name", max_length = 30)
     season = models.ForeignKey(Season, verbose_name = "Season")
     division = models.ForeignKey(Division, verbose_name = "Division")
     club = models.ForeignKey(Club, verbose_name = "Club")
@@ -18,7 +18,7 @@ class Team(models.Model):
         app_label = "core"
 
     def __str__(self):
-        return self.name
+        return "[%s %s] %s" % (self.division.name, self.skillLevel.name, self.name)
     
     def get_absolute_url(self):
         return "/%s/%s/%s" % ('teams', 'detail', self.pk)
