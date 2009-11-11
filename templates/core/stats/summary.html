@@ -21,15 +21,16 @@
 	</select>
 	
 	Level:
-	<select name="level" >
+	<select name="level" size="3" multiple="multiple">
 		<option value='0'>Any</option>
 		{% for level in levels %}
-		<option value="{{level.id}}">{{level.name}}</option>
+		<option value="{{level.id}}" 
+		>{{level.name}}</option>
 		{% endfor %}
 	</select>
 	
 	Club:
-	<select name="club" >
+	<select name="club" size="3" multiple="multiple">
 		<option value='0'>Any</option>
 		{% for club in clubs %}
 		<option value="{{club.id}}">{{club.name}}</option>
@@ -37,7 +38,7 @@
 	</select>
 	
 	Team:
-	<select name="team" >
+	<select name="team" size="3" multiple="multiple">
 		<option value='0'>Any</option>
 		{% for team in teams %}
 		<option value="{{team.id}}">{{team.name}}</option>

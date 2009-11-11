@@ -18,36 +18,36 @@ def summary(request):
     clubs = Club.objects.all()
     
     # filters
-    division_filter = 0
-    level_filter = 0
-    club_filter = 0
-    team_filter = 0
+    division_filter = ['0']
+    level_filter = ['0']
+    club_filter = ['0']
+    team_filter = ['0']
     
     if len(request.GET.getlist('division')) == 0:
-        division_filter = 0
+        division_filter = ['0']
     else:
-        division_filter = request.GET.getlist('division').pop()
+        division_filter = request.GET.getlist('division')
         
     if len(request.GET.getlist('level')) == 0:
-        level_filter = 0
+        level_filter = ['0']
     else:
-        level_filter = request.GET.getlist('level').pop()
+        level_filter = request.GET.getlist('level')
         
     if len(request.GET.getlist('club')) == 0:
-        club_filter = 0
+        club_filter = ['0']
     else:
-        club_filter = request.GET.getlist('club').pop()
+        club_filter = request.GET.getlist('club')
         
     if len(request.GET.getlist('team')) == 0:
-        team_filter = 0
+        team_filter = ['0']
     else:    
-        team_filter = request.GET.getlist('team').pop()
+        team_filter = request.GET.getlist('team')
     
     for team in teams:
-        if (team.division.id == int(division_filter)) | (int(division_filter) == 0):
-            if (team.skillLevel.id == int(level_filter)) | (int(level_filter) == 0):
-                if (team.club.id == int(club_filter)) | (int(club_filter) == 0):
-                    if (team.id == int(team_filter)) | (int(team_filter) == 0):
+        if ((str(team.division.id) in division_filter) | (str(0) in division_filter)):
+            if ((str(team.skillLevel.id) in level_filter) | (str(0) in level_filter)):
+                if ((str(team.club.id) in club_filter) | (str(0) in club_filter)):
+                    if ((str(team.id) in team_filter) | (str(0) in team_filter)):
                         stats.append(team.get_stats())
     
     return render_to_response('core/stats/summary.html', {'user': request.user, 
