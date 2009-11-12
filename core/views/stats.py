@@ -17,37 +17,44 @@ def summary(request):
     levels = SkillLevel.objects.all()
     clubs = Club.objects.all()
     
-    # filters
-    division_filter = ['0']
-    level_filter = ['0']
-    club_filter = ['0']
-    team_filter = ['0']
+    # initialize filters
+    division_filter = []
+    level_filter = []
+    club_filter = []
+    team_filter = []
     
+    # begin populating filters
+    # if filter was not selected, 
+    # it will be set to a list with a string of the number zero
+
     if len(request.GET.getlist('division')) == 0:
-        division_filter = ['0']
-    else:
-        division_filter = request.GET.getlist('division')
-        
+        division_filter = [0]
+    for i in request.GET.getlist('division'):
+        division_filter.append(int(i))
+    
     if len(request.GET.getlist('level')) == 0:
-        level_filter = ['0']
-    else:
-        level_filter = request.GET.getlist('level')
-        
+        level_filter = [0]
+    for i in request.GET.getlist('level'):
+        level_filter.append(int(i))
+
     if len(request.GET.getlist('club')) == 0:
-        club_filter = ['0']
-    else:
-        club_filter = request.GET.getlist('club')
-        
+        club_filter = [0]
+    for i in request.GET.getlist('club'):
+        club_filter.append(int(i))
+    
     if len(request.GET.getlist('team')) == 0:
-        team_filter = ['0']
-    else:    
-        team_filter = request.GET.getlist('team')
+        team_filter = [0]
+    for i in request.GET.getlist('team'):
+        team_filter.append(int(i))
+    
+    # every team must fulfill all of the filter requirements 
+    # to be passed to the stats view
     
     for team in teams:
-        if ((str(team.division.id) in division_filter) | (str(0) in division_filter)):
-            if ((str(team.skillLevel.id) in level_filter) | (str(0) in level_filter)):
-                if ((str(team.club.id) in club_filter) | (str(0) in club_filter)):
-                    if ((str(team.id) in team_filter) | (str(0) in team_filter)):
+        if ((team.division.id in division_filter) | (0 in division_filter)):
+            if ((team.skillLevel.id in level_filter) | (0 in level_filter)):
+                if ((team.club.id in club_filter) | (0 in club_filter)):
+                    if ((team.id in team_filter) | (0 in team_filter)):
                         stats.append(team.get_stats())
     
     return render_to_response('core/stats/summary.html', {'user': request.user, 
@@ -57,6 +64,9 @@ def summary(request):
                                                           'clubs': clubs,
                                                           'divisions': divisions,
                                                           'division_filter': division_filter,
+                                                          'level_filter': level_filter,
+                                                          'club_filter': club_filter,
+                                                          'team_filter': team_filter,
                                                           'url': url})
 
 

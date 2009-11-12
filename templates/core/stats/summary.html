@@ -16,7 +16,13 @@
 	<select name="division" size="3" multiple="multiple">
 		<option value='0'>Any</option>
 		{% for division in divisions %}
-		<option value="{{division.id}}">{{division.name}}</option>
+		<option value="{{division.id}}" 
+		{% for filter in division_filter %}
+		{% ifequal division.id filter %}
+		selected
+		{% endifequal %}
+		{% endfor %}
+		>{{division.name}}</option>
 		{% endfor %}
 	</select>
 	
@@ -25,6 +31,11 @@
 		<option value='0'>Any</option>
 		{% for level in levels %}
 		<option value="{{level.id}}" 
+		{% for filter in level_filter %}
+		{% ifequal level.id filter %}
+		selected
+		{% endifequal %}
+		{% endfor %}
 		>{{level.name}}</option>
 		{% endfor %}
 	</select>
@@ -33,7 +44,13 @@
 	<select name="club" size="3" multiple="multiple">
 		<option value='0'>Any</option>
 		{% for club in clubs %}
-		<option value="{{club.id}}">{{club.name}}</option>
+		<option value="{{club.id}}"
+		{% for filter in club_filter %}
+		{% ifequal club.id filter %}
+		selected
+		{% endifequal %}
+		{% endfor %}
+		>{{club.name}}</option>
 		{% endfor %}
 	</select>
 	
@@ -41,7 +58,13 @@
 	<select name="team" size="3" multiple="multiple">
 		<option value='0'>Any</option>
 		{% for team in teams %}
-		<option value="{{team.id}}">{{team.name}}</option>
+		<option value="{{team.id}}"
+		{% for filter in team_filter %}
+		{% ifequal team.id filter %}
+		selected
+		{% endifequal %}
+		{% endfor %}
+		>{{team.name}}</option>
 		{% endfor %}
 	</select>
 	
