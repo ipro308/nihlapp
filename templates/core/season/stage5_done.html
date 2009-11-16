@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Seasons{% endblock %}
+{% block createTitle %}Season State Change{% endblock %}
+
+{% block selectedTabSeasons %} class="selected"{% endblock %}
+
+{% block content %}
+
+<h2 class="title"><span style="color:#999;">Advance Season State: 
+From </span>Season Games <span style="color:#999;">to</span> Completed</h2>
+
+<h3 class="subtitle">Done!</h3>
+<p>
+	Season has been switched over to <b>Completed</b> stage, and the following tasks have been performed:
+</p>
+<ul>
+	<li>Season statistics have been finalized.</li>
+</ul>
+
+<div style="text-align:center; margin-top:50px;">
+	<a href="/seasons">Return to Season Management page</a>
+</div>
+
+{% endblock %}

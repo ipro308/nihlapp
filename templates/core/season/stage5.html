@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Seasons{% endblock %}
+{% block createTitle %}Season State Change{% endblock %}
+
+{% block selectedTabSeasons %} class="selected"{% endblock %}
+
+{% block content %}
+
+<h2 class="title"><span style="color:#999;">Advance Season State: 
+From </span>Season Games <span style="color:#999;">to</span> Completed</h2>
+
+<h3 class="subtitle">Check List</h3>
+<p>
+	Please confirm that the following tasks have been completed before switching season to the next state.
+</p>
+<ul>
+	<li>All game statistics for season games have been entered and finalized.</li>
+</ul>
+
+<h3 class="subtitle">Advance Season</h3>
+<p>
+	Click this button once to transition current season into "Completed" stage.
+</p>
+<div style="text-align:center; margin-top:50px;">
+	<form target="" method="post">
+		<input type="submit" name="advance_season" value="Transition to Completed" />
+	</form>
+</div>
+
+{% endblock %}

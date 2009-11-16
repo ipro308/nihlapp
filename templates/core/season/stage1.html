@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Seasons{% endblock %}
+{% block createTitle %}Season State Change{% endblock %}
+
+{% block selectedTabSeasons %} class="selected"{% endblock %}
+
+{% block content %}
+
+<h2 class="title"><span style="color:#999;">Advance Season State: 
+From </span>Preparation <span style="color:#999;">to</span> Scheduling Seeding Games</h2>
+
+<h3 class="subtitle">Check List</h3>
+<p>
+	Please confirm that the following tasks have been completed before switching season to the next state.
+</p>
+<ul>
+	<li>All <b>divisions</b> have been entered into database.</li>
+	<li>All <b>clubs</b> have been entered into database.</li>
+	<li>All <b>rinks</b> have been entered into database.</li>
+	<li>All <b>teams</b> have been entered into database.</li>
+	<li>Team manager <b>name</b> and <b>email</b> are correct for each team.</li>
+	<li>All <b>teams</b> have been assigned to proper <b>division</b> and <b>skill level</b>.</li>
+</ul>
+
+<h3 class="subtitle">Advance Season</h3>
+<p>
+	Click this button once to transition current season into "Scheduling Seeding Games" stage.
+</p>
+<div style="text-align:center; margin-top:50px;">
+	<form target="" method="post">
+		<input type="submit" name="advance_season" value="Transition to Scheduling Seeding Games" />
+	</form>
+</div>
+
+{% endblock %}

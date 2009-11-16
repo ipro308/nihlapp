@@ -10,21 +10,44 @@
 {% block extraContent %}
 <h3 class="subtitle">Current Season</h3>
 <p>
-	<span>Year: ...</span><br/>
+	<span>Year: {{ currentSeason.year }}</span><br/>
 	<span style="white-space: nowrap">
 		Status:
-		<a href="/seasons/preparation">Preparation</a> &raquo; 
-		<span style="color: #999">Scheduling Seeding Games</span> &raquo; 
-		<span style="color: #999">Seeding Games</span> &raquo; 
-		<span style="color: #999">Scheduling Season Games</span> &raquo; 
-		<span style="color: #999">Season Games</span> &raquo; 
-		<span style="color: #999">Completed</span>
+		{% ifequal currentSeason.seasonStatus.name "Preparation" %}
+			<a href="/seasons/stage1">Preparation</a> &gt; 
+		{% else %}
+			<span style="color: #999">Preparation</span> &gt; 
+		{% endifequal %}
 		
-		<!-- <a href="/seasons/scheduling-seeding">Scheduling Seeding Games</a> &raquo; 
-		<a href="/seasons/seeding-games">Seeding Games</a> &raquo;
-		<a href="/seasons/scheduling-season">Scheduling Season Games</a> &raquo;
-		<a href="/seasons/season-games">Season Games</a> &raquo;
-		<a href="/seasons/completed">Completed</a>-->
+		{% ifequal currentSeason.seasonStatus.name "Scheduling Seeding Games" %}
+			<a href="/seasons/stage2">Scheduling Seeding Games</a> &gt; 
+		{% else %}
+			<span style="color: #999">Scheduling Seeding Games</span> &gt; 
+		{% endifequal %}		
+		
+		{% ifequal currentSeason.seasonStatus.name "Seeding Games" %}
+			<a href="/seasons/stage3">Seeding Games</a> &gt; 
+		{% else %}
+			<span style="color: #999">Seeding Games</span> &gt; 
+		{% endifequal %}		
+
+		{% ifequal currentSeason.seasonStatus.name "Scheduling Season Games" %}
+			<a href="/seasons/stage4">Scheduling Season Games</a> &gt; 
+		{% else %}
+			<span style="color: #999">Scheduling Season Games</span> &gt; 
+		{% endifequal %}	
+		
+		{% ifequal currentSeason.seasonStatus.name "Season Games" %}
+			<a href="/seasons/stage5">Season Games</a> &gt; 
+		{% else %}
+			<span style="color: #999">Season Games</span> &gt; 
+		{% endifequal %}	
+				
+		{% ifequal currentSeason.seasonStatus.name "Completed" %}
+			Completed
+		{% else %}
+			<span style="color: #999">Completed</span>
+		{% endifequal %}
 	</span>
 </p>
 

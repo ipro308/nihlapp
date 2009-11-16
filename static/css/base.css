@@ -17,6 +17,13 @@ html {
 	border-top:3px solid #2B3240;
 }
 
+ul {
+	list-style-image:url('/static/images/ui/bullet.png');
+	list-style-type:circle;
+	margin-left:20px;	
+	margin-top:10px;
+}
+
 #canvas {
     min-height: 100%;
 }
