@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% load sorting_tags %}
+{% load pagination_tags %}
+
+
 {% block section %}NIHL{% endblock %}
 {% block title %}Model{% endblock %}
 
@@ -10,12 +14,18 @@
 <div class="object-list-menu">
 	<a href="create/">{% block createTitle %}Create Model{% endblock %}</a>
 </div>
+
+
 <table class="object-list-table">
+	
 	<tr>
 		<th></th>
+
 		{% block listHeader %}{% endblock %}         
 	</tr>
 
+	{% autosort object_list %}
+	{% autopaginate object_list 2 %}
 	{% for object in object_list %}
 	<tr>
 		<td class="object-list-item-menu-td">
@@ -30,16 +40,7 @@
 	{% endfor %}
 </table>
 
-<p class="object-list-pagination">
-	{% if has_previous %}
-		<a href="?page={{ previous }}">Previous</a> | 
-	{% endif %}
-	
-	Page {{ page }} of {{ pages }} 
-	
-	{% if has_next %}
-		| <a href="?page={{ next }}">Next</a>
-	{% endif %}
-</p>
+{% paginate %}
+
 
 {% endblock %}

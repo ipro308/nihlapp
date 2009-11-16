@@ -1,18 +1,20 @@
 {% extends "core/generic_list.html" %}
 
+{% load sorting_tags %}
+
 {% block title %}Rinks{% endblock %}
 {% block createTitle %}Create Rink{% endblock %}
-
+ 
 {% block selectedTabRinks %} class="selected"{% endblock %}
-
+ 
 {% block listHeader %}
-	<th>Name</th>
-    <th>Address</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Zip</th>
+	<th>{% anchor name %}</th>
+    <th>{% anchor address %}</th>
+    <th>{% anchor city %}</th>
+    <th>{% anchor state %}</th>
+    <th>{% anchor zip %}</th>
 {% endblock %}
-
+ 
 {% block listRow %}
 	<td><a href="detail/{{ object.pk }}">{{ object.name }}</a></td>
 	<td>{{ object.address }}</td>
