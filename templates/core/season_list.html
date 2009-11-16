@@ -1,5 +1,7 @@
 {% extends "core/generic_list.html" %}
 
+{% load sorting_tags %}
+
 {% block title %}Seasons{% endblock %}
 {% block createTitle %}Create Season{% endblock %}
 
@@ -30,11 +32,11 @@
 {% endblock %}
 
 {% block listHeader %}
-	<th>Year</th>
-    <th>Season Begin</th>
-    <th>Season End</th>
-    <th>Status</th>
-    <th>Current Season</th>
+	<th>{% anchor year %}</th>
+    <th>{% anchor seedingBeginDate %}</th>
+    <th>{% anchor seasonEnd %}</th>
+    <th>{% anchor seasonStatus %}</th>
+    <th>{% anchor isCurrentSeason %}</th>
 {% endblock %}
 
 {% block listRow %}

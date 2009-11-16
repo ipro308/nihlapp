@@ -1,15 +1,17 @@
 {% extends "core/generic_list.html" %}
 
+{% load sorting_tags %}
+
 {% block title %}Teams{% endblock %}
 {% block createTitle %}Create Team{% endblock %}
 
 {% block selectedTabTeams %} class="selected"{% endblock %}
 
 {% block listHeader %}
-	<th>Name</th>
-    <th>Division</th>
-    <th>Skill Level</th>
-    <th>Club</th>
+	<th>{% anchor name %}</th>
+    <th>{% anchor division %}</th>
+    <th>{% anchor skillLevel Level %}</th>
+    <th>{% anchor club %}</th>
 {% endblock %}
 
 {% block listRow %}

@@ -1,17 +1,19 @@
 {% extends "core/generic_list.html" %}
 
+{% load sorting_tags %}
+
 {% block title %}Clubs{% endblock %}
 {% block createTitle %}Create Club{% endblock %}
 
 {% block selectedTabClubs %} class="selected"{% endblock %}
 
 {% block listHeader %}
-	<th>Club Name</th>
-    <th>Address</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Zip</th>
-    <th>Contact</th>
+	<th>{% anchor name %}</th>
+    <th>{% anchor address %}</th>
+    <th>{% anchor city %}</th>
+    <th>{% anchor state %}</th>
+    <th>{% anchor zip %}</th>
+    <th>{% anchor contactName %}</th>
 {% endblock %}
 
 {% block listRow %}

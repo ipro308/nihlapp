@@ -6,7 +6,7 @@ from nihlapp.core.views.divisions import detail
 
 urlpatterns = patterns('',
     (r'^/$', login_required(object_list), 
-        dict(queryset = Division.objects.all(), paginate_by = 20)),
+        dict(queryset = Division.objects.all())),
     (r'^/detail/(?P<object_id>\d+)/?$', login_required(detail)),
     (r'^/create/?$', 'django.views.generic.create_update.create_object', 
         dict(model = Division, login_required = True)),

@@ -1,11 +1,13 @@
 {% extends "core/generic_list.html" %}
 
+{% load sorting_tags %}
+
 {% block title %}Divisions{% endblock %}
 {% block createTitle %}Create Division{% endblock %}
 
 {% block listHeader %}
-	<th>Name</th>
-    <th>Contact</th>
+	<th>{% anchor name %}</th>
+    <th>{% anchor contactName %}</th>
 {% endblock %}
 
 {% block listRow %}
