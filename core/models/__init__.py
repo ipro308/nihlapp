@@ -15,7 +15,7 @@ from season import Season
 
 # dependant on dependant
 from team import Team
-from userProfile import UserProfile
+from userProfile import UserProfile, CreateUserForm
 from event import Event
 from eventStats import EventStats
 from eventGoal import EventGoal

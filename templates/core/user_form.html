@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block section %}Users{% endblock %}
+
+{% block title %}
+    {% if object %}
+	    {% block updateTitle %}Update Users{% endblock %}: {{ object.name }}
+    {% else %}
+	    {% block createTitle %}Create Users{% endblock %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    {% if object %}
+	    <p class="title">{% block updateHeader %}Update Users{% endblock %}: {{ object.name }}</p>
+    {% else %}
+	    <p class="title">{% block createHeader %}Create Users{% endblock %}</p>
+    {% endif %}
+
+    {% if form.has_errors %}
+        <h2>Please correct the following error{{ form.errors|pluralize }}:</h2>
+    {% endif %}
+
+    <div class='styled'>
+    <form class="styled validate" method="POST" action="">
+        <fieldset>
+    	    <legend class="primary first">{% block firstFieldsetTitle %}User Information{% endblock %}</legend>
+            <ul>
+    		    {{ form.as_ul }}
+            </ul>
+        </fieldset>
+        <div class="submit">
+            <p class="submit-buttons">
+                <input type="reset" name="reset" value="Undo" />
+		        <input type="submit" name="submit" value="Submit" />            	
+            </p>
+        </div>
+    </form>
+    </div>
+
+    <!--
+	    <p>{{ form.error_dict }}</p>
+    -->
+
+{% endblock %}

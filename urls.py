@@ -63,6 +63,9 @@ urlpatterns = patterns('',
     # databrowse
     (r'^db/(.*)', login_required(databrowse.site.root)),  
   
+    # createuser
+    (r'^accounts/create', 'nihlapp.core.views.users.create'), 
+  
     # email notify
     (r'^notify/', 'nihlapp.core.views.notify.index'),    
     (r'^notify/send', 'nihlapp.core.views.notify.send'),   
