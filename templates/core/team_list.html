@@ -12,6 +12,7 @@
     <th>{% anchor division %}</th>
     <th>{% anchor skillLevel Level %}</th>
     <th>{% anchor club %}</th>
+    <th>{% anchor manager %}</th>
 {% endblock %}
 
 {% block listRow %}
@@ -19,4 +20,5 @@
 	<td>{{ object.division }}</td>
 	<td>{{ object.skillLevel }}</td>
 	<td>{{ object.club }}</td>
+	<td>{{ object.managerName }}</td>
 {% endblock %}

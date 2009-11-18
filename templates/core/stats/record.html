@@ -8,22 +8,19 @@
 {% block content %}
 
 <div style="margin: 10px;">
-	<h3 class="subtitle">Games for which stats need to be recorded</h3>
-	<table style="width:100%;">
+	<h3 class="subtitle">Games for Statistics Entry</h3>
+	<table style="width:100%;" class="records">
 		<tr>
-			<th></th>
-			<th>Game</th>
-			<th>Type</th>
+			<th colspan="2">Game</th>
 			<th>Date and Time</th>
 			<th>Rink</th>	
 			<th>Status</th>
 			<th>Score</th>		
 		</tr>
 		{% for object in confirmedEvents %}
-		<tr>
+		<tr class="{% cycle 'row1' 'row2' %}">
 			<td><a href="/stats/record/event/{{ object.id }}"><img src="/static/images/icons/application_edit.png" title="Record Stats" /></a></td>
 			<td><a href="/stats/record/event/{{ object.id }}">{{ object.homeTeam }} <i>v.</i> {{ object.awayTeam }}</a></td>
-			<td>{{ object.eventType }}</td>
 			<td>{{ object.dateTimeEvent|date:"M j, Y m:i A" }}</td>
 			<td><a href="{{ object.rink.get_absolute_url }}">{{ object.rink }}</a></td>		
 			<td>{{ object.eventStatus }}</td>	
@@ -34,22 +31,19 @@
 </div>
 
 <div style="margin: 10px;">
-	<h3 class="subtitle">Past due games (stats were not entered within {{ hourLimit }} hours)</h3>
-	<table style="width:100%;">
+	<h3 class="subtitle">Past Due Games (stats were not entered within {{ hourLimit }} hours)</h3>
+	<table style="width:100%;" class="records">
 		<tr>
-			<th></th>
-			<th>Game</th>
-			<th>Type</th>
+			<th colspan="2">Game</th>
 			<th>Date and Time</th>
 			<th>Rink</th>		
 			<th>Status</th>		
 			<th>Score</th>	
 		</tr>
 		{% for object in pastdueEvents %}
-		<tr>
+		<tr class="{% cycle 'row1' 'row2' %}">
 			<td><a href="/stats/record/event/{{ object.id }}"><img src="/static/images/icons/application_edit.png" title="Record Stats" /></a></td>
 			<td><a href="/stats/record/event/{{ object.id }}">{{ object.homeTeam }} <i>v.</i> {{ object.awayTeam }}</a></td>
-			<td>{{ object.eventType }}</td>
 			<td>{{ object.dateTimeEvent|date:"M j, Y m:i A" }}</td>
 			<td><a href="{{ object.rink.get_absolute_url }}">{{ object.rink }}</a></td>		
 			<td>{{ object.eventStatus }}</td>	
@@ -60,19 +54,17 @@
 </div>
 
 <div style="margin: 10px;">
-	<h3 class="subtitle">Completed games ({{ currentSeason }})</h3>
-	<table style="width:100%;">
+	<h3 class="subtitle">Completed Games ({{ currentSeason }})</h3>
+	<table style="width:100%;" class="records">
 		<tr>
-			<th></th>
-			<th>Game</th>
-			<th>Type</th>
+			<th colspan="2">Game</th>
 			<th>Date and Time</th>
 			<th>Rink</th>		
 			<th>Status</th>		
 			<th>Score</th>	
 		</tr>
 		{% for object in completedEvents %}
-		<tr>
+		<tr class="{% cycle 'row1' 'row2' %}">
 			{% if object.canEdit %}
 				<td><a href="/stats/record/event/{{ object.id }}"><img src="/static/images/icons/application_edit.png" title="Record Stats" /></a></td>
 				<td><a href="/stats/record/event/{{ object.id }}">{{ object.homeTeam }} <i>v.</i> {{ object.awayTeam }}</a></td>
@@ -80,7 +72,6 @@
 				<td><a href="/stats/event/{{ object.id }}"><img src="/static/images/icons/application_view_list.png" title="View Stats" /></a></td>
 				<td><a href="/stats/event/{{ object.id }}">{{ object.homeTeam }} <i>v.</i> {{ object.awayTeam }}</a></td>
 			{% endif %}
-			<td>{{ object.eventType }}</td>
 			<td>{{ object.dateTimeEvent|date:"M j, Y m:i A" }}</td>
 			<td><a href="{{ object.rink.get_absolute_url }}">{{ object.rink }}</a></td>		
 			<td>{{ object.eventStatus }}</td>	

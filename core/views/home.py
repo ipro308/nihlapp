@@ -15,7 +15,8 @@ def summary(request):
                                                          'numGames': numGames})
 
 def deadlines(request):
-    return render_to_response('core/home/deadlines.html', {'user': request.user})
+    return render_to_response('core/home/deadlines.html', {'user': request.user, 
+                                                           'currentSeason': Season.objects.get(isCurrentSeason = True)})
 
 def teams(request):
     teams = Team.objects.order_by('name')

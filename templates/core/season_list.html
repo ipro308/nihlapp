@@ -63,7 +63,7 @@
 {% endblock %}
 
 {% block listRow %}
-	<td>{{ object.year }}</td>
+	<td><a href="{{ object.get_absolute_url }}">{{ object }}</a></td>
 	<td>{{ object.seedingBeginDate }}</td>
 	<td>{{ object.seasonEnd }}</td>
     <td>{{ object.seasonStatus }}</td>

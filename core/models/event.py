@@ -16,7 +16,7 @@ class Event(models.Model):
     season = models.ForeignKey(Season, verbose_name = "Season")
 
     class Meta:
-		app_label = "core"
+        app_label = "core"
 
     def __str__(self):
         return strftime("%m/%d/%Y %I:%M %p", self.dateTimeEvent.timetuple())

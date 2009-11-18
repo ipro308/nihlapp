@@ -1,6 +1,6 @@
-from nihlapp.core.models import *
-from django.db.models import Count, Q, Sum
-from time import strptime, strftime
+from nihlapp.core.models import Team, EventStatus, Season, Event, EventStats, EventGoal, EventGoalkeeperSaves, EventPenalty
+from django.db.models import Q, Sum
+from time import strftime
 
 class TeamStats(Team):
 
@@ -15,7 +15,6 @@ class TeamStats(Team):
     #
     # @return dict
     def get_stats(self, season = None):
-        team = self
         result = {}
         # use current season if season was not specified
         if season == None:
@@ -23,20 +22,24 @@ class TeamStats(Team):
             
         completedEvent = EventStatus.objects.get(name = 'Completed')
         
-        result['teamId'] = team.id
-        result['teamName'] = team.name
-        result['gamesPlayed'] = Event.objects.filter((Q(homeTeam = team) | Q(awayTeam = team)) & 
+        result['teamId'] = self.id
+        result['teamName'] = self.name
+        result['teamLevel'] = self.skillLevel
+        result['levelId'] = self.skillLevel.id
+        result['teamDivision'] = self.division
+        result['divisionId'] = self.division.id
+        result['gamesPlayed'] = Event.objects.filter((Q(homeTeam = self) | Q(awayTeam = self)) & 
                                                       Q(eventStatus = completedEvent)).count()
                                                       
-        result['wins'] = EventStats.objects.filter((Q(event__homeTeam = team) | Q(event__awayTeam = team)) & 
+        result['wins'] = EventStats.objects.filter((Q(event__homeTeam = self) | Q(event__awayTeam = self)) & 
                                                     Q(event__eventStatus = completedEvent) & 
-                                                    Q(winner = team)).count()
+                                                    Q(winner = self)).count()
                                                     
-        result['losses'] = EventStats.objects.filter((Q(event__homeTeam = team) | Q(event__awayTeam = team)) & 
+        result['losses'] = EventStats.objects.filter((Q(event__homeTeam = self) | Q(event__awayTeam = self)) & 
                                                       Q(event__eventStatus = completedEvent) &
-                                                      Q(loser = team)).count()
+                                                      Q(loser = self)).count()
                                                     
-        result['ties'] = EventStats.objects.filter((Q(event__homeTeam = team) | Q(event__awayTeam = team)) & 
+        result['ties'] = EventStats.objects.filter((Q(event__homeTeam = self) | Q(event__awayTeam = self)) & 
                                                     Q(event__eventStatus = completedEvent) &
                                                     Q(tie = True)).count()
         # two points for win, one point for tie

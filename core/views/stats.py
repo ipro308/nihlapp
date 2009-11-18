@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpRequest, QueryDict, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from nihlapp.core.models import Event, Season, EventStatus, Team, PenaltyOffense, EventGoal, EventPenalty, EventSuspension, EventGoalkeeperSaves, EventStats, Parameter, EventType, Division, SkillLevel, Club
@@ -67,7 +67,8 @@ def summary(request):
                                                           'level_filter': level_filter,
                                                           'club_filter': club_filter,
                                                           'team_filter': team_filter,
-                                                          'url': url})
+                                                          'url': url,
+                                                          'query_string': request.META['QUERY_STRING']})
 
 
 def seeding(request):
@@ -256,7 +257,12 @@ def record_event(request, object_id):
 @login_required
 def event(request, object_id):
     event = Event.objects.get(id = object_id)
-    eventStats = EventStats.objects.get(event = event)
+    
+    try:
+        eventStats = EventStats.objects.get(event = event)
+    except EventStats.DoesNotExist:
+        return render_to_response('core/stats/event_detail.html', {'doesNotExist': True})
+        
     teams = Team.objects.filter(Q(id = event.homeTeam.id) | Q(id = event.awayTeam.id))
     penaltyOffenses = PenaltyOffense.objects.all()
     goals = EventGoal.objects.filter(event = event).order_by('-id')
@@ -267,7 +273,7 @@ def event(request, object_id):
     homeGoals = EventGoal.objects.filter(event = event, team = event.homeTeam).count()
     awayGoals = EventGoal.objects.filter(event = event, team = event.awayTeam).count()
     
-    return render_to_response('core/stats/event_detail.html', {
+    return render_to_response('core/stats/event_detail.html', { 'doesNotExist': False,
                                                                 'user': request.user, 
                                                                 'eventStats': eventStats,
                                                                 'event': event, 

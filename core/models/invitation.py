@@ -30,7 +30,7 @@ class InvitationForm(forms.Form):
         try:
             checkUser = User.objects.get(username = data)
             raise forms.ValidationError("This username is not available, please choose a different username for your account.")
-        except User.DoesNotExist, error:
+        except User.DoesNotExist:
             pass
         
         return data

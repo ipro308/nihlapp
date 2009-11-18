@@ -6,9 +6,41 @@
 {% block title %}Deadlines{% endblock %}
 
 {% block content %}
-
-<div style="text-align:center;">
-	List of deadlines, etc.
-</div>
+    
+<h3 class="subtitle">Deadlines and Dates ({{ currentSeason }})</h3>
+<table style="width:100%;" class="records">
+	<tr>
+		<th>Deadline</th>
+		<th>Date</th>
+	</tr>
+	<tr class="row1">
+		<td>Seeding Game Scheduling Begins</td>	
+		<td>{{ currentSeason.seedingBeginDate|date:"M j, Y" }}</td>
+	</tr>
+	<tr class="row2">
+		<td>Seeding Scheduling Ends</td>	
+		<td>{{ currentSeason.seedingSchedDeadline|date:"M j, Y" }}</td>
+	</tr>
+	<tr class="row1">
+		<td>Seeding Game Statistics Due</td>	
+		<td>{{ currentSeason.seedingStatDeadline|date:"M j, Y" }}</td>
+	</tr>
+	<tr class="row2">
+		<td>Season Game Scheduling Begins</td>	
+		<td>{{ currentSeason.seasonBeginDate|date:"M j, Y" }}</td>
+	</tr>
+	<tr class="row1">
+		<td>Season Scheduling Ends</td>	
+		<td>{{ currentSeason.seasonSchedDeadline|date:"M j, Y" }}</td>
+	</tr>	
+	<tr class="row2">
+		<td>Season Game Statistics Due</td>	
+		<td>{{ currentSeason.seasonStatDeadline|date:"M j, Y" }}</td>
+	</tr>	
+	<tr class="row1">
+		<td>Season Ends</td>	
+		<td>{{ currentSeason.seasonEnd|date:"M j, Y" }}</td>
+	</tr>		
+</table>
 
 {% endblock %}

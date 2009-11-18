@@ -48,6 +48,25 @@ table tr th {
 	text-align: left;
 }
 
+table tr.row1 {
+	background-color: #E6E6E6;
+}
+
+table.records {
+	border-spacing:0px;
+	width:100%;
+}
+
+table.records td {
+	padding:4px;
+}
+
+table.records th {
+	padding:4px;
+	font-size:110%;
+	border-bottom:1px solid #BBB;
+}
+
 a:link, a:visited {
 	border-bottom-color:#336699;
 	color:#336699;
@@ -167,8 +186,8 @@ table.object-list-table tr.style-Pending td {
     background-color: #ffb8b8;
 }
 
-table.object-list-table td.object-list-item-menu-td {
-    width:160px;
+td.object-list-item-menu-td {
+    width:70px;
 }
 
 span.object-list-item-menu {
@@ -188,10 +207,14 @@ ul.errorlist {
 }
 
 div.object-list-menu {
-	margin-bottom:15px;
-	padding:0;
-	text-align:right;
-	width:100%;
+	padding:5px 5px 6px 15px;
+	text-align:left;
+	width:150px;
+}
+
+div.object-list-menu img {
+	position:relative;
+	top:3px;
 }
 
 div.login-form {
@@ -1390,7 +1413,8 @@ div.vd {
 	padding:0 0 0 10px;
 }
 .tabs-selected a span {
-	/*font-weight: bold;*/
+	/*text-decoration:underline;*/
+	font-weight:bold !important;
 	/*padding: 6px 3px 0 7px !important;*/
 }
 .tabs-nav:after { /* clearing without presentational markup, IE gets extra treatment */
@@ -1434,6 +1458,7 @@ div.vd {
     min-width: 64px;
     height: 16px;
     padding: 6px 5px 0 9px;
+    font-weight:normal;
 }
 *>.tabs-nav a span { /* hide from IE 6 */
     width: auto;
@@ -1541,4 +1566,27 @@ div#login-panel {
 	position: absolute;
 	right:20px;
 	top:15px;
+}
+
+/* rounded corners container */
+.rounded-corner-container {
+	background: #EDEDED;
+	/*margin:0 15px;*/
+}
+.rounded-corner-container .rt, .rounded-corner-container .rb {
+	display:block;
+	background:#fff;
+}
+.rounded-corner-container .rt *, .rounded-corner-container .rb *{
+	display: block;
+	height: 1px;
+	overflow: hidden;
+	background: #EDEDED;
+}
+.rounded-corner-container .r1 { margin: 0 5px }
+.rounded-corner-container .r2 { margin: 0 3px }
+.rounded-corner-container .r3 { margin: 0 2px }
+.rounded-corner-container .r4 {
+	margin: 0 1px;
+	height: 2px
 }
