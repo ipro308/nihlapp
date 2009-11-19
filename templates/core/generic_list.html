@@ -27,7 +27,7 @@
 		{% block listHeader %}{% endblock %}
 	</tr>
 	{% autosort object_list %}
-	{% autopaginate object_list 2 %}
+	{% autopaginate object_list 20 %}
 	{% for object in object_list %}
 	<tr class="{% cycle 'row1' 'row2' %}">
 		<td class="object-list-item-menu-td">
