@@ -34,7 +34,8 @@ def send_confirmation(userProfile_id):
         template = loader.get_template('email/confirmation.html')
         context = Context({
                            'siteHostname': Parameter.objects.get(name = "site.hostname"),
-                           'confirmation': userProfile.confirmation
+                           'confirmation': userProfile.confirmation,
+                           'userName': userProfile.user.get_full_name()
                            })
         send_mail('%s Please confirm your email address' % Parameter.objects.get(name = "email.prefix"), 
                   template.render(context), 

@@ -2,17 +2,19 @@ from django.db import models
 from nihlapp.core.models import Season, Division, Club, SkillLevel
 
 class Team(models.Model):
-    name = models.CharField("Team Name", max_length = 30)
+    name = models.CharField("Team Name", max_length = 50)
     season = models.ForeignKey(Season, verbose_name = "Season")
     division = models.ForeignKey(Division, verbose_name = "Division")
     club = models.ForeignKey(Club, verbose_name = "Club")
     skillLevel = models.ForeignKey(SkillLevel, verbose_name = "Skill Level")
     #manager = models.ForeignKey(UserProfile, verbose_name = "Manager")
     #coach = models.ForeignKey(UserProfile, verbose_name = "Coach")
-    managerName = models.CharField("Manager Name", max_length = 30)
+    managerName = models.CharField("Manager Name", max_length = 50)
     managerEmail = models.EmailField("Manager Email")
-    coachName = models.CharField("Coach Name", max_length = 30, blank = True)
+    managerPhone = models.CharField("Manager Phone", max_length = 15, blank = True)
+    coachName = models.CharField("Coach Name", max_length = 50, blank = True)
     coachEmail = models.EmailField("Coach Email", blank = True)
+    coachPhone = models.CharField("Coach Phone", max_length = 15, blank = True)
 
     class Meta:
         app_label = "core"
