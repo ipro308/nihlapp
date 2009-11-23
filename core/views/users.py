@@ -32,6 +32,6 @@ def create(request):
     	form = CreateUserForm() # An unbound form
 
     return render_to_response('core/user_form.html', {
-        'form': form,
+        'form': form, 'user': request.user
     })
 

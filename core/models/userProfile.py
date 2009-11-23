@@ -33,7 +33,7 @@ class CreateUserForm(forms.Form):
     email = forms.EmailField(max_length=50)
     phone = forms.CharField(max_length=10)
     password = forms.CharField(label='Password',widget=forms.PasswordInput(render_value=False))
-    password_confirm = forms.CharField(label='Password',widget=forms.PasswordInput(render_value=False))
+    password_confirm = forms.CharField(label='Confirm Password',widget=forms.PasswordInput(render_value=False))
     is_active = forms.BooleanField(label='Active')
     
     def clean_username(self):

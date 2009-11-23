@@ -1,49 +1,27 @@
-{% extends "base.html" %}
+{% extends "core/generic_list.html" %}
 
-{% block section %}Users{% endblock %}
-{% block title %}List Users{% endblock %}
+{% load sorting_tags %}
 
-{% block content %}
+{% block title %}Accounts{% endblock %}
+{% block createTitle %}Create Account{% endblock %}
 
-<div class="object-list-menu">
-	<a href="create/"><img src="/static/images/icons/add.png" title="Delete" />{% block createTitle %}Create Account{% endblock %}</a>
-</div>
-<table class="object-list-table">
-	<tr>
-		<th></th>
-		<th>Last Name</th>
-        <th>First Name</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Groups</th>
-	</tr>
+{% block selectedTabAccounts %} class="selected"{% endblock %}
 
-	{% for object in object_list %}
-	<tr>
-		<td class="object-list-item-menu-td" style="width:22px">
-			<span class="object-list-item-menu">
-				<a href="detail/{{ object.pk }}"><img title="View Details" src="/app_media/images/icons/application_form_magnify.png" /></a>
-			</span>
-		</td>
-		<td><a href="detail/{{ object.pk }}">{{ object.last_name }}</a></td>
-        <td>{{ object.first_name }}</td>
-		<td>{{ object.username }}</a></td>
-		<td>{{ object.email }}</a></td>
-        <td>{{ object.groups.all }}</td>
-	</tr>	
-	{% endfor %}
-</table>
 
-<p class="object-list-pagination">
-	{% if has_previous %}
-		<a href="?page={{ previous }}">Previous</a> | 
-	{% endif %}
-	
-	Page {{ page }} of {{ pages }} 
-	
-	{% if has_next %}
-		| <a href="?page={{ next }}">Next</a>
-	{% endif %}
-</p>
+{% block listHeader %}
+	<th>{% anchor username %}</th>
+    <th>{% anchor get_full_name "Full Name" %}</th>
+    <th>{% anchor email %}</th>
+    <th>{% anchor team %}</th>
+    <th>{% anchor groups %}</th>
+    <th>{% anchor is_active "Active" %}</th>
+{% endblock %}
 
+{% block listRow %}
+	<td><a href="detail/{{ object.pk }}">{{ object.username }}</a></td>
+	<td>{{ object.get_full_name }}</td>
+	<td>{{ object.email }}</td>
+	<td><a href="{{ object.get_profile.team.get_absolute_url }}">{{ object.get_profile.team }}</a></td>
+	<td>{{ object.groups.all }}</td>
+	<td>{{ object.is_active }}</td>
 {% endblock %}
