@@ -5,7 +5,7 @@ from nihlapp.core.models import Team, Club
 
 class Invitation(models.Model):
     key = models.CharField("Invitation Key", max_length = 64, unique = True)
-    name = models.CharField("Full Name", max_length = 30)
+    name = models.CharField("Full Name", max_length = 50)
     email = models.EmailField("Email")
     group = models.ForeignKey(Group, verbose_name = "Default Group")
     team = models.ForeignKey(Team, verbose_name = "Team")

@@ -28,7 +28,8 @@
 	    <legend class="primary">Team Manager</legend>
 	    <ul>
 	        <li><label>Manager Name:</label><span>{{ object.managerName }}</span><div class="vd" /></li>
-	        <li><label>Manager Email:</label><span>{{ object.managerEmail }}</span> [ <a href="/invitation/generate?club_id={{ object.club.id }}&team_id={{ object.id }}&name={{ object.managerName }}&email={{ object.managerEmail }}"><img src="/static/images/icons/email_go.png" style="position:relative; top:3px;" /> Generate Invitation</a> ]</li>
+	        <li><label>Manager Email:</label><span>{{ object.managerEmail }}</span> [ <a href="/invitation/generate?club_id={{ object.club.id }}&team_id={{ object.id }}&name={{ object.managerName }}&email={{ object.managerEmail }}"><img src="/static/images/icons/email_go.png" style="position:relative; top:3px;" /> Generate Invitation</a> ]<div class="vd" /></li>
+	        <li><label>Manager Phone:</label><span>{{ object.managerPhone }}</span></li>
 	    </ul>
 	</fieldset> 	
 
@@ -36,7 +37,8 @@
 	    <legend class="primary">Team Coach</legend>
 	    <ul>
 	        <li><label>Coach Name:</label><span>{{ object.coachName }}</span><div class="vd" /></li>
-	        <li><label>Coach Email:</label><span>{{ object.coachEmail }}</span></li>
+	        <li><label>Coach Email:</label><span>{{ object.coachEmail }}</span><div class="vd" /></li>
+	        <li><label>Coach Phone:</label><span>{{ object.coachPhone }}</span></li>
 	    </ul>
 	</fieldset> 	
 	
