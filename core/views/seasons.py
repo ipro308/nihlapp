@@ -2,6 +2,7 @@ from django.views.generic.list_detail import object_list
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from nihlapp.core.models import Season, SeasonStatus
+from nihlapp.core.utils.Matchmaking import Matchmaking
 
 @login_required
 def list(request, pagination_id = 1):
@@ -24,11 +25,22 @@ def stage1(request):
         return render_to_response('core/season/stage1.html', {'user': request.user})
     
     elif request.method == 'POST':
+        errorMessage = False
+        
         # change season status
         currentSeason = Season.objects.get(isCurrentSeason = True)
         currentSeason.seasonStatus = SeasonStatus.objects.get(name = "Scheduling Seeding Games")
         currentSeason.save()
-        return render_to_response('core/season/stage1_done.html', {'user': request.user})
+        
+        # generate team matches (for seeding games)
+        # todo: move number 8 to a parameter.
+        try:
+            makeMe = Matchmaking(8) 
+            makeMe.generate()
+        except Exception, error:
+            errorMessage = "Error has occured while matchmaking teams: %s." % error
+        
+        return render_to_response('core/season/stage1_done.html', {'user': request.user, 'errorMessage': errorMessage})
 
 def stage2(request):
     
@@ -48,11 +60,22 @@ def stage3(request):
         return render_to_response('core/season/stage3.html', {'user': request.user})
     
     elif request.method == 'POST':
+        errorMessage = False
+        
         # change season status
         currentSeason = Season.objects.get(isCurrentSeason = True)
         currentSeason.seasonStatus = SeasonStatus.objects.get(name = "Scheduling Season Games")
         currentSeason.save()
-        return render_to_response('core/season/stage3_done.html', {'user': request.user})
+        
+        # generate team matches (for season games)
+        # todo: move number 8 to a parameter.
+        try:
+            makeMe = Matchmaking(8) 
+            makeMe.generate()
+        except Exception, error:
+            errorMessage = "Error has occured while matchmaking teams: %s." % error
+        
+        return render_to_response('core/season/stage3_done.html', {'user': request.user, 'errorMessage': errorMessage})
 
 def stage4(request):
     

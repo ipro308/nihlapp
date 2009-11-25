@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-from nihlapp.core.models import Rink, EventType, Event, Season, EventGoal, EventStatus
+from nihlapp.core.models import Rink, EventType, Event, Season, EventGoal, EventStatus, Matchup
+from django.db.models import Q
 
 def upcoming(request):
     
@@ -45,7 +46,41 @@ def recent(request):
     return render_to_response('core/schedule/recent.html', {'user': request.user, 'events': eventList})
 
 def matchups(request):
-    return render_to_response('core/schedule/matchups.html', {'user': request.user})
+    
+    currentSeason = Season.objects.get(isCurrentSeason = True)
+    seedingGame = EventType.objects.get(name = "Seeding Game")
+    seasonGame = EventType.objects.get(name = "Season Game")
+    availableEvent = EventStatus.objects.get(name = "Available")
+    userTeam = request.user.get_profile().team
+    
+    seedingMatchups = list()
+    qs = Matchup.objects.filter(Q(season = currentSeason) & 
+                                Q(eventType = seedingGame) &
+                                (Q(homeTeam = userTeam) | Q(awayTeam = userTeam)))
+    for matchup in qs:
+        matchupEntry = {}
+        matchupEntry['matchup'] = matchup
+        events = Event.objects.filter(season = currentSeason, eventType = seedingGame, homeTeam = matchup.homeTeam, eventStatus = availableEvent)
+        if len(events) == 0:
+            matchupEntry['status'] = "Waiting for home rink schedule."
+        else:
+            if matchup.awayTeam == userTeam:
+                matchupEntry['status'] = "Pick Date:"
+            else:
+                matchupEntry['status'] = "Away team has not picked a date yet."
+                
+        seedingMatchups.append(matchupEntry)
+        
+    seasonMatchups = Matchup.objects.filter(Q(eventType = currentSeason) & 
+                                            Q(eventType = seasonGame) &
+                                             (Q(homeTeam = userTeam) | Q(awayTeam = userTeam)))
+    seasonStatus = currentSeason.seasonStatus
+    
+    return render_to_response('core/schedule/matchups.html', {'user': request.user,
+                                                              'seedingMatchups': seedingMatchups,
+                                                              'seasonMatchups': seasonMatchups,
+                                                              'seasonStatus': seasonStatus,
+                                                              'currentSeason': currentSeason})
 
 @login_required
 def create(request):

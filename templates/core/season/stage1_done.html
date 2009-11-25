@@ -10,6 +10,12 @@
 <h2 class="title"><span style="color:#999;">Advance Season State: 
 From </span>Preparation <span style="color:#999;">to</span> Scheduling Seeding Games</h2>
 
+{% if errorMessage %}
+<h3 class="subtitle">Done!</h3>
+<p>
+	{{ errorMessage }}
+</p>
+{% else %}
 <h3 class="subtitle">Done!</h3>
 <p>
 	Season has been switched over to <b>Scheduling Seeding Games</b> stage, and the following tasks have been performed:
@@ -18,6 +24,7 @@ From </span>Preparation <span style="color:#999;">to</span> Scheduling Seeding G
 	<li>Matchmaking for seeding round.</li>
 	<li>All team managers have been sent invitations to register with the system.</li>
 </ul>
+{% endif %}
 
 <div style="text-align:center; margin-top:50px;">
 	<a href="/seasons">Return to Season Management page</a>

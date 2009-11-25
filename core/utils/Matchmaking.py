@@ -20,15 +20,24 @@ TO DO:
     -fix handling of passes
 '''
 import random
+from nihlapp.core.models import Matchup, Season, EventType, Team as TeamModel
 
 class Matchmaking:
     #currently configured for testing
-    def __init__(self,newGameLimit):
+    def __init__(self, newGameLimit):
         self.gameLimit = newGameLimit
-        self.teamList = [Team("Team 1",1,self.gameLimit),Team("Team 2",2,self.gameLimit),Team("Team 3",3,self.gameLimit)]
+        # test team data
+        #self.teamList = [Team("Team 1",1,self.gameLimit),Team("Team 2",2,self.gameLimit),Team("Team 3",3,self.gameLimit)]
+        # pull in teams from database (for current season):
+        self.teamList = list()
+        querySet = TeamModel.objects.filter(season = Season.objects.get(isCurrentSeason = True))
+        for team in querySet:
+            self.teamList.append(Team(team.name, team.id, self.gameLimit))
+            
         self.matchList = self.teamList[:]
         self.numTeams = -1
         self.passTeam = Team("Pass",0,self.gameLimit)
+        self.storeMatches = False
         
     def initMatchList(self):
         self.matchList = self.teamList[:]
@@ -36,6 +45,11 @@ class Matchmaking:
     #test behavior for an odd number of teams
     def testMe(self):
         self.numTeams = 3
+        self.main()
+        
+    def generate(self):
+        self.numTeams = len(self.teamList)
+        self.storeMatches = True
         self.main()
 
     ''' 
@@ -119,8 +133,9 @@ class Matchmaking:
         #print schedules for each team
         numRdyTeams = 0
         while (numRdyTeams < len(self.teamList)):
-            self.teamList[numRdyTeams].display()
-            numRdyTeams += 1
+            if self.teamList[numRdyTeams] is not None:
+                self.teamList[numRdyTeams].display(self.storeMatches)
+                numRdyTeams += 1
 
 
 class Team:
@@ -161,17 +176,47 @@ class Team:
     def appSched(self,newSlot):
         self.sched.append(newSlot)
     
-    def display(self):
+    def display(self, storeMatches):
         print "Matches for",self.teamName,"    length:",len(self.sched)
         self.slotInd = 0
         while(self.slotInd<len(self.sched)):
-            self.sched[self.slotInd].display()
+            if storeMatches:
+                if self.sched[self.slotInd] is not None:
+                    # do not store anything for "Pass" team
+                    if self.teamID != 0:
+                        self.sched[self.slotInd].store()
+            else:
+                if self.sched[self.slotInd] is not None:
+                    self.sched[self.slotInd].display()
             self.slotInd += 1
         
 class Slot:    
     def __init__(self,newHome,newVisit):
         self.homeID = newHome
         self.visitorID = newVisit
+        
+    def store(self):
+        
+        # do not store anything for "Pass" team
+        if self.homeID == 0 or self.visitorID == 0:
+            return
+        
+        # store team matchup
+        try:
+            matchup = Matchup()
+            matchup.season = Season.objects.get(isCurrentSeason = True)
+            
+            if matchup.season.seasonStatus.name == "Scheduling Seeding Games":
+                matchup.eventType = EventType.objects.get(name = "Seeding Game")
+            else:
+                matchup.eventType = EventType.objects.get(name = "Season Game")
+            
+            matchup.homeTeam = TeamModel.objects.get(id = self.homeID)
+            matchup.awayTeam = TeamModel.objects.get(id = self.visitorID)
+            matchup.save()
+        except:
+            # silently fail
+            pass
         
     def display(self):
         print "Home Team: ",self.homeID,"    Visiting Team: ",self.visitorID
