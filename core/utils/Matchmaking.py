@@ -73,7 +73,7 @@ class Matchmaking:
             while(numRdyTeams<self.numTeams):
                 currentTeam = random.choice(self.teamList)
                 ''' print output for testing purposes '''
-                print "current team:",self.teamList.index(currentTeam)
+                #print "current team:",self.teamList.index(currentTeam)
                 #if current team has no match in current slot
                 if(currentTeam.getSlot(slotCounter)==None):
                     opponentTeam = currentTeam
@@ -93,9 +93,9 @@ class Matchmaking:
                         self.teamList[self.teamList.index(opponentTeam)].setSlot(slotCounter,Slot(currentTeam.teamID,opponentTeam.teamID))
                         numRdyTeams += 1
                     ''' print output for testing purposes '''
-                    print "team set"
+                    #print "team set"
             ''' print output for testing purposes '''
-            print "Slot #",(slotCounter+1),"set"
+            #print "Slot #",(slotCounter+1),"set"
             slotCounter += 1
         
         ''' fill-in passes with random matches
@@ -177,7 +177,7 @@ class Team:
         self.sched.append(newSlot)
     
     def display(self, storeMatches):
-        print "Matches for",self.teamName,"    length:",len(self.sched)
+        #print "Matches for",self.teamName,"    length:",len(self.sched)
         self.slotInd = 0
         while(self.slotInd<len(self.sched)):
             if storeMatches:
@@ -219,7 +219,7 @@ class Slot:
             pass
         
     def display(self):
-        print "Home Team: ",self.homeID,"    Visiting Team: ",self.visitorID
+        #print "Home Team: ",self.homeID,"    Visiting Team: ",self.visitorID
 
 ''' Test section '''
 
