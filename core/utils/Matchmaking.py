@@ -219,6 +219,7 @@ class Slot:
             pass
         
     def display(self):
+        pass
         #print "Home Team: ",self.homeID,"    Visiting Team: ",self.visitorID
 
 ''' Test section '''
