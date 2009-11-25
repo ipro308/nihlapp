@@ -16,4 +16,7 @@ urlpatterns = patterns('',
     (r'^/eventgoalkeepersaves/detail$', 'nihlapp.core.views.services.eventgoalkeepersaves.detail'),
     (r'^/eventgoalkeepersaves/create$', 'nihlapp.core.views.services.eventgoalkeepersaves.create'),
     (r'^/eventgoalkeepersaves/delete$', 'nihlapp.core.views.services.eventgoalkeepersaves.delete'),
+    (r'^/scheduling/schedule$', 'nihlapp.core.views.services.scheduling.schedule'),
+    (r'^/scheduling/confirm$', 'nihlapp.core.views.services.scheduling.confirm'),
+    (r'^/scheduling/reject$', 'nihlapp.core.views.services.scheduling.reject'),
 )

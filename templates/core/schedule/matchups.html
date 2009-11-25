@@ -34,9 +34,9 @@
 		{% endifequal %}
 		
 		{% ifequal object.status "pickdate" %}
-			<td>Pick Date and Time:
+			<td id="matchup_td_{{ object.matchup.id }}">Pick Date and Time:
 				<form style="display:inline;">
-				<select name='matchup_id_{{ object.matchup.id }}' id='matchup_id_{{ object.matchup.id }}'>
+				<select name="matchup_select_{{ object.matchup.id }}" id="matchup_select_{{ object.matchup.id }}">
 				{% for event in object.events %}
                     <option value="{{ event.id }}">{{ event }}</option>
                 {% endfor %}
@@ -44,7 +44,29 @@
                 </form>
 			</td>
 		{% else %}
-			<td>{{ object.status }}</td>
+			{% ifequal object.status "requesthome" %}
+				<td id="matchup_td_{{ object.matchup.id }}">
+					Request for <b>{{ object.event }}</b>.
+					<form style="display:inline;">
+					<input type='button' name='request_confirm' value='Confirm' onClick='requestConfirm({{ object.matchup.id }}, {{ object.event.id }})'/>
+					<input type='button' name='request_reject' value='Reject' onClick='requestReject({{ object.matchup.id }}, {{ object.event.id }})'/>
+	                </form>
+				</td>
+			{% else %}
+				{% ifequal object.status "requestaway" %}
+					<td id="matchup_td_{{ object.matchup.id }}">Game requested on <b>{{ object.event }}</b> at <a href="{{ object.event.rink.get_absolute_url }}">{{ object.event.rink }}</a>.</td>
+				{% else %}
+					{% ifequal object.status "confirmed" %}
+						<td id="matchup_td_{{ object.matchup.id }}">Confirmed for <b>{{ object.event }}</b> at <a href="{{ object.event.rink.get_absolute_url }}">{{ object.event.rink }}</a>.</td>
+					{% else %}
+						{% ifequal object.status "completed" %}
+							<td id="matchup_td_{{ object.matchup.id }}"><b>Completed.</b></td>
+						{% else %}
+							<td>{{ object.status }}</td>
+						{% endifequal %}
+					{% endifequal %}
+				{% endifequal %}
+			{% endifequal %}
 		{% endifequal %}
 	</tr>	
 	{% endfor %}
@@ -63,12 +85,55 @@
 	</tr>
 	{% for object in seasonMatchups %}
 	<tr class="{% cycle 'row1' 'row2' %}">			
-		<td><a href="{{ object.homeTeam.get_absolute_url }}">{{ object.homeTeam }}</a></td>
-		<td><a href="{{ object.awayTeam.get_absolute_url }}">{{ object.awayTeam }}</a></td>
-		<td>{{ object }}</td>
+		{% ifequal object.matchup.homeTeam user.get_profile.team %}
+			<td><a href="{{ object.matchup.homeTeam.get_absolute_url }}" style="color:red">{{ object.matchup.homeTeam }}</a></td>
+		{% else %}
+			<td><a href="{{ object.matchup.homeTeam.get_absolute_url }}">{{ object.matchup.homeTeam }}</a></td>
+		{% endifequal %}
+		{% ifequal object.matchup.awayTeam user.get_profile.team %}
+			<td><a href="{{ object.matchup.awayTeam.get_absolute_url }}" style="color:red">{{ object.matchup.awayTeam }}</a></td>
+		{% else %}
+			<td><a href="{{ object.matchup.awayTeam.get_absolute_url }}">{{ object.matchup.awayTeam }}</a></td>
+		{% endifequal %}
+		
+		{% ifequal object.status "pickdate" %}
+			<td id="matchup_td_{{ object.matchup.id }}">Pick Date and Time:
+				<form style="display:inline;">
+				<select name="matchup_select_{{ object.matchup.id }}" id="matchup_select_{{ object.matchup.id }}">
+				{% for event in object.events %}
+                    <option value="{{ event.id }}">{{ event }}</option>
+                {% endfor %}
+                </select> <input type='button' name='request_date' value='Request' onClick='requestDateTime({{ object.matchup.id }})'/>
+                </form>
+			</td>
+		{% else %}
+			{% ifequal object.status "requesthome" %}
+				<td id="matchup_td_{{ object.matchup.id }}">
+					Request for <b>{{ object.event }}</b>.
+					<form style="display:inline;">
+					<input type='button' name='request_confirm' value='Confirm' onClick='requestConfirm({{ object.matchup.id }}, {{ object.event.id }})'/>
+					<input type='button' name='request_reject' value='Reject' onClick='requestReject({{ object.matchup.id }}, {{ object.event.id }})'/>
+	                </form>
+				</td>
+			{% else %}
+				{% ifequal object.status "requestaway" %}
+					<td id="matchup_td_{{ object.matchup.id }}">Game requested on <b>{{ object.event }}</b> at <a href="{{ object.event.rink.get_absolute_url }}">{{ object.event.rink }}</a>.</td>
+				{% else %}
+					{% ifequal object.status "confirmed" %}
+						<td id="matchup_td_{{ object.matchup.id }}">Confirmed for <b>{{ object.event }}</b> at <a href="{{ object.event.rink.get_absolute_url }}">{{ object.event.rink }}</a>.</td>
+					{% else %}
+						{% ifequal object.status "completed" %}
+							<td id="matchup_td_{{ object.matchup.id }}"><b>Completed.</b></td>
+						{% else %}
+							<td>{{ object.status }}</td>
+						{% endifequal %}
+					{% endifequal %}
+				{% endifequal %}
+			{% endifequal %}
+		{% endifequal %}
 	</tr>	
 	{% endfor %}
-</table>	
+</table>
 {% else %}
 	Matchups for regular season have not been generated yet.
 {% endif %}

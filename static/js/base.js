@@ -466,7 +466,39 @@ function formatPeriod(input) {
 }
 
 function requestDateTime(id) {
-	alert("here! " + id);
+	$.post('/services/scheduling/schedule', {'matchup_id': id, 'event_id': $('#matchup_select_'+id).val()},
+			function(response) {	
+				if(response.error) {
+					alert("Error: " + response.error);
+				} else {
+					$('#matchup_td_'+id).html(response.status);
+				}
+			}, "json"
+		);
+}
+
+function requestReject(matchupid, eventid) {
+	$.post('/services/scheduling/reject', {'matchup_id': matchupid, 'event_id': eventid},
+			function(response) {	
+				if(response.error) {
+					alert("Error: " + response.error);
+				} else {
+					$('#matchup_td_'+matchupid).html(response.status);
+				}
+			}, "json"
+		);
+}
+
+function requestConfirm(matchupid, eventid) {
+	$.post('/services/scheduling/confirm', {'matchup_id': matchupid, 'event_id': eventid},
+			function(response) {	
+				if(response.error) {
+					alert("Error: " + response.error);
+				} else {
+					$('#matchup_td_'+matchupid).html(response.status);
+				}
+			}, "json"
+		);
 }
 
 // initialize everything

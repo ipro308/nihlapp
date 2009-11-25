@@ -1,5 +1,6 @@
 from django.db import models
 from nihlapp.core.models import EventType, EventStatus, Team, Rink, Season
+from nihlapp.core.models.matchup import Matchup
 from time import strftime
 
 class Event(models.Model):
@@ -14,6 +15,7 @@ class Event(models.Model):
     awayTeam = models.ForeignKey(Team, verbose_name = "Away Team", related_name = "Away Team", blank = True, null = True)
     rink = models.ForeignKey(Rink, verbose_name = "Rink")
     season = models.ForeignKey(Season, verbose_name = "Season")
+    matchup = models.ForeignKey(Matchup, verbose_name = "Matchup", blank = True, null = True)
 
     class Meta:
         app_label = "core"
