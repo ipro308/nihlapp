@@ -465,6 +465,10 @@ function formatPeriod(input) {
 	return result;
 }
 
+function requestDateTime(id) {
+	alert("here! " + id);
+}
+
 // initialize everything
 var init = function() {
 	

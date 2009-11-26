@@ -60,14 +60,19 @@ def matchups(request):
     for matchup in qs:
         matchupEntry = {}
         matchupEntry['matchup'] = matchup
-        events = Event.objects.filter(season = currentSeason, eventType = seedingGame, homeTeam = matchup.homeTeam, eventStatus = availableEvent)
+        events = Event.objects.filter(season = currentSeason, 
+                                      eventType = seedingGame, 
+                                      homeTeam = matchup.homeTeam, 
+                                      eventStatus = availableEvent).order_by('homeTeam', 'awayTeam')
         if len(events) == 0:
             matchupEntry['status'] = "Waiting for home rink schedule."
         else:
             if matchup.awayTeam == userTeam:
-                matchupEntry['status'] = "Pick Date:"
+                matchupEntry['status'] = "pickdate"
+                matchupEntry['events'] = events
             else:
                 matchupEntry['status'] = "Away team has not picked a date yet."
+              
                 
         seedingMatchups.append(matchupEntry)
         

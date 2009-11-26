@@ -23,16 +23,29 @@
 	{% for object in seedingMatchups %}
 	<tr class="{% cycle 'row1' 'row2' %}">			
 		{% ifequal object.matchup.homeTeam user.get_profile.team %}
-			<td><a href="{{ object.homeTeam.get_absolute_url }}" style="color:red">{{ object.matchup.homeTeam }}</a></td>
+			<td><a href="{{ object.matchup.homeTeam.get_absolute_url }}" style="color:red">{{ object.matchup.homeTeam }}</a></td>
 		{% else %}
-			<td><a href="{{ object.homeTeam.get_absolute_url }}">{{ object.matchup.homeTeam }}</a></td>
+			<td><a href="{{ object.matchup.homeTeam.get_absolute_url }}">{{ object.matchup.homeTeam }}</a></td>
 		{% endifequal %}
 		{% ifequal object.matchup.awayTeam user.get_profile.team %}
-			<td><a href="{{ object.awayTeam.get_absolute_url }}" style="color:red">{{ object.matchup.awayTeam }}</a></td>
+			<td><a href="{{ object.matchup.awayTeam.get_absolute_url }}" style="color:red">{{ object.matchup.awayTeam }}</a></td>
 		{% else %}
-			<td><a href="{{ object.awayTeam.get_absolute_url }}">{{ object.matchup.awayTeam }}</a></td>
+			<td><a href="{{ object.matchup.awayTeam.get_absolute_url }}">{{ object.matchup.awayTeam }}</a></td>
 		{% endifequal %}
-		<td>{{ object.status }}</td>
+		
+		{% ifequal object.status "pickdate" %}
+			<td>Pick Date and Time:
+				<form style="display:inline;">
+				<select name='matchup_id_{{ object.matchup.id }}' id='matchup_id_{{ object.matchup.id }}'>
+				{% for event in object.events %}
+                    <option value="{{ event.id }}">{{ event }}</option>
+                {% endfor %}
+                </select> <input type='button' name='request_date' value='Request' onClick='requestDateTime({{ object.matchup.id }})'/>
+                </form>
+			</td>
+		{% else %}
+			<td>{{ object.status }}</td>
+		{% endifequal %}
 	</tr>	
 	{% endfor %}
 </table>	
