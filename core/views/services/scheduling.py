@@ -30,6 +30,7 @@ def schedule(request):
         event.save()
         
         # generate email response
+        send_event_scheduled_notification(event.id)
         
         response = {'status': "Game requested on <b>%s</b> at <a href='%s'>%s</a>." % (event, 
                                                                                        event.rink.get_absolute_url(), 
@@ -62,6 +63,7 @@ def confirm(request):
         event.save()
         
         # generate email response
+        send_event_confirmed_notification(event.id)
         
         response = {'status': "Confirmed for <b>%s</b> at <a href='%s'>%s</a>." % (event, 
                                                            event.rink.get_absolute_url(), 
@@ -96,6 +98,7 @@ def reject(request):
         event.save()
         
         # generate email response
+        send_event_rejected_notification(event.id)
         
         response = {'status': "Rejected game request."}
     except Exception, error:
