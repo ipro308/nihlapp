@@ -1,5 +1,6 @@
 from django.template import loader, Context
 from django.core.mail import send_mail
+from django.db.models import Q
 from nihlapp.core.models import Invitation, Parameter, UserProfile, Event
 
 # 

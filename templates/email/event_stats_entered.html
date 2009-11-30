@@ -1,10 +1,10 @@
-Dear {{ invitation.name }},
+{{ manager.user.get_full_name }} ({{ manager.team }}),
 
-This email confirms that your entered stats were successfully updated.   
+Game statistics have been entered for event: {{ event.homeTeam }} v. {{ event.awayTeam }} on {{ event }}.
 
-Please follow this link to make any changes:
+Click below to view game statistics:
 
-- link -
+http://{{ siteHostname }}/stats/event/{{ event.id }}
 
-Thank you! 
-- NIHL League Administrator 
+
+- NIHL Automated Notification

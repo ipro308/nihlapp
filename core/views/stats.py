@@ -5,6 +5,7 @@ from nihlapp.core.models import Event, Season, EventStatus, Team, PenaltyOffense
 from nihlapp.core.utils import TeamStats
 from django.db.models import Q
 from datetime import datetime, timedelta
+from nihlapp.core.utils.email import send_event_completed_notifications
 
 def summary(request):
     # variables
@@ -251,6 +252,9 @@ def record_event(request, object_id):
             eventStats.tie = True
                         
         eventStats.save()
+        
+        # send email notification to teams' managers
+        send_event_completed_notifications(event.id)
         
         return HttpResponseRedirect('/stats/event/%s' % event.id)
     

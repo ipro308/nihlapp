@@ -1,8 +1,10 @@
-Dear {{ name }},
+{{ manager.user.get_full_name }} ({{ manager.team }}),
 
-This, email is to inform you that the following event has been scheduled for {{ date }}: 
+Your team received a game scheduling request from team: {{ event.awayTeam }} for {{ event }}.
 
-EVENT
+Please click here to "Confirm" or "Reject" this request:
 
-Thank you! 
-- NIHL League Administrator 
+http://{{ siteHostname }}/schedule/matchups
+
+
+- NIHL Automated Notification

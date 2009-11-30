@@ -5,6 +5,7 @@ from django.db.models import Count
 from nihlapp.core.models import Event, EventType, Rink, Season, EventStatus, Matchup
 from time import strptime, strftime
 from datetime import datetime
+from nihlapp.core.utils.email import *
 
 @login_required
 def schedule(request):

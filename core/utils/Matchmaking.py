@@ -224,7 +224,7 @@ class Slot:
 
 ''' Test section '''
 
-makeMe = Matchmaking(8)
-makeMe.testMe()
+#makeMe = Matchmaking(8)
+#makeMe.testMe()
 
 ''' End test section '''
