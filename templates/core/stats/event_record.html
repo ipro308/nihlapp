@@ -15,9 +15,11 @@
 	<span><b>Rink:</b> <a href="{{ event.rink.get_absolute_url }}">{{ event.rink }}</a></span>
 </p>
 
-<p class="help">
-** @todo: Help and description of what is going on goes here - we're recording stats for a game **
+<p class="help" style="margin-bottom: 20px;">
+	<img src="/static/images/icons/information.png" style="float:right;" />
+	On this screen you can fill in information about the game you have played. Home team is responsible for filling in event information. You can leave any of the fields blank. Game score will automatically be calculated from the goal information you put in.
 </p>
+
 
 <form id="record_event" method="post" target="" style="width: 100%">
 <input type="hidden" name="event_id" id="event_id" value="{{ event.id }}" />

@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q
 from nihlapp.core.models import Team, Season, Event, EventStatus, EventGoal, EventType
+from datetime import datetime
 
 def summary(request):
     
@@ -32,24 +33,37 @@ def summary(request):
     # generate reminders
     reminders = []
     if request.user.is_authenticated():
-        # enter rink schedule
+        # user needs to enter rink schedule
         if currentSeason.seasonStatus.name == "Scheduling Seeding Games":
             eventType = EventType.objects.get(name = "Seeding Game")
             events = Event.objects.filter(season = currentSeason, 
                                           eventType = eventType, 
                                           homeTeam = request.user.get_profile().team)
             if len(events) == 0:
-                reminders.append({'url': '/schedule/create', 'note': 'Please enter home rink schedule'})
+                reminders.append({'url': '/schedule/create', 'note': 'Enter home rink schedule for seeding games'})
+                
         if currentSeason.seasonStatus.name == "Scheduling Season Games":
             eventType = EventType.objects.get(name = "Season Game")
             events = Event.objects.filter(season = currentSeason, 
                                           eventType = eventType, 
                                           homeTeam = request.user.get_profile().team)
             if len(events) == 0:
-                reminders.append({'url': '/schedule/create', 'note': 'Please enter home rink schedule'})
-        # accept or reject request
+                reminders.append({'url': '/schedule/create', 'note': 'Enter home rink schedule for season games'})
         
-        # enter stats
+        # user needs to accept or reject requests
+        scheduledStatus = EventStatus.objects.get(name = "Scheduled")
+        events = Event.objects.filter(eventStatus = scheduledStatus, 
+                                      homeTeam = request.user.get_profile().team)
+        if len(events) > 0:
+            reminders.append({'url': '/schedule/matchups', 'note': 'Confirm or Reject game scheduling requests'})
+            
+        # user needs to enter stats
+        confirmedStatus = EventStatus.objects.get(name = "Confirmed")
+        events = Event.objects.filter(eventStatus = confirmedStatus, 
+                                      dateTimeEvent__lt = datetime.now(),
+                                      homeTeam = request.user.get_profile().team)
+        if len(events) > 0:
+            reminders.append({'url': '/stats/record', 'note': 'Enter game statistics'})
     
     return render_to_response('core/home/summary.html', {'user': request.user, 
                                                          'currentSeason': currentSeason,

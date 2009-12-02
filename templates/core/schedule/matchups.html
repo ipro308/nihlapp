@@ -7,6 +7,13 @@
 
 {% block content %}
 
+<h2 class="title">My Team's Matchups</h2>
+
+<p class="help" style="margin-bottom: 20px;">
+	<img src="/static/images/icons/information.png" style="float:right;" />
+	On this screen you can schedule games with other teams, confirm or reject game requests from other teams, and check the status of your match ups for seeding and season rounds.
+</p>
+
 <p style="font-size:110%">
 	<!-- Current Season Status: <b>{{ currentSeason.seasonStatus }}</b><br/>-->
 	<b>Your team is: <a href="{{ user.get_profile.team.get_absolute_url }}" style="color:red">{{ user.get_profile.team }}</a></b>

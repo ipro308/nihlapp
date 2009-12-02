@@ -6,11 +6,11 @@ from django.db.models import Q
 
 def upcoming(request):
     
-    completedStatus = EventStatus.objects.get(name = "Completed")
+    confirmedStatus = EventStatus.objects.get(name = "Confirmed")
     currentSeason = Season.objects.get(isCurrentSeason = True)
     
     # upcoming events (current season) (not completed)
-    events = Event.objects.filter(eventStatus__lt = completedStatus, season = currentSeason).order_by('dateTimeEvent')[:30]
+    events = Event.objects.filter(eventStatus = confirmedStatus, season = currentSeason).order_by('dateTimeEvent')[:30]
     eventList = list()
     for object in events:
         eventList.append({'id': object.id,
