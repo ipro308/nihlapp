@@ -20,19 +20,18 @@ TO DO:
     -fix handling of passes
 '''
 import random
+from django.db.models import Q
 from nihlapp.core.models import Matchup, Season, EventType, Team as TeamModel
 
 class Matchmaking:
     #currently configured for testing
-    def __init__(self, newGameLimit):
+    def __init__(self, newGameLimit, teams):
         self.gameLimit = newGameLimit
         # test team data
         #self.teamList = [Team("Team 1",1,self.gameLimit),Team("Team 2",2,self.gameLimit),Team("Team 3",3,self.gameLimit)]
         # pull in teams from database (for current season):
-        self.teamList = list()
-        querySet = TeamModel.objects.filter(season = Season.objects.get(isCurrentSeason = True))
-        for team in querySet:
-            self.teamList.append(Team(team.name, team.id, self.gameLimit))
+        # teams are actually passed in now
+        self.teamList = teams
             
         self.matchList = self.teamList[:]
         self.numTeams = -1
@@ -211,9 +210,24 @@ class Slot:
             else:
                 matchup.eventType = EventType.objects.get(name = "Season Game")
             
-            matchup.homeTeam = TeamModel.objects.get(id = self.homeID)
-            matchup.awayTeam = TeamModel.objects.get(id = self.visitorID)
-            matchup.save()
+            '''
+            is this a duplicate? the code above generates a bunch of duplicates
+            and generally fails horribly. rather than trying to debug the mess
+            we will just filter out the dups. stupid way of doing this but don't
+            really have time to debug at the moment.
+            '''
+            duplicate = False
+            try:
+                findMatch = Matchup.objects.get((Q(homeTeam__id = self.homeID) & Q(awayTeam__id = self.visitorID)) | 
+                                                (Q(awayTeam__id = self.homeID) & Q(homeTeam__id = self.visitorID)))
+                duplicate = True
+            except Matchup.DoesNotExist:
+                pass
+                
+            if not duplicate:
+                matchup.homeTeam = TeamModel.objects.get(id = self.homeID)
+                matchup.awayTeam = TeamModel.objects.get(id = self.visitorID)
+                matchup.save()
         except:
             # silently fail
             pass

@@ -31,20 +31,21 @@ class CreateUserForm(forms.Form):
     team = forms.ModelChoiceField(label='Team', queryset=Team.objects.all().order_by('name'))
     club = forms.ModelChoiceField(label='Club', queryset=Club.objects.all().order_by('name'))
     email = forms.EmailField(max_length=50)
-    phone = forms.CharField(max_length=10)
-    password = forms.CharField(label='Password',widget=forms.PasswordInput(render_value=False))
-    password_confirm = forms.CharField(label='Confirm Password',widget=forms.PasswordInput(render_value=False))
-    is_active = forms.BooleanField(label='Active')
+    phone = forms.CharField(max_length=10, required = False)
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(render_value=True))
+    password_confirm = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(render_value=True))
+    is_active = forms.BooleanField(label='Active', required = False)
     
     def clean_username(self):
         data = self.cleaned_data['username']   
         # check if this username is available
         
-        try:
-            checkUser = User.objects.get(username = data)
-            raise forms.ValidationError("This username is not available, please choose a different username for your account.")
-        except User.DoesNotExist:
-            pass
+        if self.initial == {}:
+            try:
+                checkUser = User.objects.get(username = data)
+                raise forms.ValidationError("This username is not available, please choose a different username for your account.")
+            except User.DoesNotExist:
+                pass
         
         return data
 

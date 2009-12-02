@@ -50,6 +50,9 @@ urlpatterns = patterns('',
     
     # home module
     (r'^home', include('nihlapp.core.urls.home')),
+    
+    # help module
+    (r'^help', include('nihlapp.core.urls.help')),
 
     # stats module
     (r'^stats', include('nihlapp.core.urls.stats')),
@@ -63,8 +66,9 @@ urlpatterns = patterns('',
     # databrowse
     (r'^db/(.*)', login_required(databrowse.site.root)),  
   
-    # createuser
-    (r'^accounts/create', 'nihlapp.core.views.users.create'), 
+    # account management
+    (r'^accounts/create', 'nihlapp.core.views.users.create'),
+    (r'^accounts/update/(?P<object_id>\d+)/?$', 'nihlapp.core.views.users.update'), 
   
     # email notify
     (r'^notify/', 'nihlapp.core.views.notify.index'),    
@@ -77,7 +81,7 @@ urlpatterns = patterns('',
     (r'^confirm/(?P<key>[0-9A-Za-z]+)/$', 'nihlapp.core.views.invitations.confirm_email'),    
     
     # github post-commit hook
-    (r'^githook/pull', 'nihlapp.githook.pull'),
+    #(r'^githook/pull', 'nihlapp.githook.pull'),
  
     # index
     (r'^$', 'nihlapp.core.views.home.summary'),

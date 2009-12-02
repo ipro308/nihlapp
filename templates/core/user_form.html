@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "core/generic_list.html" %}
 
 {% block section %}Users{% endblock %}
 
@@ -13,9 +13,9 @@
 {% block content %}
 
     {% if object %}
-	    <p class="title">{% block updateHeader %}Update Users{% endblock %}: {{ object.name }}</p>
+	    <p class="title">{% block updateHeader %}Update User{% endblock %}: {{ object.firstName }} {{ object.lastName }} ({{ object.username }})</p>
     {% else %}
-	    <p class="title">{% block createHeader %}Create Users{% endblock %}</p>
+	    <p class="title">{% block createHeader %}Create User{% endblock %}</p>
     {% endif %}
 
     {% if form.has_errors %}

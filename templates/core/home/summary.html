@@ -7,50 +7,72 @@
 
 {% block content %}
 
-<p class="help">
-	** @todo: this is a dummy homepage - please style me **
-</p>
+<h2 class="title">NIHL Season Scheduling and Statistics</h2>
 
-<p style="margin-bottom:10px;">
+<h3 class="subtitle">Season Information</h3>
+<ul>
+	<li><strong>{{ currentSeason }}</strong> is currently in <strong>{{ currentSeason.seasonStatus }}</strong> phase.</li>
+	<li><b>{{ numTeams }}</b> team{% ifnotequal numTeams 1 %}s{% endifnotequal %} registered.</li>
+	<li><b>{{ numGames }}</b> game{% ifnotequal numGames 1 %}s{% endifnotequal %} played.</li>
 	{% if user.is_authenticated %}
-		You are logged in as: <strong>{{ user.username }}</strong> ({{ user.get_full_name }})<br/>
-		Your Email: {{ user.get_profile.email }}<br/>
-		Your Team: <a href="{{ user.get_profile.team.get_absolute_url }}">{{ user.get_profile.team }}</a><br/>
-		Your Groups: {{ user.groups.all }}<br/>
-		Your Permissions: {{ user.get_all_permissions }}<br/>
-		Your Group Permissions: {{ user.get_group_permissions }}
-	{% else %}
-		You are not logged in.
+		<li>Your team is: <a href="{{ user.get_profile.team.get_absolute_url }}">{{ user.get_profile.team }}</a></li>
 	{% endif %}
-</p> 
+	{% if user.is_authenticated %}
+		<li>Your club is: <a href="{{ user.get_profile.club.get_absolute_url }}">{{ user.get_profile.club }}</a></li>
+	{% endif %}
+</ul>
 
-<p style="margin-bottom:10px;">
-	Current season: <strong>{{ currentSeason }}</strong> in state: <strong>{{ currentSeason.seasonStatus }}</strong>
-</p> 
+<h3 class="subtitle">Reminders</h3>
+{% if user.is_authenticated %}
+	{% if reminders %}
+		<ul>
+			{% for object in reminders %}
+				<li><a href="{{ object.url }}">{{ object.note }}</a></li>
+			{% endfor %}
+		</ul>
+	{% else %}
+	You have no reminders.
+	{% endif %}
+{% else %}
+You are not logged in.
+{% endif %}
 
-<p style="margin-bottom:10px;">
-	Teams this season: {{ numTeams }}
-</p> 
 
-<p style="margin-bottom:10px;">
-	Games played: {{ numGames }}
-</p> 
+<h3 class="subtitle">Recent Games</h3>
+{% if events %}
+<table style="width:100%;" class="records">
+	<tr>
+		<th colspan="2">Game</th>
+		<th>Date and Time</th>
+		<th>Rink</th>		
+		<th>Status</th>
+		<th>Score</th>
+	</tr>
+	{% for object in events %}
+	<tr class="{% cycle 'row1' 'row2' %}">			
+		<td><a href="/stats/event/{{ object.id }}"><img src="/static/images/icons/application_view_list.png" title="View Stats" /></a></td>
+		<td><a href="/stats/event/{{ object.id }}">{{ object.homeTeam }} <i>v.</i> {{ object.awayTeam }}</a></td>
+		<td>{{ object.dateTimeEvent|date:"M j, Y m:i A" }}</td>
+		<td><a href="{{ object.rink.get_absolute_url }}">{{ object.rink }}</a></td>		
+		<td>{{ object.eventStatus }}</td>
+		<td>{{ object.score }}</td>
+	</tr>	
+	{% endfor %}
+</table>	
+{% else %}
+	No Recent Games
+{% endif %}
 
-<p style="margin-bottom:10px;">
-	<a href="/stats">Click here</a> to view team stats
-</p> 
 
-<p style="margin-bottom:10px;">
-	<a href="/schedule">Click here</a> to view schedules
-</p> 
-
-<p style="margin-bottom:10px;">
-	<a href="/help">Click here</a> for help
-</p> 
-
-<p style="margin-bottom:10px;">
-	Reminder: you need to do... ** @todo **
-</p> 
+<h3 class="subtitle">Quick Links</h3>
+<ul>
+	<li><a href="/schedule/create">Enter home rink schedule</a></li>
+	<li><a href="/schedule/matchups">View match ups and schedule games</a></li>
+	<li><a href="/stats">View team statistics</a></li>
+	<li><a href="/schedule">Browse upcoming games</a></li>
+	<li><a href="/schedule/recent">Browse recent games</a></li>
+	<li><a href="/help/faq">Read help pages</a></li>
+</ul>
 
 {% endblock %}
 

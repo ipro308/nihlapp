@@ -1,8 +1,8 @@
 from django.views.generic.list_detail import object_list
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
-from nihlapp.core.models import Season, SeasonStatus
-from nihlapp.core.utils.Matchmaking import Matchmaking
+from nihlapp.core.models import Season, SeasonStatus, Division, SkillLevel, Team
+from nihlapp.core.utils.Matchmaking import Matchmaking, Team as MatchmakingTeam
 
 @login_required
 def list(request, pagination_id = 1):
@@ -33,10 +33,22 @@ def stage1(request):
         currentSeason.save()
         
         # generate team matches (for seeding games)
-        # todo: move number 8 to a parameter.
         try:
-            makeMe = Matchmaking(8) 
-            makeMe.generate()
+            divisions = Division.objects.all()
+            skillLevels = SkillLevel.objects.all()
+            # go through every division and skill level
+            for division in divisions:
+                for skillLevel in skillLevels:
+                    teams = []
+                    querySet = Team.objects.filter(season = Season.objects.get(isCurrentSeason = True), 
+                                                   division = division, 
+                                                   skillLevel = skillLevel)
+                    for team in querySet:
+                        teams.append(MatchmakingTeam(team.name, team.id, 8))
+                            
+                    # todo: move number 8 to a parameter.
+                    makeMe = Matchmaking(8, teams) 
+                    makeMe.generate()
         except Exception, error:
             errorMessage = "Error has occured while matchmaking teams: %s." % error
         
@@ -68,10 +80,22 @@ def stage3(request):
         currentSeason.save()
         
         # generate team matches (for season games)
-        # todo: move number 8 to a parameter.
         try:
-            makeMe = Matchmaking(8) 
-            makeMe.generate()
+            divisions = Division.objects.all()
+            skillLevels = SkillLevel.objects.all()
+            # go through every division and skill level
+            for division in divisions:
+                for skillLevel in skillLevels:
+                    teamList = list()
+                    querySet = Team.objects.filter(season = Season.objects.get(isCurrentSeason = True), 
+                                                   division = division, 
+                                                   skillLevel = skillLevel)
+                    for team in querySet:
+                        teamList.append(MatchmakingTeam(team.name, team.id, 8))
+                            
+                    # todo: move number 8 to a parameter.
+                    makeMe = Matchmaking(8, teamList) 
+                    makeMe.generate()
         except Exception, error:
             errorMessage = "Error has occured while matchmaking teams: %s." % error
         
