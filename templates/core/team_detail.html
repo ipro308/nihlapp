@@ -1,4 +1,5 @@
 {% extends "core/generic_detail.html" %}
+{% load coretags %}
 
 {% block title %}Teams{% endblock %}
 {% block detailTitle %}Team Detail{% endblock %}
@@ -7,88 +8,73 @@
 {% block selectedTabTeams %} class="selected"{% endblock %}
 
 {% block detailView %}
-	<fieldset>
-	    <legend class="primary">Team Detail</legend>
-	    <ul>
-	        <li><label>Team Name:</label><span>{{ object.name }}</span><div class="vd" /></li>
-	        <li><label>Division:</label><span>{{ object.division }}</span><div class="vd" /></li>
-            <li><label>Skill Level:</label><span>{{ object.skillLevel }}</span></li>
-	    </ul>
-	</fieldset> 	     	        
-	
-	<fieldset>
-	    <legend class="primary">Season & Club</legend>
-	    <ul>
-	        <li><label>Season:</label><span>{{ object.season }}</span><div class="vd" /></li>
-            <li><label>Club:</label><span>{{ object.club }}</span></li>
-	    </ul>
-	</fieldset> 	
-	
-	<fieldset>
-	    <legend class="primary">Team Manager</legend>
-	    <ul>
-	        <li><label>Manager Name:</label><span>{{ object.managerName }}</span><div class="vd" /></li>
-	        <li><label>Manager Email:</label><span>{{ object.managerEmail }}</span> [ <a href="/invitation/generate?club_id={{ object.club.id }}&team_id={{ object.id }}&name={{ object.managerName }}&email={{ object.managerEmail }}"><img src="/static/images/icons/email_go.png" style="position:relative; top:3px;" /> Generate Invitation</a> ]<div class="vd" /></li>
-	        <li><label>Manager Phone:</label><span>{{ object.managerPhone }}</span></li>
-	    </ul>
-	</fieldset> 	
 
-	<fieldset>
-	    <legend class="primary">Team Coach</legend>
-	    <ul>
-	        <li><label>Coach Name:</label><span>{{ object.coachName }}</span><div class="vd" /></li>
-	        <li><label>Coach Email:</label><span>{{ object.coachEmail }}</span><div class="vd" /></li>
-	        <li><label>Coach Phone:</label><span>{{ object.coachPhone }}</span></li>
-	    </ul>
-	</fieldset> 	
-	
-	<fieldset>
-		<legend class="primary">Schedule</legend>
-		<table style="width:100%;">
-			<tr>
-				<th>Date</th>
-				<th>Type</th>
-				<th>Rink</th>
-				<th>Opponent</th>
-				
-			</tr>
-			{% for event in schedule_queryset %}
-			<tr>
-				<td>{{ event.dateTimeEvent }}</td>
-				<td>{{ event.eventType }}</td>
-				<td>{{ event.rink }}</td>
-				<td>{{ event.awayTeam }}</td>
-			</tr>
-			{% endfor %}
-		<legend>
-	<fieldset>
-		<fieldset>
-		<legend class="primary">Statistics</legend>
-		<table style="width:100%;">
-			<tr>
-				<th>Date</th>
-				<th>Type</th>
-				<th>Rink</th>
-				<th>Opponent</th>
-				
-			</tr>
-			{% for event in schedule_queryset %}
-			<tr>
-				<td>{{ event.dateTimeEvent }}</td>
-				<td>{{ event.eventType }}</td>
-				<td>{{ event.rink }}</td>
-				<td>{{ event.awayTeam }}</td>
-			</tr>
-			{% endfor %}
+	<div id="teamStats" style="float:left; border:1px solid #ccc; width:59%;">
+		<h3 class="primary" style="font-weight:normal">Team Stats</h3>
+		<table>
+		{% for event in schedule_queryset %}
+			<tr><td style="font-weight:bold">Date</td><td>{{ event.dateTimeEvent }}</td></tr>
+			<tr><td style="font-weight:bold">Type</td><td>{{ event.eventType }}</td></tr>
+			<tr><td style="font-weight:bold">Rink</td><td>{{ event.rink }}</td></tr>
+			<tr><td style="font-weight:bold">Opponent</td><td>{{ event.awayTeam }}</td></tr>
+		{% endfor %}
 		</table>
-		<legend>
-	<fieldset>
+		
+		<h3 class="primary" style="font-weight:normal">Upcoming Schedule</h3>
+		<table>
+		{% for event in schedule_queryset %}
+			<tr><td style="font-weight:bold">Date</td><td>{{ event.dateTimeEvent }}</td></tr>
+			<tr><td style="font-weight:bold">Type</td><td>{{ event.eventType }}</td></tr>
+			<tr><td style="font-weight:bold">Rink</td><td>{{ event.rink }}</td></tr>
+			<tr><td style="font-weight:bold">Opponent</td><td>{{ event.awayTeam }}</td></tr>
+		{% endfor %}
+		</table>
+			
+	</div>
 
+	<div id="teamDetails" style="float:right; border:1px solid #ccc; width:40%;">
+		<!-- grab more images fromhttp://www.nihl.info/membersites.html if need! -->
+		<img src="/static/images/teamImages/{{ object.name|numberStrip }}.jpg" style="float:right; margin-right:10px; margin-top:10px;" />
+		<h3 class="primary" style="font-weight:normal;">Team Detail</h3>
+		<table>
+			<tr><td style="font-weight:bold">Team Name:</td><td>{% autoescape on %}{{ object.name }}{% endautoescape %}</td></tr>
+			<tr><td style="font-weight:bold">Division:</td><td>{{ object.division }}</td></tr>
+			<tr><td style="font-weight:bold">Skill Level:</td><td>{{ object.skillLevel }}</td></tr>
+		</table>
+		
+		<br />
+		
+		<h3 class="primary" style="font-weight:normal;">Season & Club</h3>
+		<table>
+			<tr><td style="font-weight:bold">Season:</td><td>{{ object.name }}</td></tr>
+			<tr><td style="font-weight:bold">Club:</td><td>{{ object.club }}</td></tr>
+		</table>
+		
+		<br />
+		
+		<h3 class="primary" style="font-weight:normal;">Team Manager</h3>
+		<table>
+			<tr><td style="font-weight:bold">Manager Name:</td><td>{{ object.managerName }}</td></tr>
+			<tr><td style="font-weight:bold">Manager Email:</td><td>{{ object.managerEmail }} <a href="/invitation/generate?club_id={{ object.club.id }}&team_id={{ object.id }}&name={{ object.managerName }}&email={{ object.managerEmail }}"><img src="/static/images/icons/email_go.png" style="position:relative; top:3px;" /></a><div class="vd" /></td></tr>
+			<tr><td style="font-weight:bold">Manager Phone:</td><td>{{ object.managerPhone }}</td></tr>
+		</table>
+	
+			<br />
+		
+		<h3 class="primary" style="font-weight:normal;">Team Coach</h3>
+		<table>
+			<tr><td style="font-weight:bold">Coach Name:</td><td>{{ object.coachName }}</td></tr>
+			<tr><td style="font-weight:bold">Coach Email:</td><td>{{ object.coachEmail }}</td></tr>
+			<tr><td style="font-weight:bold">Coach Phone:</td><td>{{ object.coachPhone }}</td></tr>
+		</table>
+	</div>
+	
 	<div class="actions">
 	    <p class="action-links">
 	        <a href="../create">Create Team</a> | <a href="../update/{{ object.pk }}">Update Team</a> | <a href="..">List Teams</a>
 	    </p>
 	</div>
+
 
 	
 		

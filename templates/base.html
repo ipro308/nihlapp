@@ -19,6 +19,7 @@
 	<script type="text/javascript" src="/static/js/jquery-ui-1.7.2.custom.min.js"></script>	
 	<script type="text/javascript" src="/static/js/jquery.tooltip.pack.js"></script>		
 	<script type="text/javascript" src="/static/js/base.js"></script>	
+	<script type="text/javascript" src="/static/js/dropdown.js"></script>
 </head>
 <body>
 <div id="canvas">    
@@ -40,26 +41,31 @@
 
         </div>
     
+		
+		
     <div id="nav-container">
-		<div id="nav">
-			<ul>	
-				<li{% block selectedTabHome %}{% endblock %}><a href="/"><span>Home</span></a></li>
-				<li{% block selectedTabStats %}{% endblock %}><a href="/stats"><span>Stats</span></a></li>
-				<li{% block selectedTabSchedule %}{% endblock %}><a href="/schedule"><span>Schedule</span></a></li>
-				{% if user.is_authenticated %}
-					<li{% block selectedTabSeasons %}{% endblock %}><a href="/seasons"><span>Seasons</span></a></li>
-					<li{% block selectedTabTeams %}{% endblock %}><a href="/teams"><span>Teams</span></a></li>
-					<li{% block selectedTabClubs %}{% endblock %}><a href="/clubs"><span>Clubs</span></a></li>
-					<li{% block selectedTabDivisions %}{% endblock %}><a href="/divisions"><span>Divisions</span></a></li>
-					<li{% block selectedTabRinks %}{% endblock %}><a href="/rinks"><span>Rinks</span></a></li>
-					{% if user.is_superuser %}
-						<li{% block selectedTabAccounts %}{% endblock %}><a href="/accounts"><span>Accounts</span></a></li>
+		
+      <div id="nav">
+				<ul class="navlist">
+					<li {% block selectedTabHome %}{% endblock %}><a href="/" onmouseover="mopen('m1')" onmouseout="mclosetime()"><span>Home</span></a></li>
+					<li {% block selectedTabStats %}{% endblock %}><a href="/stats" onmouseover="mopen('m2')" onmouseout="mclosetime()"><span>Standings</span></a></li>
+					<li{% block selectedTabSchedule %}{% endblock %}><a href="/schedule" onmouseover="mopen('m3')" onmouseout="mclosetime()"><span>Schedule</span></a></li>
+					{% if user.is_authenticated %}
+						<li{% block selectedTabSeasons %}{% endblock %}><a href="/seasons" onmouseover="mopen('m4')" onmouseout="mclosetime()"><span>Seasons</span></a></li>
+						<li{% block selectedTabTeams %}{% endblock %}><a href="/teams" onmouseover="mopen('m5')" onmouseout="mclosetime()"><span>Teams</span></a></li>
+						<li{% block selectedTabClubs %}{% endblock %}><a href="/clubs"  onmouseover="mopen('m6')" onmouseout="mclosetime()"><span>Clubs</span></a></li>
+						<li{% block selectedTabDivisions %}{% endblock %}><a href="/divisions"  onmouseover="mopen('m7')" onmouseout="mclosetime()"><span>Divisions</span></a></li>
+						<li{% block selectedTabRinks %}{% endblock %}><a href="/rinks"  onmouseover="mopen('m8')" onmouseout="mclosetime()"><span>Rinks</span></a></li>
+						{% if user.is_superuser %}
+							<li{% block selectedTabAccounts %}{% endblock %}><a href="/accounts"  onmouseover="mopen('m9')" onmouseout="mclosetime()"><span>Accounts</span></a></li>
+						{% endif %}
 					{% endif %}
-				{% endif %}
-			</ul>
-		</div>  
-	</div>      
-        
+				</ul>
+				
+			</div>
+			
+		</div>
+	        
         <div id="body">
             <!--<div class="header">
 
@@ -86,9 +92,109 @@
                     <div class="left"></div>
                     <div class="right"></div>
                 </div>
+								<ul id="sddm">
+									<li>
+										<div id="m1" 
+												onmouseover="mcancelclosetime()" 
+												onmouseout="mclosetime()"
+												style="float:left; position:absolute; left:10px; width:72px;">
+											<a href="/">Summary</a>
+											<a href="/home/deadlines">Deadlines</a>
+											<a href="/help">Help</a>
+											<a href="/help/faq">FAQ</a>
+										</div>
+									</li>
+									<li>
+										<div id="m2" 
+												onmouseover="mcancelclosetime()" 
+												onmouseout="mclosetime()"
+												style="float:left; position:absolute; left:92px; width:100px">
+											<a href="/stats">Summary</a>
+											<a href="/stats/seeding">Seeding Games</a>
+											<a href="/stats/season">Season Games</a>
+											<a href="/stats/record">Record Stats</a>
+										</div>
+									</li>
+									<li>
+										<div id="m3" 
+												onmouseover="mcancelclosetime()" 
+												onmouseout="mclosetime()"
+												style="float:left; left:202px; position:absolute;">
+											<a href="/schedule">Upcoming Games</a>
+											<a href="/schedule/recent">Recent Games</a>
+											<a href="/schedule/matchups">My Team's Matchups</a>
+											<a href="/schedule/create">Home Rink Schedule</a>
+										</div>
+									</li>
+									
+									<li>
+										<div id="m4" 
+												onmouseover="mcancelclosetime()" 
+												onmouseout="mclosetime()"
+												style="float:left; left:307px; position:absolute;">
+											<a href="/seasons">Seasons</a>
+											<a href="/seasons/create">Create Season</a>
+										</div>
+									</li>
+									
+									<li>
+										<div id="m5" 
+												onmouseover="mcancelclosetime()" 
+												onmouseout="mclosetime()"
+												style="float:left; left:409px; position:absolute;">
+											<a href="/teams">Teams</a>
+											<a href="/teams/create">Create Team</a>
+										</div>
+									</li>
+									
+									<li>
+										<div id="m6" 
+												onmouseover="mcancelclosetime()" 
+												onmouseout="mclosetime()"
+												style="float:left; left:497px; position:absolute;">
+											<a href="/clubs">Clubs</a>
+											<a href="/clubs/create">Create Club</a>
+										</div>
+									</li>
+									
+									<li>
+										<div id="m7" 
+												onmouseover="mcancelclosetime()" 
+												onmouseout="mclosetime()"
+												style="float:left; left:577px; position:absolute; width:94px;">
+											<a href="/divisions">Divisions</a>
+											<a href="/divisions/create">Create Division</a>
+										</div>
+									</li>
+									
+									<li>
+										<div id="m8" 
+												onmouseover="mcancelclosetime()" 
+												onmouseout="mclosetime()"
+												style="float:left; left:681px; position:absolute;">
+											<a href="/rinks">Rinks</a>
+											<a href="/rinks/create">Create Rink</a>
+										</div>
+									</li>
+									
+									<li>
+										<div id="m9" 
+												onmouseover="mcancelclosetime()" 
+												onmouseout="mclosetime()"
+												style="float:left; left:760px; position:absolute; z-index:30;">
+											<a href="/accounts">Accounts</a>
+											<a href="/accounts/create">Create Account</a>
+										</div>
+									</li>
+									
+									
+								</ul>
+								<div style="clear:both"></div>
                 <div id="content_area" class="inner_canvas">
 		
-		{% block tabs %}{% endblock %}
+		<!-- {% block tabs %}{% endblock %} -->
+
+
 
 		<div style="margin-left:10px; margin-right:10px;">
 

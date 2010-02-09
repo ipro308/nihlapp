@@ -1,4 +1,5 @@
 from django import template
+import re
 
 register = template.Library()
 
@@ -12,4 +13,16 @@ def formatPeriod(input):
                 }[input]()
     except KeyError:
         return None
+        
+@register.filter
+def numberStrip(input): 
+        """Function to strip the number (ex. #1) 
+        from the team name to avoid duplicate images.
+        """
+        p = re.compile( '\ #[0-9]')
+        output = p.sub( '', input)
+        p = re.compile( '\ ')
+        output = p.sub('', output)
+        return output
+        
     

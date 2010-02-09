@@ -7,34 +7,27 @@
 {% block selectedTabDivisions %} class="selected"{% endblock %}
 
 {% block detailView %}
-	<fieldset>
-	    <legend class="primary">Division Detail</legend>
-	    <ul>
-	        <li><label>Division Name:</label><span>{{ object.name }}</span></li>
-	    </ul>
-	</fieldset> 	     	        
 
-	<fieldset>
-	    <legend class="primary">Division Contact</legend>
-	    <ul>
-	        <li><label>Contact Name:</label><span>{{ object.contactName }}</span><div class="vd" /></li>
-	        <li><label>Contact Email:</label><span>{{ object.contactEmail }}</span><div class="vd" /></li>
-	        <li><label>Contact Phone:</label><span>{{ object.contactPhone }}</span></li>
-	    </ul>
-	</fieldset> 	
-	
-	<fieldset>
-	    <legend class="primary">Teams</legend>
-	      <table style="width:100%;">
-			<tr>
-				<th>Team Detail</th>
+ <div id="divisionDetails" style="float:right; border:1px solid #ccc; width:35%;">
+ <h3 class="primary" style="font-weight:normal;">Division Contact</h3>
+ 	<table>
+		<tr><td style="font-weight:bold">Contact Name</td><td>{{ object.contactName }}</td>
+		<tr><td style="font-weight:bold">Contact Email</td><td>{{ object.contactEmail }}</td>
+		<tr><td style="font-weight:bold">Contact Phone</td><td>{{ object.contactPhone }}</td>
+	</table>
+ </div>
+
+	<div id="divisionClubs" style="float:left; border:1px solid #ccc; width:64%; height:300px; overflow:auto;">
+		<table style="width:100%;">
+			<tr style="background:#dedede;">
+				<th>Team Name</th>
 				<th>Division</th>
 				<th>Skill</th>
 				<th>Coach</th>
 				<th>Manager</th>
 			</tr>
 			{% for team in team_queryset %}
-			<tr>
+			<tr style="background:#efefef">
 				<td><a href="/teams/detail/{{ team.pk }}">{{ team.name }}</a></td>
 				<td>{{ team.division }}</td>
 				<td>{{ team.skillLevel }}</td>
@@ -43,7 +36,7 @@
 			</tr>
 			{% endfor %}
 		</table>
-	</fieldset> 
+	</div>
 
 	<div class="actions">
 	    <p class="action-links">

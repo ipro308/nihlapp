@@ -7,7 +7,7 @@ class Division(models.Model):
     #contact = models.ForeignKey(UserProfile, "Contact")
     contactName = models.CharField("Contact Name", max_length = 50, blank = True)
     contactEmail = models.EmailField("Contact Email", blank = True)
-    contactPhone = models.CharField("Contact Name", max_length = 15, blank = True)
+    contactPhone = models.CharField("Contact Phone", max_length = 15, blank = True)
 
     class Meta:
 		app_label = "core"
