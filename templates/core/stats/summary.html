@@ -9,24 +9,21 @@
 
 <!-- <h2 class="title">Summary</h2> -->
 
-<!--<h3 class="subtitle">Narrow Teams By</h3>
+<!--<h3 class="subtitle">Narrow Teams By</h3>-->
 
-<div class="rounded-corner-container" style="width:100%;">
-	<b class="rt"><b class="r1"></b> <b class="r2"></b> <b class="r3"></b> <b class="r4"></b></b>
+<!--<div class="rounded-corner-container" style="width:100%;">
+	<b class="rt"><b class="r1"></b> <b class="r2"></b> <b class="r3"></b> <b class="r4"></b></b>-->
 		
 	<form name="filter" action="" method="get">
 		<!-- filter options -->
-		<!--<table style="width:893px;border:0px;margin-bottom:9px;margin-left:15px;margin-right:15px;margin-top:6px;">
+		<table style="width:225px;border:0px;margin-bottom:9px;margin-left:15px;margin-right:15px;margin-top:6px;">
 		<tr>
-			<td><span style="font-weight:bold;font-size:11pt;">Division</span></td>
-			<td><span style="font-weight:bold;font-size:11pt;">Skill Level</span></td>
-			<td><span style="font-weight:bold;font-size:11pt;">Club</span></td>
-			<td><span style="font-weight:bold;font-size:11pt;">Team</span></td>
+			<td><span style="font-weight:bold;font-size:11pt;">Narrow Teams by Division</span></td>
 		</tr>
 		<tr>
 			<td>
-				<select name="division" size="4" multiple="multiple" style="width:210px;">
-					<option value='0'>- Any Division -</option>
+				<select name="division" size="1" style="width:210px;">
+					<!--<option value='0'>- Any Division -</option>-->
 					{% for division in divisions %}
 					<option value="{{division.id}}" 
 					{% for filter in division_filter %}
@@ -38,51 +35,8 @@
 					{% endfor %}
 				</select>
 			</td>	
-			<td>
-				<select name="level" size="4" multiple="multiple" style="width:210px;">
-					<option value='0'>- Any Skill Level -</option>
-					{% for level in levels %}
-					<option value="{{level.id}}" 
-					{% for filter in level_filter %}
-					{% ifequal level.id filter %}
-					selected
-					{% endifequal %}
-					{% endfor %}
-					>{{level.name}}</option>
-					{% endfor %}
-				</select>
-			</td>	
-			<td>
-				<select name="club" size="4" multiple="multiple" style="width:210px;">
-					<option value='0'>- Any Club -</option>
-					{% for club in clubs %}
-					<option value="{{club.id}}"
-					{% for filter in club_filter %}
-					{% ifequal club.id filter %}
-					selected
-					{% endifequal %}
-					{% endfor %}
-					>{{club.name}}</option>
-					{% endfor %}
-				</select>
-			</td>	
-			<td>
-				<select name="team" size="4" multiple="multiple" style="width:210px;">
-					<option value='0'>- Any Team -</option>
-					{% for team in teams %}
-					<option value="{{team.id}}"
-					{% for filter in team_filter %}
-					{% ifequal team.id filter %}
-					selected
-					{% endifequal %}
-					{% endfor %}
-					>{{team.name}}</option>
-					{% endfor %}
-				</select>
-			</td>
-			</tr>
-			<tr>
-				<td colspan="3" style="padding-top:19px;"><span style="color:#000;font-size:9pt;">Hold down "Ctrl" to select multiple items</span></td>
+		</tr>
+		<tr>
 				<td style="padding-top:10px;text-align: right;">
 					<input type="submit" value="Apply Filter" style="margin-right:10px;" />
 					<input type="button" value="Clear Filter" style="margin-right:10px;" onClick="window.location='/stats'" />
@@ -92,56 +46,49 @@
 	</form>
 	
 	<b class="rb"><b class="r4"></b> <b class="r3"></b> <b class="r2"></b> <b class="r1"></b></b>
-</div>-->
+<!--</div>-->
 
 <h3 class="subtitle">Team Statistics</h3>
 {% if not stats %}
-<div style="text-align:center;margin-top:20px;">
-	No teams matched your selection.
+<div style="text-align:center;margin-top:20px;border:2px dashed #eeeeee;">
+	Please select a division to sort by.
 </div>
 {% else %}
-<table style="width:100%;" class="records">
+{% for club in clubs %}
+<div style="width:445px; height:240px; float:{% cycle 'right' 'left' %};">
+<h3 style="text-align:center; border-bottom:1px solid #cccccc;">{{ club.name }}</h3>
+<table style="width:425px; margin: 5px" class="records">
 	<tr>
-		<th><span title="Team Name">Team</span></th>
-		<th><span title="Team Level">Level</span></th>	
-		<th><span title="Team Division">Division</span></th>		
-		<th><span title="Games Played">GP</span></th>
-		<th><span title="Wins">Wins</span></th>
-		<th><span title="Losses">Losses</span></th>
-		<th><span title="Ties">Ties</span></th>
-		<th><span title="Points">PTS</span></th>
-		<th><span title="Goals For">GF</span></th>
-		<th><span title="Goals Against">GA</span></th>
-		<th><span title="Plus / Minus">+/-</span></th>
-		<th><span title="Shots on Goal">SOG</span></th>
-		<th><span title="Total Penalty Minutes">TPM</span></th>
-		<th><span title="Goals For (Average)">GFA</span></th>
-		<th><span title="Team Average">AVG</span></th>
+		<th style="width:30%;"><span title="Team Name">Team</span></th>
+		<th style="width:20%;"><span title="Team Level">Level</span></th>	
+		<th style="width:12.5%; text-align:right;"><span title="Games Played">GP</span></th>
+		<th style="width:12.5%; text-align:right;"><span title="Wins">Wins</span></th>
+		<th style="width:12.5%; text-align:right;"><span title="Losses">Losses</span></th>
+		<th style="width:12.5%; text-align:right;"><span title="Ties">Ties</span></th>
 	</tr>
+</table>
+<div style="width:445px; height:175px; overflow:auto;">
+<table style="width: 425px; margin: 5px;" class="records">
 	{% for team in stats %}
-	<tr class="{% cycle 'row1' 'row2' %}">
-		<td><a href="/teams/detail/{{ team.teamId }}">{{ team.teamName }}</a></td>
-		<td><a href="?{{ query_string }}&level={{ team.levelId }}">{{ team.teamLevel }}</a></td>
-		<td><a href="?{{ query_string }}&division={{ team.divisionId }}">{{ team.teamDivision }}</a></td>
-		<td>{{ team.gamesPlayed }}</td>
-		<td>{{ team.wins }}</td>
-		<td>{{ team.losses }}</td>
-		<td>{{ team.ties }}</td>
-		<td>{{ team.points }}</td>
-		<td>{{ team.goalsFor }}</td>
-		<td>{{ team.goalsAgainst }}</td>
-		<td>{{ team.plusMinus }}</td>
-		<td>{{ team.shotsOnGoal }}</td>
-		<td>{{ team.totalPenaltyMinutes }}</td>
-		<td>{{ team.goalsForAverage }}</td>
-		<td>{{ team.average }}</td>
-	</tr>
+		{% ifequal club team.teamClub %}
+		<tr class="{% cycle 'row1' 'row2' %}">
+			<td style="width:30%"><a href="/teams/detail/{{ team.teamId }}">{{ team.teamName }}</a></td>
+			<td style="width:20%"><a href="?{{ query_string }}&level={{ team.teamLevel }}">{{ team.teamLevel }}</a></td>
+			<td style="width:12.5%; text-align:right;">{{ team.gamesPlayed }}</td>
+			<td style="width:12.5%; text-align:right;">{{ team.wins }}</td>
+			<td style="width:12.5%; text-align:right;">{{ team.losses }}</td>
+			<td style="width:12.5%; text-align:right;">{{ team.ties }}</td>
+		</tr>
+		{% endifequal %}
 	{% endfor %}
 </table>
-
-<div style="text-align:center;margin-top:50px;">
-	<a href="{{url}}">Permalink</a>
 </div>
+</div>
+{% endfor %}
+
+<!--<div style="text-align:center;margin-top:50px;">
+	<a href="{{url}}">Permalink</a>
+</div>-->
 {% endif %}
 
 {% endblock %}

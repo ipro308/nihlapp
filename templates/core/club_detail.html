@@ -20,7 +20,7 @@
 	
 	<div id="clubTeams" style="float:left; border:1px solid #ccc; width:59%;">
 		<table style="width:100%;">
-			<tr style="background:#dedede;">
+			<tr style="background:#cccccc;">
 				<th>Team Name</th>
 				<th>Division</th>
 				<th>Skill</th>
@@ -28,7 +28,7 @@
 				<th>Manager</th>
 			</tr>
 			{% for team in team_queryset %}
-			<tr style="background:#efefef">
+			<tr class="{% cycle 'row1' 'row2' %}">
 				<td><a href="/teams/detail/{{ team.pk }}">{{ team.name }}</a></td>
 				<td>{{ team.division }}</td>
 				<td>{{ team.skillLevel }}</td>

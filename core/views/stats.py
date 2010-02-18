@@ -29,7 +29,7 @@ def summary(request):
     # it will be set to a list with a string of the number zero
 
     if len(request.GET.getlist('division')) == 0:
-        division_filter = [0]
+        division_filter = []
     for i in request.GET.getlist('division'):
         division_filter.append(int(i))
     

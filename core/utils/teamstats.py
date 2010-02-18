@@ -24,6 +24,7 @@ class TeamStats(Team):
         
         result['teamId'] = self.id
         result['teamName'] = self.name
+        result['teamClub'] = self.club
         result['teamLevel'] = self.skillLevel
         result['levelId'] = self.skillLevel.id
         result['teamDivision'] = self.division
