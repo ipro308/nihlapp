@@ -10,6 +10,7 @@ class Rink(models.Model):
     contactName = models.CharField("Contact Name", max_length = 50, blank = True)
     contactEmail = models.EmailField("Contact Email", blank = True)
     contactPhone = models.CharField("Contact Phone", max_length = 15, blank = True)
+    arenaMapsURL = models.CharField("Arenamaps.com URL", max_length=200, blank = True)
     
     class Meta:
         app_label = "core"

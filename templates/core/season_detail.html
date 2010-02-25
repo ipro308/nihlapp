@@ -2,7 +2,7 @@
 
 {% block title %}Seasons{% endblock %}
 {% block detailTitle %}Season Detail{% endblock %}
-{% block detailName %}{{ object.name }}{% endblock %}
+{% block detailName %}{{ object.year }}{% endblock %}
 
 {% block selectedTabSeasons %} class="selected"{% endblock %}
 
@@ -10,7 +10,9 @@
 	<fieldset>
 	    <legend class="primary">Season Detail</legend>
 	    <ul>
-	        <li><label>Rink Name:</label><span>{{ object.name }}</span></li>
+			{% for rink in rinks %}
+	        <li><label>Rink Name:</label><span>{{ rink.name }}</span></li>
+				{% endfor %}
 	    </ul>
 	</fieldset> 	     	        
 	

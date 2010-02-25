@@ -3,13 +3,13 @@ from nihlapp.core.models import SeasonStatus
 
 class Season(models.Model):
     year = models.CharField("Season Year", max_length = 4, unique = True) # essentially the name
-    seedingBeginDate = models.DateField("Seeding Begin Date")
-    seedingSchedDeadline = models.DateField("Seeding Schedule Deadline")
-    seedingStatDeadline = models.DateField("Seeding Stat Deadline")
-    seasonBeginDate = models.DateField("Season Begin Date")
-    seasonSchedDeadline = models.DateField("Season Schedule Deadline")
-    seasonStatDeadline = models.DateField("Season Stat Deadline")
-    seasonEnd = models.DateField("Season Ends")
+    seedingBeginDate = models.DateField("Seeding Begin Date (YYYY-MM-DD)")
+    seedingSchedDeadline = models.DateField("Seeding Schedule Deadline (YYYY-MM-DD)")
+    seedingStatDeadline = models.DateField("Seeding Stat Deadline (YYYY-MM-DD)")
+    seasonBeginDate = models.DateField("Season Begin Date (YYYY-MM-DD)")
+    seasonSchedDeadline = models.DateField("Season Schedule Deadline (YYYY-MM-DD)")
+    seasonStatDeadline = models.DateField("Season Stat Deadline (YYYY-MM-DD)")
+    seasonEnd = models.DateField("Season Ends (YYYY-MM-DD)")
     isCurrentSeason = models.BooleanField("Current Season")
     seasonStatus = models.ForeignKey(SeasonStatus, verbose_name="Status")
 

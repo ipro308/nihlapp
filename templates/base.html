@@ -50,13 +50,13 @@
 					<li {% block selectedTabHome %}{% endblock %}><a href="/" onmouseover="mopen('m1')" onmouseout="mclosetime()"><span>Home</span></a></li>
 					<li {% block selectedTabStats %}{% endblock %}><a href="/stats" onmouseover="mopen('m2')" onmouseout="mclosetime()"><span>Standings</span></a></li>
 					<li{% block selectedTabSchedule %}{% endblock %}><a href="/schedule" onmouseover="mopen('m3')" onmouseout="mclosetime()"><span>Schedule</span></a></li>
+					<li{% block selectedTabSeasons %}{% endblock %}><a href="/seasons" onmouseover="mopen('m4')" onmouseout="mclosetime()"><span>Seasons</span></a></li>
+					<li{% block selectedTabTeams %}{% endblock %}><a href="/teams" onmouseover="mopen('m5')" onmouseout="mclosetime()"><span>Teams</span></a></li>
+					<li{% block selectedTabClubs %}{% endblock %}><a href="/clubs"  onmouseover="mopen('m6')" onmouseout="mclosetime()"><span>Clubs</span></a></li>
+					<li{% block selectedTabDivisions %}{% endblock %}><a href="/divisions"  onmouseover="mopen('m7')" onmouseout="mclosetime()"><span>Divisions</span></a></li>
+					<li{% block selectedTabRinks %}{% endblock %}><a href="/rinks"  onmouseover="mopen('m8')" onmouseout="mclosetime()"><span>Rinks</span></a></li>
 					{% if user.is_authenticated %}
-						<li{% block selectedTabSeasons %}{% endblock %}><a href="/seasons" onmouseover="mopen('m4')" onmouseout="mclosetime()"><span>Seasons</span></a></li>
-						<li{% block selectedTabTeams %}{% endblock %}><a href="/teams" onmouseover="mopen('m5')" onmouseout="mclosetime()"><span>Teams</span></a></li>
-						<li{% block selectedTabClubs %}{% endblock %}><a href="/clubs"  onmouseover="mopen('m6')" onmouseout="mclosetime()"><span>Clubs</span></a></li>
-						<li{% block selectedTabDivisions %}{% endblock %}><a href="/divisions"  onmouseover="mopen('m7')" onmouseout="mclosetime()"><span>Divisions</span></a></li>
-						<li{% block selectedTabRinks %}{% endblock %}><a href="/rinks"  onmouseover="mopen('m8')" onmouseout="mclosetime()"><span>Rinks</span></a></li>
-						{% if user.is_superuser %}
+					{% if user.is_superuser %}
 							<li{% block selectedTabAccounts %}{% endblock %}><a href="/accounts"  onmouseover="mopen('m9')" onmouseout="mclosetime()"><span>Accounts</span></a></li>
 						{% endif %}
 					{% endif %}
@@ -100,7 +100,7 @@
 												style="float:left; position:absolute; left:10px; width:72px; z-index:30;">
 											<a href="/">Summary</a>
 											<a href="/home/deadlines">Deadlines</a>
-											<a href="/help">Help</a>
+											<!--<a href="/help">Help</a>-->
 											<a href="/help/faq">FAQ</a>
 										</div>
 									</li>

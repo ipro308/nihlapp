@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from nihlapp.core.models import Season
 
 urlpatterns = patterns('',
-    (r'^/$', 'nihlapp.core.views.seasons.list'),
-       (r'^/detail/(?P<object_id>\d+)/?$', login_required(object_detail), 
+    (r'^/$', object_list, dict(queryset = Season.objects.all())),
+       (r'^/detail/(?P<object_id>\d+)/?$', object_detail, 
         dict(queryset = Season.objects.all())),
     (r'^/create/?$', 'django.views.generic.create_update.create_object', 
         dict(model = Season, login_required = True)),

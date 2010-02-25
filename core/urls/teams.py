@@ -5,9 +5,9 @@ from nihlapp.core.models import Team
 from nihlapp.core.views.teams import detail
 
 urlpatterns = patterns('',
-    (r'^/$', login_required(object_list), 
+    (r'^/$', object_list, 
         dict(queryset = Team.objects.all())),
-    (r'^/detail/(?P<team_id>\d+)/?$', login_required(detail)),
+    (r'^/detail/(?P<team_id>\d+)/?$', detail),
     (r'^/create/?$', 'django.views.generic.create_update.create_object', 
         dict(model = Team, login_required = True)),
     (r'^/update/(?P<object_id>\d+)/?$', 'django.views.generic.create_update.update_object', 

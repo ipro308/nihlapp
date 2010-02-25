@@ -55,7 +55,7 @@
 </div>
 {% else %}
 {% for club in clubs %}
-<div style="width:445px; height:240px; float:{% cycle 'right' 'left' %};">
+<div style="width:445px; height:175px; float:{% cycle 'right' 'left' %};">
 <h3 style="text-align:center; border-bottom:1px solid #cccccc;">{{ club.name }}</h3>
 <table style="width:425px; margin: 5px" class="records">
 	<tr>
@@ -67,7 +67,7 @@
 		<th style="width:12.5%; text-align:right;"><span title="Ties">Ties</span></th>
 	</tr>
 </table>
-<div style="width:445px; height:175px; overflow:auto;">
+<div style="width:445px; height:101px; overflow:auto;">
 <table style="width: 425px; margin: 5px;" class="records">
 	{% for team in stats %}
 		{% ifequal club team.teamClub %}

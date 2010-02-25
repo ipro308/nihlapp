@@ -7,34 +7,36 @@
 {% block selectedTabRinks %} class="selected"{% endblock %}
 
 {% block detailView %}
-	<fieldset>
-	    <legend class="primary">Rink Detail</legend>
-	    <ul>
-	        <li><label>Rink Name:</label><span>{{ object.name }}</span></li>
-	    </ul>
-	</fieldset> 	     	        
+	<div id="rinkDetails" style="float:right; border:1px solid #ccc; width:40%;">
+		<!-- grab more images fromhttp://www.nihl.info/membersites.html if need! -->
+		<h3 class="primary" style="font-weight:normal;">Team Detail</h3>
+		<table>
+			<tr><td style="font-weight:bold">Rink Name:</td><td>{% autoescape on %}{{ object.name }}{% endautoescape %}</td></tr>
+		</table>
+		
+		<br />
+		
+		<h3 class="primary" style="font-weight:normal;">Rink Address</h3>
+		<table>
+			<tr><td style="font-weight:bold">Address:</td><td>{{ object.address }}, {{ object.state }} {{ object.zip }}</td></tr>
+			<tr><td style="font-weight:bold">Map:</td><td><a href="{{ object.arenaMapsURL }}" title="Map Link">Link</a></td></tr>
+		</table>
+		
 	
-	<fieldset>
-	    <legend class="primary">Rink Address</legend>
-	    <ul>
-	        <li><label>Address:</label><span>{{ object.address }}</span><div class="vd" /></li>
-	        <li><label>State:</label><span>{{ object.state }}</span><div class="vd" /></li>
-	        <li><label>Zipcode:</label><span>{{ object.zip }}</span></li>
-	    </ul>
-	</fieldset> 	
-
-	<fieldset>
-	    <legend class="primary">Rink Contact</legend>
-	    <ul>
-	        <li><label>Contact Name:</label><span>{{ object.contactName }}</span><div class="vd" /></li>
-	        <li><label>Contact Email:</label><span>{{ object.contactEmail }}</span><div class="vd" /></li>
-	        <li><label>Contact Phone:</label><span>{{ object.contactPhone }}</span></li>
-	    </ul>
-	</fieldset> 	
+			<br />
+		
+		<h3 class="primary" style="font-weight:normal;">Rink Contact</h3>
+		<table>
+			<tr><td style="font-weight:bold">Name:</td><td>{{ object.contactName }}</td></tr>
+			<tr><td style="font-weight:bold">Email:</td><td>{{ object.contactEmail }}</td></tr>
+			<tr><td style="font-weight:bold">Phone:</td><td>{{ object.contactPhone }}</td></tr>
+		</table>
+	</div>
 
 	<div class="actions">
 	    <p class="action-links">
 	        <a href="../create">Create Rink</a> | <a href="../update/{{ object.pk }}">Update Rink</a> | <a href="..">List Rinks</a>
 	    </p>
 	</div>
+
 {% endblock %}
