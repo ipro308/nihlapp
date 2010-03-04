@@ -12,7 +12,10 @@ def summary(request):
     url = request.get_full_path()
     
     # dictionaries
-    teams = TeamStats.objects.filter(season = Season.objects.get(isCurrentSeason = True))
+    try:
+        teams = TeamStats.objects.filter(season = Season.objects.get(isCurrentSeason = True))
+    except:
+        teams = []
     stats = list()
     divisions = Division.objects.all()
     levels = SkillLevel.objects.all()

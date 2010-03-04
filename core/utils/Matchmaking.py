@@ -97,7 +97,7 @@ class Matchmaking:
             #print "Slot #",(slotCounter+1),"set"
             slotCounter += 1
         
-        ''' fill-in passes with random matches
+        #fill-in passes with random matches
         numRdyTeams = 0
         maxPasses = self.passTeam
         tempPasses = 0
@@ -127,7 +127,7 @@ class Matchmaking:
         while(slotCounter<(self.gameLimit+maxPasses)):
             while():
                 self.teamList
-        '''
+        
         
         #print schedules for each team
         numRdyTeams = 0
@@ -150,7 +150,7 @@ class Team:
         while (initSched<gameLimit):
             self.sched.append(None)
             initSched += 1
-         
+
     def getName(self):
         return self.teamName
     
@@ -168,7 +168,7 @@ class Team:
     
     def setSlot(self,ind,newSlot):
         self.sched[ind] = newSlot
-        
+    
     def incPasses(self):
         self.numPasses += 1
     
@@ -188,12 +188,12 @@ class Team:
                 if self.sched[self.slotInd] is not None:
                     self.sched[self.slotInd].display()
             self.slotInd += 1
-        
+    
 class Slot:    
     def __init__(self,newHome,newVisit):
         self.homeID = newHome
         self.visitorID = newVisit
-        
+
     def store(self):
         
         # do not store anything for "Pass" team
@@ -231,10 +231,12 @@ class Slot:
         except:
             # silently fail
             pass
-        
+    
     def display(self):
         pass
         #print "Home Team: ",self.homeID,"    Visiting Team: ",self.visitorID
+    
+    
 
 ''' Test section '''
 
