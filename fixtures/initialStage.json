@@ -1121,5 +1121,144 @@
       "domain": "example.com", 
       "name": "example.com"
     }
-  }
+  },
+  {
+        "pk": 1, 
+        "model": "core.eventstatus", 
+        "fields": {
+            "name": "Available"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.eventstatus", 
+        "fields": {
+            "name": "Scheduled"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "core.eventstatus", 
+        "fields": {
+            "name": "Confirmed"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "core.eventstatus", 
+        "fields": {
+            "name": "Completed"
+        }
+    },
+{
+        "pk": 1, 
+        "model": "core.seasonstatus", 
+        "fields": {
+            "name": "Preparation"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.seasonstatus", 
+        "fields": {
+            "name": "Scheduling Seeding Games"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "core.seasonstatus", 
+        "fields": {
+            "name": "Seeding Games"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "core.seasonstatus", 
+        "fields": {
+            "name": "Scheduling Season Games"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "core.seasonstatus", 
+        "fields": {
+            "name": "Season Games"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "core.seasonstatus", 
+        "fields": {
+            "name": "Completed"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "core.parameter", 
+        "fields": {
+            "name": "stats.entry.limit", 
+            "value": "72"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.parameter", 
+        "fields": {
+            "name": "email.prefix", 
+            "value": "NIHL:"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "core.parameter", 
+        "fields": {
+            "name": "email.notifications.enable", 
+            "value": "0"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "core.parameter", 
+        "fields": {
+            "name": "email.from", 
+            "value": "NIHL Application <noreply@nihl.info>"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "core.parameter", 
+        "fields": {
+            "name": "email.noreply", 
+            "value": "noreply@nihl.info"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "core.parameter", 
+        "fields": {
+            "name": "site.hostname", 
+            "value": "nihlapp.vsemenov.webfactional.com"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "core.eventtype", 
+        "fields": {
+            "name": "Seeding Game"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.eventtype", 
+        "fields": {
+            "name": "Season Game"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "core.eventtype", 
+        "fields": {
+            "name": "Practice Game"
+        }
+    }
 ]
