@@ -7,10 +7,17 @@ from datetime import datetime
 
 def summary(request):
     
-    completedStatus = EventStatus.objects.get(name = "Completed")
-    currentSeason = Season.objects.get(isCurrentSeason = True)
+    try:
+        completedStatus = EventStatus.objects.get(name = "Completed") # Possible that no such events exist
+    except:
+        return render_to_response('core/home/summary.html', {})
+        # set event flag
+    try:
+        currentSeason = Season.objects.get(isCurrentSeason = True)
+    except:
+        return render_to_response('core/home/summary.html', {})
+        # set season flag
     
-    # recent events (current season) (completed)
     events = Event.objects.filter(eventStatus = completedStatus, season = currentSeason).order_by('-dateTimeEvent')[:20]
     eventList = list()
     for object in events:

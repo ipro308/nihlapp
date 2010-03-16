@@ -1,0 +1,1264 @@
+[
+  {
+    "pk": 22, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_logentry", 
+      "name": "Can add log entry", 
+      "content_type": 8
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_logentry", 
+      "name": "Can change log entry", 
+      "content_type": 8
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_logentry", 
+      "name": "Can delete log entry", 
+      "content_type": 8
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_group", 
+      "name": "Can add group", 
+      "content_type": 2
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_message", 
+      "name": "Can add message", 
+      "content_type": 4
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_permission", 
+      "name": "Can add permission", 
+      "content_type": 1
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_user", 
+      "name": "Can add user", 
+      "content_type": 3
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_group", 
+      "name": "Can change group", 
+      "content_type": 2
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_message", 
+      "name": "Can change message", 
+      "content_type": 4
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_permission", 
+      "name": "Can change permission", 
+      "content_type": 1
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_user", 
+      "name": "Can change user", 
+      "content_type": 3
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_group", 
+      "name": "Can delete group", 
+      "content_type": 2
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_message", 
+      "name": "Can delete message", 
+      "content_type": 4
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_permission", 
+      "name": "Can delete permission", 
+      "content_type": 1
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_user", 
+      "name": "Can delete user", 
+      "content_type": 3
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_comment", 
+      "name": "Can add comment", 
+      "content_type": 9
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_commentflag", 
+      "name": "Can add comment flag", 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "can_moderate", 
+      "name": "Can moderate comments", 
+      "content_type": 9
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_comment", 
+      "name": "Can change comment", 
+      "content_type": 9
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_commentflag", 
+      "name": "Can change comment flag", 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_comment", 
+      "name": "Can delete comment", 
+      "content_type": 9
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_commentflag", 
+      "name": "Can delete comment flag", 
+      "content_type": 10
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_contenttype", 
+      "name": "Can add content type", 
+      "content_type": 5
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_contenttype", 
+      "name": "Can change content type", 
+      "content_type": 5
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_contenttype", 
+      "name": "Can delete content type", 
+      "content_type": 5
+    }
+  }, 
+  {
+    "pk": 50, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_club", 
+      "name": "Can add club", 
+      "content_type": 17
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_division", 
+      "name": "Can add division", 
+      "content_type": 18
+    }
+  }, 
+  {
+    "pk": 71, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_event", 
+      "name": "Can add event", 
+      "content_type": 24
+    }
+  }, 
+  {
+    "pk": 77, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_eventgoal", 
+      "name": "Can add event goal", 
+      "content_type": 26
+    }
+  }, 
+  {
+    "pk": 86, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_eventgoalkeepersaves", 
+      "name": "Can add event goalkeeper saves", 
+      "content_type": 29
+    }
+  }, 
+  {
+    "pk": 80, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_eventpenalty", 
+      "name": "Can add event penalty", 
+      "content_type": 27
+    }
+  }, 
+  {
+    "pk": 74, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_eventstats", 
+      "name": "Can add event stats", 
+      "content_type": 25
+    }
+  }, 
+  {
+    "pk": 47, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_eventstatus", 
+      "name": "Can add event status", 
+      "content_type": 16
+    }
+  }, 
+  {
+    "pk": 83, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_eventsuspension", 
+      "name": "Can add event suspension", 
+      "content_type": 28
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_eventtype", 
+      "name": "Can add event type", 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 89, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_invitation", 
+      "name": "Can add invitation", 
+      "content_type": 30
+    }
+  }, 
+  {
+    "pk": 68, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_matchup", 
+      "name": "Can add matchup", 
+      "content_type": 23
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_parameter", 
+      "name": "Can add parameter", 
+      "content_type": 13
+    }
+  }, 
+  {
+    "pk": 56, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_penaltyoffense", 
+      "name": "Can add penalty offense", 
+      "content_type": 19
+    }
+  }, 
+  {
+    "pk": 44, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_rink", 
+      "name": "Can add rink", 
+      "content_type": 15
+    }
+  }, 
+  {
+    "pk": 59, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_season", 
+      "name": "Can add season", 
+      "content_type": 20
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_seasonstatus", 
+      "name": "Can add season status", 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_skilllevel", 
+      "name": "Can add skill level", 
+      "content_type": 11
+    }
+  }, 
+  {
+    "pk": 62, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_team", 
+      "name": "Can add team", 
+      "content_type": 21
+    }
+  }, 
+  {
+    "pk": 65, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_userprofile", 
+      "name": "Can add user profile", 
+      "content_type": 22
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_club", 
+      "name": "Can change club", 
+      "content_type": 17
+    }
+  }, 
+  {
+    "pk": 54, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_division", 
+      "name": "Can change division", 
+      "content_type": 18
+    }
+  }, 
+  {
+    "pk": 72, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_event", 
+      "name": "Can change event", 
+      "content_type": 24
+    }
+  }, 
+  {
+    "pk": 78, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_eventgoal", 
+      "name": "Can change event goal", 
+      "content_type": 26
+    }
+  }, 
+  {
+    "pk": 87, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_eventgoalkeepersaves", 
+      "name": "Can change event goalkeeper saves", 
+      "content_type": 29
+    }
+  }, 
+  {
+    "pk": 81, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_eventpenalty", 
+      "name": "Can change event penalty", 
+      "content_type": 27
+    }
+  }, 
+  {
+    "pk": 75, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_eventstats", 
+      "name": "Can change event stats", 
+      "content_type": 25
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_eventstatus", 
+      "name": "Can change event status", 
+      "content_type": 16
+    }
+  }, 
+  {
+    "pk": 84, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_eventsuspension", 
+      "name": "Can change event suspension", 
+      "content_type": 28
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_eventtype", 
+      "name": "Can change event type", 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 90, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_invitation", 
+      "name": "Can change invitation", 
+      "content_type": 30
+    }
+  }, 
+  {
+    "pk": 69, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_matchup", 
+      "name": "Can change matchup", 
+      "content_type": 23
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_parameter", 
+      "name": "Can change parameter", 
+      "content_type": 13
+    }
+  }, 
+  {
+    "pk": 57, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_penaltyoffense", 
+      "name": "Can change penalty offense", 
+      "content_type": 19
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_rink", 
+      "name": "Can change rink", 
+      "content_type": 15
+    }
+  }, 
+  {
+    "pk": 60, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_season", 
+      "name": "Can change season", 
+      "content_type": 20
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_seasonstatus", 
+      "name": "Can change season status", 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_skilllevel", 
+      "name": "Can change skill level", 
+      "content_type": 11
+    }
+  }, 
+  {
+    "pk": 63, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_team", 
+      "name": "Can change team", 
+      "content_type": 21
+    }
+  }, 
+  {
+    "pk": 66, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_userprofile", 
+      "name": "Can change user profile", 
+      "content_type": 22
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_club", 
+      "name": "Can delete club", 
+      "content_type": 17
+    }
+  }, 
+  {
+    "pk": 55, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_division", 
+      "name": "Can delete division", 
+      "content_type": 18
+    }
+  }, 
+  {
+    "pk": 73, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_event", 
+      "name": "Can delete event", 
+      "content_type": 24
+    }
+  }, 
+  {
+    "pk": 79, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_eventgoal", 
+      "name": "Can delete event goal", 
+      "content_type": 26
+    }
+  }, 
+  {
+    "pk": 88, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_eventgoalkeepersaves", 
+      "name": "Can delete event goalkeeper saves", 
+      "content_type": 29
+    }
+  }, 
+  {
+    "pk": 82, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_eventpenalty", 
+      "name": "Can delete event penalty", 
+      "content_type": 27
+    }
+  }, 
+  {
+    "pk": 76, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_eventstats", 
+      "name": "Can delete event stats", 
+      "content_type": 25
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_eventstatus", 
+      "name": "Can delete event status", 
+      "content_type": 16
+    }
+  }, 
+  {
+    "pk": 85, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_eventsuspension", 
+      "name": "Can delete event suspension", 
+      "content_type": 28
+    }
+  }, 
+  {
+    "pk": 43, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_eventtype", 
+      "name": "Can delete event type", 
+      "content_type": 14
+    }
+  }, 
+  {
+    "pk": 91, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_invitation", 
+      "name": "Can delete invitation", 
+      "content_type": 30
+    }
+  }, 
+  {
+    "pk": 70, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_matchup", 
+      "name": "Can delete matchup", 
+      "content_type": 23
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_parameter", 
+      "name": "Can delete parameter", 
+      "content_type": 13
+    }
+  }, 
+  {
+    "pk": 58, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_penaltyoffense", 
+      "name": "Can delete penalty offense", 
+      "content_type": 19
+    }
+  }, 
+  {
+    "pk": 46, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_rink", 
+      "name": "Can delete rink", 
+      "content_type": 15
+    }
+  }, 
+  {
+    "pk": 61, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_season", 
+      "name": "Can delete season", 
+      "content_type": 20
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_seasonstatus", 
+      "name": "Can delete season status", 
+      "content_type": 12
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_skilllevel", 
+      "name": "Can delete skill level", 
+      "content_type": 11
+    }
+  }, 
+  {
+    "pk": 64, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_team", 
+      "name": "Can delete team", 
+      "content_type": 21
+    }
+  }, 
+  {
+    "pk": 67, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_userprofile", 
+      "name": "Can delete user profile", 
+      "content_type": 22
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_session", 
+      "name": "Can add session", 
+      "content_type": 6
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_session", 
+      "name": "Can change session", 
+      "content_type": 6
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_session", 
+      "name": "Can delete session", 
+      "content_type": 6
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "add_site", 
+      "name": "Can add site", 
+      "content_type": 7
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "change_site", 
+      "name": "Can change site", 
+      "content_type": 7
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "auth.permission", 
+    "fields": {
+      "codename": "delete_site", 
+      "name": "Can delete site", 
+      "content_type": 7
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "leagueadmin", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2010-03-16 12:30:12", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$e503b$c5468d58629ced160a141ce61dc02a919fc8467f", 
+      "email": "nihlapp@gmail.com", 
+      "date_joined": "2010-03-16 12:28:52"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "club", 
+      "name": "club", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "comment", 
+      "name": "comment", 
+      "app_label": "comments"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "commentflag", 
+      "name": "comment flag", 
+      "app_label": "comments"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "contenttype", 
+      "name": "content type", 
+      "app_label": "contenttypes"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "division", 
+      "name": "division", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "event", 
+      "name": "event", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "eventgoal", 
+      "name": "event goal", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "eventgoalkeepersaves", 
+      "name": "event goalkeeper saves", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "eventpenalty", 
+      "name": "event penalty", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "eventstats", 
+      "name": "event stats", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "eventstatus", 
+      "name": "event status", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "eventsuspension", 
+      "name": "event suspension", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "eventtype", 
+      "name": "event type", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "group", 
+      "name": "group", 
+      "app_label": "auth"
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "invitation", 
+      "name": "invitation", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "logentry", 
+      "name": "log entry", 
+      "app_label": "admin"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "matchup", 
+      "name": "matchup", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "message", 
+      "name": "message", 
+      "app_label": "auth"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "parameter", 
+      "name": "parameter", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "penaltyoffense", 
+      "name": "penalty offense", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "permission", 
+      "name": "permission", 
+      "app_label": "auth"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "rink", 
+      "name": "rink", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "season", 
+      "name": "season", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "seasonstatus", 
+      "name": "season status", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "session", 
+      "name": "session", 
+      "app_label": "sessions"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "site", 
+      "name": "site", 
+      "app_label": "sites"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "skilllevel", 
+      "name": "skill level", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "team", 
+      "name": "team", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "user", 
+      "name": "user", 
+      "app_label": "auth"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+      "model": "userprofile", 
+      "name": "user profile", 
+      "app_label": "core"
+    }
+  }, 
+  {
+    "pk": "0be2e0ae834f33e6901e5a65632f3269", 
+    "model": "sessions.session", 
+    "fields": {
+      "expire_date": "2010-03-30 12:30:12", 
+      "session_data": "gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k\ncy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEESwF1LjBiMmUzYzNiMWQwNjllZmRkZmMx\nNmM1MGU2YzFlZTNi\n"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "sites.site", 
+    "fields": {
+      "domain": "example.com", 
+      "name": "example.com"
+    }
+  },
+  {
+        "pk": 1, 
+        "model": "core.eventstatus", 
+        "fields": {
+            "name": "Available"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.eventstatus", 
+        "fields": {
+            "name": "Scheduled"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "core.eventstatus", 
+        "fields": {
+            "name": "Confirmed"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "core.eventstatus", 
+        "fields": {
+            "name": "Completed"
+        }
+    },
+{
+        "pk": 1, 
+        "model": "core.seasonstatus", 
+        "fields": {
+            "name": "Preparation"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.seasonstatus", 
+        "fields": {
+            "name": "Scheduling Seeding Games"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "core.seasonstatus", 
+        "fields": {
+            "name": "Seeding Games"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "core.seasonstatus", 
+        "fields": {
+            "name": "Scheduling Season Games"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "core.seasonstatus", 
+        "fields": {
+            "name": "Season Games"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "core.seasonstatus", 
+        "fields": {
+            "name": "Completed"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "core.parameter", 
+        "fields": {
+            "name": "stats.entry.limit", 
+            "value": "72"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.parameter", 
+        "fields": {
+            "name": "email.prefix", 
+            "value": "NIHL:"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "core.parameter", 
+        "fields": {
+            "name": "email.notifications.enable", 
+            "value": "0"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "core.parameter", 
+        "fields": {
+            "name": "email.from", 
+            "value": "NIHL Application <noreply@nihl.info>"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "core.parameter", 
+        "fields": {
+            "name": "email.noreply", 
+            "value": "noreply@nihl.info"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "core.parameter", 
+        "fields": {
+            "name": "site.hostname", 
+            "value": "nihlapp.vsemenov.webfactional.com"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "core.eventtype", 
+        "fields": {
+            "name": "Seeding Game"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.eventtype", 
+        "fields": {
+            "name": "Season Game"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "core.eventtype", 
+        "fields": {
+            "name": "Practice Game"
+        }
+    }
+]
