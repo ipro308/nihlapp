@@ -4,7 +4,6 @@
 }
 
 html {
-	background-color:#EBEBEB;
 	height: 100%;
 	font-family:"Trebuchet MS",Verdana,"Lucida Grande",Georgia,Sans-Serif;
 	font-size:10px;
@@ -32,16 +31,6 @@ ul {
 	line-height: 14pt;	
 }
 
-body {
-	margin:0;
-	padding:0;
-	background-image:url(/static/images/ui/body_bg_1024.png);
-	background-position:left top;
-	background-repeat:repeat-y;
-	margin:0 auto;
-	padding:0;
-	width:1024px;	
-}
 
 table tr th {
 	text-align: left;
@@ -1294,40 +1283,6 @@ input.stylish {
 	padding:2px 5px;
 	font-weight:normal;
 }
-
-#footer {
-    width: 500px;
-    height: 24px;
-    margin: auto;
-    padding: 1em 0 2em;
-	text-align: center;
-	font-size: 1em;
-	color: #454545;
-}
-
-#footer .caps div {
-    float: left;
-    width: 5px;
-    height: 24px;
-}
-#footer .caps div.right {
-    float: right;
-    background-position: 5px 0;
-}
-
-#footer p {
-    display: block;
-    height: 12px;
-    margin: 0 5px;
-    padding: 6px;
-    line-height: 12px;
-}
-
-#footer a {
-	color: #222;
-}
-
-
 
 td.padding {
 	padding: 2px;
