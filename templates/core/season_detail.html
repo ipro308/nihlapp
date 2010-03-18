@@ -10,9 +10,17 @@
 	<fieldset>
 	    <legend class="primary">Season Detail</legend>
 	    <ul>
-			{% for rink in rinks %}
-	        <li><label>Rink Name:</label><span>{{ rink.name }}</span></li>
-				{% endfor %}
+				<li><label>Seeding Begin Date:</label> <span>{{ object.seedingBeginDate }}</span></li>
+				<li><label>Seeding Schedule Deadline:</label><span> {{ object.seedingSchedDeadline }}</span></li>
+				<li><label>Seeding Stat Deadline:</label><span> {{ object.seedingStatDeadline }}</span></li>
+				<li><label>Season Begin Date:</label><span> {{ object.seasonBeginDate }}</span></li>
+				<li><label>Season Stat Deadline:</label><span> {{ object.seasonStatDeadline }}</span></li>
+				<li><label>Season Ends: </label><span> {{ object.seasonEnd }}</span></li>
+				{% comment %}
+					{% for rink in rinks_queryset %}
+		        <li><label>Rink Name:</label><span>{{ rink.name }}</span></li>
+					{% endfor %}
+				{% endcomment %}
 	    </ul>
 	</fieldset> 	     	        
 	

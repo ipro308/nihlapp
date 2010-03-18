@@ -1,6 +1,4 @@
 from django.views.generic.list_detail import object_list
-from django.views.generic.list_detail import object_list
-from django.views.generic.list_detail import object_list
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from nihlapp.core.models import Season, SeasonStatus, Division, SkillLevel, Team, Rink
