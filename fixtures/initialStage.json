@@ -1260,5 +1260,600 @@
         "fields": {
             "name": "Practice Game"
         }
+    },
+    {
+        "pk": 1, 
+        "model": "core.userprofile", 
+        "fields": {
+            "confirmed": null, 
+            "confirmation": null, 
+            "club": 1, 
+            "phone": "123", 
+            "user": 1, 
+            "team": 1, 
+            "email": "nihlapp@gmail.com"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "core.team", 
+        "fields": {
+            "coachEmail": "sentinel@sentinel.org", 
+            "division": 1, 
+            "managerPhone": "", 
+            "name": "Sentinel Team", 
+            "club": 1, 
+            "season": 1, 
+            "coachPhone": "", 
+            "skillLevel": 6, 
+            "managerEmail": "rkremkow22@yahoo.com", 
+            "coachName": "Tom Miller", 
+            "managerName": "Robb Kremkow"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "core.division", 
+        "fields": {
+            "contactEmail": "", 
+            "contactPhone": "", 
+            "name": "Mite", 
+            "contactName": ""
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.division", 
+        "fields": {
+            "contactEmail": "", 
+            "contactPhone": "", 
+            "name": "Squirts", 
+            "contactName": ""
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "core.division", 
+        "fields": {
+            "contactEmail": "", 
+            "contactPhone": "", 
+            "name": "Peewees", 
+            "contactName": ""
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "core.division", 
+        "fields": {
+            "contactEmail": "", 
+            "contactPhone": "", 
+            "name": "Bantams", 
+            "contactName": ""
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "core.penaltyoffense", 
+        "fields": {
+            "name": "Hooking"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.penaltyoffense", 
+        "fields": {
+            "name": "Cross-Checking"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "core.penaltyoffense", 
+        "fields": {
+            "name": "Holding"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "core.penaltyoffense", 
+        "fields": {
+            "name": "Slashing"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "core.penaltyoffense", 
+        "fields": {
+            "name": "Tripping"
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "core.skilllevel", 
+        "fields": {
+            "name": "Bronze T1", 
+            "weight": 1
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.skilllevel", 
+        "fields": {
+            "name": "Silver T1", 
+            "weight": 3
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "core.skilllevel", 
+        "fields": {
+            "name": "Silver T2", 
+            "weight": 4
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "core.skilllevel", 
+        "fields": {
+            "name": "Silver T3", 
+            "weight": 5
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "core.skilllevel", 
+        "fields": {
+            "name": "Gold", 
+            "weight": 6
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "core.skilllevel", 
+        "fields": {
+            "name": "Elite", 
+            "weight": 7
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "core.skilllevel", 
+        "fields": {
+            "name": "Bronze T2", 
+            "weight": 2
+        }
+    },
+    {
+        "pk": 1, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Highland Park", 
+            "contactPhone": "", 
+            "name": "Falcons Hockey Club", 
+            "zip": "60035", 
+            "contactEmail": "president@falconshockey.org", 
+            "state": "IL", 
+            "contactName": "Guy Considine", 
+            "address": "3100 Trailway Dr."
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Bensenville", 
+            "contactPhone": "", 
+            "name": "Chicago Blues Hockey", 
+            "zip": "60106", 
+            "contactEmail": "salamone@chicagoblueshockey.org", 
+            "state": "IL", 
+            "contactName": "Joe Salamone", 
+            "address": "735 E. Jefferson St."
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Bolingbrook", 
+            "contactPhone": "", 
+            "name": "Sabres Hockey", 
+            "zip": "60490", 
+            "contactEmail": "jclare@sabrehockey.com", 
+            "state": "IL", 
+            "contactName": "Jim Clare", 
+            "address": "749 Metropolitan Ave."
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Romeoville", 
+            "contactPhone": "", 
+            "name": "Huskies", 
+            "zip": "60446", 
+            "contactEmail": "bgraham@huskieshockeyclub.com", 
+            "state": "IL", 
+            "contactName": "Bob Graham", 
+            "address": "1581 W. Normantown Rd."
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Glenview", 
+            "contactPhone": "", 
+            "name": "Glenview Stars Hockey", 
+            "zip": "60025", 
+            "contactEmail": "dsdm1236@sbcglobal.net", 
+            "state": "IL", 
+            "contactName": "Stephie Arkus", 
+            "address": "1851 Landwehr Rd."
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Wilmette", 
+            "contactPhone": "", 
+            "name": "Wilmette Hockey", 
+            "zip": "60091", 
+            "contactEmail": "jjgrifman@comcast.net", 
+            "state": "IL", 
+            "contactName": "Jim Griffin", 
+            "address": "P.O. Box 477"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Chicago", 
+            "contactPhone": "", 
+            "name": "Express Hockey", 
+            "zip": "60631", 
+            "contactEmail": "Gasman127@aol.com", 
+            "state": "IL", 
+            "contactName": "Jimmy Wright", 
+            "address": "6757 N. Odell"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Winnetka", 
+            "contactPhone": "", 
+            "name": "Winnetka", 
+            "zip": "60093", 
+            "contactEmail": "erl@willmont.com", 
+            "state": "IL", 
+            "contactName": "Eric Lifvendahl", 
+            "address": "490 Hibbard Rd"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Vernon Hills", 
+            "contactPhone": "", 
+            "name": "Ice Dogs Hockey", 
+            "zip": "60061", 
+            "contactEmail": "Shellist@comcast.net", 
+            "state": "IL", 
+            "contactName": "Marc Shellist", 
+            "address": "PO Box 5043"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Orland Park", 
+            "contactPhone": "", 
+            "name": "Vikings", 
+            "zip": "60467", 
+            "contactEmail": "robert.apter@ubs.com", 
+            "state": "IL", 
+            "contactName": "Bob Apter", 
+            "address": "10700 W. 160th Street"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Chicago", 
+            "contactPhone": "", 
+            "name": "Chicago Jets Hockey Club", 
+            "zip": "60610", 
+            "contactEmail": "barberkatie@yahoo.com", 
+            "state": "IL", 
+            "contactName": "Katie Barber", 
+            "address": "1520 N. Dearborn"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Palatine", 
+            "contactPhone": "", 
+            "name": "Chargers", 
+            "zip": "60074", 
+            "contactEmail": "jimz100@comcast.net", 
+            "state": "IL", 
+            "contactName": "Jim Zeman", 
+            "address": "1936 Capri Drive"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Barrington", 
+            "contactPhone": "", 
+            "name": "Redwings Hockey Organization", 
+            "zip": "60011", 
+            "contactEmail": "rjohnson@isk-industries.com", 
+            "state": "IL", 
+            "contactName": "Robert Johnson", 
+            "address": "P.O. Box 393"
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "core.club", 
+        "fields": {
+            "city": "West Dundee", 
+            "contactPhone": "", 
+            "name": "Leafs Hockey Club", 
+            "zip": "60118", 
+            "contactEmail": "president@leafshockeyclub.net", 
+            "state": "IL", 
+            "contactName": "Danielle Gulli", 
+            "address": "801 Wesemann Dr"
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Crystal Lake", 
+            "contactPhone": "", 
+            "name": "Yellow Jackets", 
+            "zip": "60014", 
+            "contactEmail": "keith.vandamme@firewagonhockey.com", 
+            "state": "IL", 
+            "contactName": "Keith Van Damme", 
+            "address": "5820 Wild Plum Road"
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "core.club", 
+        "fields": {
+            "city": "South Elgin", 
+            "contactPhone": "", 
+            "name": "Cyclones", 
+            "zip": "60177", 
+            "contactEmail": "tommcgee29@gmail.com", 
+            "state": "IL", 
+            "contactName": "Tom McGee", 
+            "address": "627 Waterside Drive"
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Darien", 
+            "contactPhone": "", 
+            "name": "Chicago Hawks Hockey Club", 
+            "zip": "60561", 
+            "contactEmail": "joem@maxib.com", 
+            "state": "IL", 
+            "contactName": "Joe Messina", 
+            "address": "451 Plainfield Rd."
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Northbrook", 
+            "contactPhone": "", 
+            "name": "Northbrook Bluehawks", 
+            "zip": "60062", 
+            "contactEmail": "pday100@comcast.net", 
+            "state": "IL", 
+            "contactName": "Pete Day", 
+            "address": "1730 Pfingsten Road"
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Lombard", 
+            "contactPhone": "", 
+            "name": "Chicago Bruins", 
+            "zip": "60101", 
+            "contactEmail": "president@chicagobruinshockey.com", 
+            "state": "IL", 
+            "contactName": "Mike Determann", 
+            "address": "475 South Grace Street"
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "core.club", 
+        "fields": {
+            "city": "South Bend", 
+            "contactPhone": "", 
+            "name": "Irish Youth Hockey League", 
+            "zip": "46619", 
+            "contactEmail": "chrisk@compassadgroup.com", 
+            "state": "IN", 
+            "contactName": "Chris Kleva", 
+            "address": "1421 S. Walnet Street"
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Crestwood", 
+            "contactPhone": "", 
+            "name": "St. Jude Knights", 
+            "zip": "60445", 
+            "contactEmail": "dpgulley@comcast.net", 
+            "state": "IL", 
+            "contactName": "Dave Gulley", 
+            "address": "5505 West 127th Street"
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Glen Ellyn", 
+            "contactPhone": "", 
+            "name": "Admirals", 
+            "zip": "60137", 
+            "contactEmail": "msangiacomo@admiralshockeyclub.com", 
+            "state": "IL", 
+            "contactName": "Mickey Sangiacomo", 
+            "address": "1N450 Highland Ave."
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Skokie", 
+            "contactPhone": "", 
+            "name": "Skokie Flyers Hockey Club", 
+            "zip": "60077", 
+            "contactEmail": "joan.fujii@flyershockey.com", 
+            "state": "IL", 
+            "contactName": "Joan Fuji", 
+            "address": "9300 Weber Park Place"
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Peoria", 
+            "contactPhone": "", 
+            "name": "Peoria Youth Hockey", 
+            "zip": "61615", 
+            "contactEmail": "dcassidy@cassidymueller.com", 
+            "state": "IL", 
+            "contactName": "Drew Cassidy", 
+            "address": "2213 W. Riviera Drive"
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Evanston", 
+            "contactPhone": "", 
+            "name": "Evanston Wildkits", 
+            "zip": "60202", 
+            "contactEmail": "skirkpatrick63@gmail.com", 
+            "state": "IL", 
+            "contactName": "Scott Kirkpatrick", 
+            "address": "1701 Main Street"
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Pekin", 
+            "contactPhone": "", 
+            "name": "Pekin Dragons", 
+            "zip": "61554", 
+            "contactEmail": "hartleyc@KCI1.com", 
+            "state": "IL", 
+            "contactName": "Chad Hartley", 
+            "address": "1701 Court St."
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Lincolnwood", 
+            "contactPhone": "", 
+            "name": "Chicago Young Americans", 
+            "zip": "60712", 
+            "contactEmail": "Louis@allmasonry.com", 
+            "state": "IL", 
+            "contactName": "Louis Puig", 
+            "address": "7384 Lincoln Ave."
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Woodridge", 
+            "contactPhone": "", 
+            "name": "Chicago Mission ", 
+            "zip": "60517", 
+            "contactEmail": "danandandreahahn@aol.com", 
+            "state": "IL", 
+            "contactName": "Andrea Hahn", 
+            "address": "6690 South Rt. 53"
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Rockford", 
+            "contactPhone": "", 
+            "name": "Rockford Hockey Club", 
+            "zip": "61107", 
+            "contactEmail": "president@rockfordhockeyclub.com", 
+            "state": "IL", 
+            "contactName": "Jerry Colarossi", 
+            "address": "111 N. Madison St"
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Dyer", 
+            "contactPhone": "", 
+            "name": "Midwest Maniax", 
+            "zip": "46311", 
+            "contactEmail": "midwestice06@yahoo.com", 
+            "state": "IN", 
+            "contactName": "Brent Giffin", 
+            "address": "10600 White Oak Ave."
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "core.club", 
+        "fields": {
+            "city": "", 
+            "contactPhone": "", 
+            "name": "Jaguar Hockey Club", 
+            "zip": "", 
+            "contactEmail": "bspreeman18@hotmail.com", 
+            "state": "", 
+            "contactName": "Brian Spreeman", 
+            "address": ""
+        }
     }
 ]
