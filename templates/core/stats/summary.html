@@ -20,6 +20,7 @@
 		<tr>
 			<td><span style="font-weight:bold;font-size:11pt;">Narrow Teams by Division</span></td>
 			<td><span style="font-weight:bold;font-size:11pt;">By Level</span></td>
+			<td><span style="font-weight:bold;font-size:11pt;">By Club</span></td>
 		</tr>
 		<tr>
 			<td>
@@ -86,7 +87,7 @@
 </div>
 {% else %}
 {% for club in clubs %}
-<div style="width:445px; height:175px; float:{% cycle 'right' 'left' %};">
+<div style="width:445px; height:175px; float:{% cycle 'left' 'right' %};">
 <h3 style="text-align:center; border-bottom:1px solid #cccccc;">{{ club.name }}</h3>
 <table style="width:425px; margin: 5px" class="records">
 	<tr>

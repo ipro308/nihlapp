@@ -67,5 +67,5 @@
 	<td>{{ object.seedingBeginDate }}</td>
 	<td>{{ object.seasonEnd }}</td>
     <td>{{ object.seasonStatus }}</td>
-    <td>{{ object.isCurrentSeason }}</td>
+    <td>{% ifequal object.isCurrentSeason 1 %}<img src="/static/images/icons/accept.png" style="margin-left:17px;"/>{% endifequal %}</td>
 {% endblock %}
