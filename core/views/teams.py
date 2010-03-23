@@ -28,9 +28,11 @@ def create_team(request):
 	msg = ''
 	if request.method == 'POST':
 		form = CreateTeamForm(request.POST)
-		if form.isValid():
+		if form.is_valid():
 			form.save()
 			msg = "Team succesfully created."
+			if POST['submit'] == 'add manager':
+				HttpResponseRedirect('/accounts/create')		
 	else:
 		form = CreateTeamForm()
-	return render_to_response('core/generic_form.html',{'form': form})
+	return render_to_response('core/custom_forms/team_create_form.html',{'form': form})

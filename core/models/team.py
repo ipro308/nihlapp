@@ -52,7 +52,7 @@ class CreateTeamForm(forms.Form):
 			managerPhone = self.cleaned_data['managerPhone'],
 			coachName = self.cleaned_data['coachName'],
 			coachEmail = self.cleaned_data['coachEmail'],
-			coachPhone = self.cleaned_data['coachPhone'],				
+			coachPhone = self.cleaned_data['coachPhoe'],
 			)
 		new_team.save()
 		return new_team
