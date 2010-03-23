@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User, Group
 from nihlapp.core.models import User, Team, Club 
@@ -28,7 +29,7 @@ class CreateUserForm(forms.Form):
     firstName = forms.CharField(max_length=30)
     lastName = forms.CharField(max_length=30)
     group = forms.ModelChoiceField(label='Group', queryset=Group.objects.all().order_by('name'))
-    team = forms.ModelChoiceField(label='Team', queryset=Team.objects.all().order_by('name'))
+    team = forms.ModelChoiceField(label='Team', queryset=Team.objects.all().order_by('name')) #, initial=Team.objects.get(name='default'))
     club = forms.ModelChoiceField(label='Club', queryset=Club.objects.all().order_by('name'))
     email = forms.EmailField(max_length=50)
     phone = forms.CharField(max_length=10, required = False)

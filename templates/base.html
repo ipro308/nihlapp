@@ -1,294 +1,228 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<!-- start head -->
-<head>
-	<title>NIHL - Test</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="icon" type="image/vnd.microsoft.icon" href="/static/favicon.ico" />
-	<meta http-equiv="Content-Language" content="en" />
-	<meta http-equiv="Pragma" content="no-cache" />
-	<meta name="description" content="" />
-	<meta name="copyright" content="" />
-	<meta name="author" content="" />
-	<meta name="keywords" content="" />
-	<meta name="robots" content="noindex, nofollow" />
-	<link rel="shortcut icon" href="/static/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="/static/css/base.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="/static/css/jquery-ui-1.7.2.custom.css" media="all" />
-	{% block css %}{% endblock %}
-<style type="text/css">
-* {
-    padding: 0;
-    margin: 0;
-    font-family: "Trebuchet MS", Verdana, "Lucida Grande", Georgia, Sans-Serif;
-    font-size: 100%;
-    font-weight: normal;
-}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<title>NIHL - Test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" type="image/vnd.microsoft.icon" href="/static/favicon.ico" />
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta name="description" content="" />
+<meta name="copyright" content="" />
+<meta name="author" content="" />
+<meta name="keywords" content="" />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="shortcut icon" href="/static/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="/static/css/base.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/static/css/jquery-ui-1.7.2.custom.css" media="all" />
+{% block css %}{% endblock %}
 
-img, fieldset {
-    border: 0;
-}
-
-ol {
-    margin-left: 0em;
-    list-style: decimal;
-}
-
-ul {
-    margin-left: 0em;
-    list-style: none;
-}
-
-/****** Style starts here ********/
-body {
-    color: #333;
-    font-size: 14px;
-    text-align: left;
-}
-
-h1, h2, h3, h4 {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-h2 {
-    font-size: 1.2em;
-}
-
-h3 {
-    font-size: 1em;
-}
-
-div#wrapper {
-    background-color: #FFF;
-    margin: 20px auto;
-    width: 70%;
-    min-width: 800px;
-    max-width: 1024px;
-}
-
-div#header {
-    width: 100%;
-    height: 140px;
-    overflow: hidden;
-    border-bottom: 1px solid #282626;
-    position: relative;
-    background: url('/static/images/topbanner.jpg');
-}
-
-#header #logo {
-    float: left;
-    width: 180px;
-}
-
-#header #headerLinks {
-    float: right;
-    width: 80%;
-    height: 100%;
-    position: relative;
-}
-
-#header ul li {
-    float: right;
-}
-
-#header ul li a {
-    text-decoration: none;
-    font-size: 13px;
-	color: #222;
-}
-
-#header #externalLinks {
-    position: absolute;
-    top: 5px;
-    right: 0;
-}
-
-#header #externalLinks li {
-    padding: 5px 5px 0 0;
-}
-
-#header ul#externalLinks li a {
-    border-bottom: 1px dashed #CCC;
-}
-
-ul#mainNavigation {
-    overflow: hidden;
-    border-top: 1px solid #c4c5ba;
-    width: 100%;
-    height: 30px;
-    background-color: #353535;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-ul#mainNavigation li {
-    float: left;
-    background-color: #2f6ed2;
-    margin: 0 9px 0 1px;
-}
-
-ul#mainNavigation li a {
-	color: #e9e9e9;
-    padding: 7px 14px 7px 14px;
-    display: block;
-    font-weight: bold;
-    text-transform: capitalize;
-    font-family: Tahoma, Verdana, Arial, Sans-serif;;
-}
-
-ul#mainNavigation li:hover {
-    background-color: #bdbdbd;
-
-}
-
-ul#mainNavigation li a:hover{
-	  color: #000;
-}
-
-#contentWrapper {
-    padding-top: 0px;
-    overflow: auto;
-	border-right: 1px solid #CCC;
-	border-left: 1px solid #CCC;
-}
-#sidebar, #mainContent {
-	padding-bottom: 20px;
-}
-
-#sidebar {
-    float: left;
-    width: 0px;
-    height: 100%;
-    border-right: 1px solid green;
-}
-
-#semesterlist {
-    border: 3px solid #c6e1ff;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    background-color: #FFFFFF;
-}
-
-#mainContent {
-    width: 96%;
-    float: right;
-    min-height: 300px;
-    border-left: 1px solid blue;
-    padding: 20px 20px;
-}
-
-.content {
-    padding-top: 10px;
-}
-
-#footer {
-    font-size: .8em;
-    border: 1px solid #CCC;
-    padding: 10px;
-    height: 50px;
-}
-
-#footer a {
-	color:#353535;
-    text-decoration: none;
-}
-#footer #copyright a {
-	margin: 0 10px 0 10px;
-}
-
-#footer #copyright {
-    float: left;
-    font-weight: 600;
-    color: #585858;
-}
-
-#footer #footerLinks {
-    float: right;
-}
-
-#footer ul#footerLinks li {
-    display: inline;
-    margin-right: 10px;
-}
-
-.clear {
-    clear: both;
-}
-</style>
-<title>iGroups</title>
-</head>
-<!-- end head -->
-
-<body>
-	<!-- start wrapper -->
-	<div id="wrapper">
-
-	<!-- header -->
-	<div id ="header">
-		<a id="iproLogo" href="">
-			<!--<img src="images/iGroupslogo.png" alt="iGroups Logo" /> -->
-		</a>
-
-			    <!-- external links -->
-				<ul id="externalLinks">
-					{% if user.is_authenticated %}
-				<li>Logged in as <b>{{ user.first_name }} {{ user.last_name }}</b> [<i><a href="/accounts/detail/{{ user.pk }}">{{ user.username }}</a></i>]</a>, <a href="/accounts/logout">Logout</a></li>
-					{% if user.is_superuser %}
-					<li{% block selectedTabAccounts %}{% endblock %}><a href="/accounts"  onmouseover="mopen('m9')" onmouseout="mclosetime()">Accounts</a></li>
-						{% endif %}
-					{% else %}
-				<li><a href="/accounts/login">Login</a></li>
-					{% endif %}
-				</ul><!-- end external links -->
-
-			    <!-- internal links/main navigation -->
-
-				<ul id="mainNavigation">
-					<li {% block selectedTabHome %}{% endblock %}><a href="/" onmouseover="mopen('m1')" onmouseout="mclosetime()">Home</a></li>
-					<li {% block selectedTabStats %}{% endblock %}><a href="/stats" onmouseover="mopen('m2')" onmouseout="mclosetime()">Standings</a></li>
-					<li{% block selectedTabSchedule %}{% endblock %}><a href="/schedule" onmouseover="mopen('m3')" onmouseout="mclosetime()">Schedule</a></li>
-					<li{% block selectedTabSeasons %}{% endblock %}><a href="/seasons" onmouseover="mopen('m4')" onmouseout="mclosetime()">Seasons</a></li>
-					<li{% block selectedTabTeams %}{% endblock %}><a href="/teams" onmouseover="mopen('m5')" onmouseout="mclosetime()">Teams</a></li>
-					<li{% block selectedTabClubs %}{% endblock %}><a href="/clubs"  onmouseover="mopen('m6')" onmouseout="mclosetime()">Clubs</a></li>
-					<li{% block selectedTabDivisions %}{% endblock %}><a href="/divisions"  onmouseover="mopen('m7')" onmouseout="mclosetime()">Divisions</a></li>
-					<li{% block selectedTabRinks %}{% endblock %}><a href="/rinks"  onmouseover="mopen('m8')" onmouseout="mclosetime()">Rinks</a></li>
-				</ul><!-- end internal links -->
-	</div><!--end header-->
-
-	<!-- start main -->
-	<div id="contentWrapper">
-		<!-- start sidebar -->
-		<!--<div id="sidebar" class="content">
-
-		</div>--><!-- end sidebar -->
-
-		<!-- start maincontent -->
-		<div id="mainContent" class="content">
-			{% block content %}{% endblock %}
-		</div><!-- end maincontent -->
-    </div><!-- end main -->
-
-	<!-- start footer-->
-	<div id ="footer">
-		<!-- start copyright statement -->
-			<p id="copyright">NIHL &copy; 2009 &nbsp;<a href="">Northern Illinois Hockey League</a></p>
-			<!-- end copyright statement -->
-			<ul id="footerLinks">
-					<li><a href="">Link</a></li>
-					<li><a href="">Link</a></li>
-					<li><a href="">Link</a></li>
-					<li><a href="">Link</a></li>
-			</ul>
-	</div><!--end footer-->
-
-	</div><!-- end wrapper -->
-
-</body>
+<!-- move this to the bottom -->
 <script type="text/javascript" src="/static/js/jquery.js"></script>
 <script type="text/javascript" src="/static/js/jquery-ui-1.7.2.custom.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.tooltip.pack.js"></script>
 <script type="text/javascript" src="/static/js/base.js"></script>
 <script type="text/javascript" src="/static/js/dropdown.js"></script>
+</head>
+<body>
+<div id="canvas">
+    <div id="page">
+        <div id="header">
+            <h1 class="logo"><a href="/" class="notext"><span></span></a></h1>
+            <span id="apptitle">Northern Illinois Hockey League</span>
+        </div>
+
+        <div id="login-panel">
+{% if user.is_authenticated %}
+<span style="font-size: 12px;">Logged in as <b>{{ user.first_name }} {{ user.last_name }}</b> [<i><a href="/accounts/detail/{{ user.pk }}">{{ user.username }}</a></i>]</a>, <a href="/accounts/logout">Logout</a></span>
+{% else %}
+<span style="font-size: 14px;"><a href="/accounts/login">Login</a></span>
+{% endif %}
+</div>
+
+        <div id="navbar">
+
+        </div>
+
+
+
+    <div id="nav-container">
+
+      <div id="nav">
+<ul class="navlist">
+<li {% block selectedTabHome %}{% endblock %}><a href="/" onmouseover="mopen('m1')" onmouseout="mclosetime()"><span>Home</span></a></li>
+<li {% block selectedTabStats %}{% endblock %}><a href="/stats" onmouseover="mopen('m2')" onmouseout="mclosetime()"><span>Standings</span></a></li>
+<li{% block selectedTabSchedule %}{% endblock %}><a href="/schedule" onmouseover="mopen('m3')" onmouseout="mclosetime()"><span>Schedule</span></a></li>
+<li{% block selectedTabSeasons %}{% endblock %}><a href="/seasons" onmouseover="mopen('m4')" onmouseout="mclosetime()"><span>Seasons</span></a></li>
+<li{% block selectedTabTeams %}{% endblock %}><a href="/teams" onmouseover="mopen('m5')" onmouseout="mclosetime()"><span>Teams</span></a></li>
+<li{% block selectedTabClubs %}{% endblock %}><a href="/clubs" onmouseover="mopen('m6')" onmouseout="mclosetime()"><span>Clubs</span></a></li>
+<li{% block selectedTabDivisions %}{% endblock %}><a href="/divisions" onmouseover="mopen('m7')" onmouseout="mclosetime()"><span>Divisions</span></a></li>
+<li{% block selectedTabRinks %}{% endblock %}><a href="/rinks" onmouseover="mopen('m8')" onmouseout="mclosetime()"><span>Rinks</span></a></li>
+{% if user.is_authenticated %}
+{% if user.is_superuser %}
+<li{% block selectedTabAccounts %}{% endblock %}><a href="/accounts" onmouseover="mopen('m9')" onmouseout="mclosetime()"><span>Accounts</span></a></li>
+{% endif %}
+{% endif %}
+</ul>
+
+</div>
+
+</div>
+
+        <div id="body">
+            <!--<div class="header">
+
+<div class="caps">
+<div class="left"></div>
+<div class="right"></div>
+</div>
+<div class="fill">
+<h2 class="left"><a href="..">{% block section %}{% endblock %}</a>:</h2>
+<h3 class="left"><span class="bullet"></span>{% block title %}{% endblock %}</h3>
+</div>
+</div>-->
+            <div class="content">
+                <div class="corners top">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+                <div class="corners bottom">
+                    <div class="left"></div>
+                    <div class="right"></div>
+
+                </div>
+                <div class="sides">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+<ul id="sddm">
+<li>
+<div id="m1"
+onmouseover="mcancelclosetime()"
+onmouseout="mclosetime()"
+style="float:left; position:absolute; left:10px; width:72px; z-index:30;">
+<a href="/">Summary</a>
+<a href="/home/deadlines">Deadlines</a>
+<!--<a href="/help">Help</a>-->
+<a href="/help/faq">FAQ</a>
+</div>
+</li>
+<li>
+<div id="m2"
+onmouseover="mcancelclosetime()"
+onmouseout="mclosetime()"
+style="float:left; position:absolute; left:92px; width:100px; z-index:30;">
+<a href="/stats">Summary</a>
+<a href="/stats/seeding">Seeding Games</a>
+<a href="/stats/season">Season Games</a>
+<a href="/stats/record">Record Stats</a>
+</div>
+</li>
+<li>
+<div id="m3"
+onmouseover="mcancelclosetime()"
+onmouseout="mclosetime()"
+style="float:left; left:202px; position:absolute; z-index:30;">
+<a href="/schedule">Upcoming Games</a>
+<a href="/schedule/recent">Recent Games</a>
+<a href="/schedule/matchups">My Team's Matchups</a>
+<a href="/schedule/create">Home Rink Schedule</a>
+</div>
+</li>
+
+<li>
+<div id="m4"
+onmouseover="mcancelclosetime()"
+onmouseout="mclosetime()"
+style="float:left; left:307px; position:absolute; z-index:30;">
+<a href="/seasons">Seasons</a>
+<a href="/seasons/create">Create Season</a>
+</div>
+</li>
+
+<li>
+<div id="m5"
+onmouseover="mcancelclosetime()"
+onmouseout="mclosetime()"
+style="float:left; left:409px; position:absolute; z-index:30;">
+<a href="/teams">Teams</a>
+<a href="/teams/create">Create Team</a>
+</div>
+</li>
+
+<li>
+<div id="m6"
+onmouseover="mcancelclosetime()"
+onmouseout="mclosetime()"
+style="float:left; left:497px; position:absolute; z-index:30;">
+<a href="/clubs">Clubs</a>
+<a href="/clubs/create">Create Club</a>
+</div>
+</li>
+
+<li>
+<div id="m7"
+onmouseover="mcancelclosetime()"
+onmouseout="mclosetime()"
+style="float:left; left:577px; position:absolute; width:94px; z-index:30;">
+<a href="/divisions">Divisions</a>
+<a href="/divisions/create">Create Division</a>
+</div>
+</li>
+
+<li>
+<div id="m8"
+onmouseover="mcancelclosetime()"
+onmouseout="mclosetime()"
+style="float:left; left:681px; position:absolute;">
+<a href="/rinks">Rinks</a>
+<a href="/rinks/create">Create Rink</a>
+</div>
+</li>
+
+<li>
+<div id="m9"
+onmouseover="mcancelclosetime()"
+onmouseout="mclosetime()"
+style="float:left; left:760px; position:absolute; z-index:30;">
+<a href="/accounts">Accounts</a>
+<a href="/accounts/create">Create Account</a>
+</div>
+</li>
+
+
+</ul>
+<div style="clear:both"></div>
+                <div id="content_area" class="inner_canvas">
+
+<!-- {% block tabs %}{% endblock %} -->
+
+
+
+<div style="margin-left:10px; margin-right:10px;">
+
+{% block content %}{% endblock %}
+
+</div>
+
+<div class="clear"></div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="caps">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+                <div class="fill"></div>
+            </div>
+        </div>
+    </div>
+<div class="bottom-area">
+<div>Copyright (C) 2009 <a href="http://www.iit.edu/">Illinois Institute of Technology</a>, <a href="http://www.nihl.info/">Northern Illinois Hockey League</a></div>
+<div><a href="/help">Help</a> | <a href="/help/faq">Frequently Asked Questions</a> | <a href="/notify">Contact League Administrators</a></div>
+</div>
+</div>
+</div>
+<div class="bottom-area-left-corner"></div>
+<div class="bottom-area-bg"></div>
+<div class="bottom-area-right-corner"></div>
+</body>
 </html>

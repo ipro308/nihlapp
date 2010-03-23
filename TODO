@@ -1,0 +1,11 @@
+Team account/user coupling
+========================================
+make team creation form
+make team creation view
+	-redirects to team user creation
+make team user creation form
+make team user creation view
+	- redirects to user detail
+
+System stats
+========================================

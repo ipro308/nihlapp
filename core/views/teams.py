@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
 from django.http import Http404
 from django.views.generic import list_detail
 from nihlapp.core.models import Team, Event, EventStats
+from nihlapp.core.models.team import CreateTeamForm
+from django.shortcuts import render_to_response
 
 def detail(request, team_id):
 
@@ -20,3 +23,14 @@ def detail(request, team_id):
         object_id = team_id,
         extra_context = {"schedule_queryset" : list(), "stats_queryset" : list()}
     )
+
+def create_team(request):
+	msg = ''
+	if request.method == 'POST':
+		form = CreateTeamForm(request.POST)
+		if form.isValid():
+			form.save()
+			msg = "Team succesfully created."
+	else:
+		form = CreateTeamForm()
+	return render_to_response('core/generic_form.html',{'form': form})
