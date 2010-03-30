@@ -1278,17 +1278,17 @@
         "pk": 1, 
         "model": "core.team", 
         "fields": {
-            "coachEmail": "sentinel@sentinel.org", 
+            "coachEmail": "default@default.org", 
             "division": 1, 
             "managerPhone": "", 
-            "name": "Sentinel Team", 
+            "name": "Default", 
             "club": 1, 
             "season": 1, 
             "coachPhone": "", 
-            "skillLevel": 6, 
-            "managerEmail": "rkremkow22@yahoo.com", 
-            "coachName": "Tom Miller", 
-            "managerName": "Robb Kremkow"
+            "skillLevel": 1, 
+            "managerEmail": "default@default.org", 
+            "coachName": "Default", 
+            "managerName": "Default"
         }
     },
     {
@@ -1297,7 +1297,7 @@
         "fields": {
             "contactEmail": "", 
             "contactPhone": "", 
-            "name": "Mite", 
+            "name": "Default", 
             "contactName": ""
         }
     }, 
@@ -1331,6 +1331,16 @@
             "contactName": ""
         }
     }, 
+    {
+        "pk": 5, 
+        "model": "core.division", 
+        "fields": {
+            "contactEmail": "", 
+            "contactPhone": "", 
+            "name": "Mite", 
+            "contactName": ""
+        }
+    },
     {
         "pk": 1, 
         "model": "core.penaltyoffense", 
@@ -1370,7 +1380,7 @@
         "pk": 1, 
         "model": "core.skilllevel", 
         "fields": {
-            "name": "Bronze T1", 
+            "name": "Default", 
             "weight": 1
         }
     }, 
@@ -1423,17 +1433,25 @@
         }
     },
     {
+        "pk": 8, 
+        "model": "core.skilllevel", 
+        "fields": {
+            "name": "Bronze T1", 
+            "weight": 8
+        }
+    },
+    {
         "pk": 1, 
         "model": "core.club", 
         "fields": {
-            "city": "Highland Park", 
+            "city": "Default", 
             "contactPhone": "", 
-            "name": "Falcons Hockey Club", 
-            "zip": "60035", 
-            "contactEmail": "president@falconshockey.org", 
-            "state": "IL", 
-            "contactName": "Guy Considine", 
-            "address": "3100 Trailway Dr."
+            "name": "Default", 
+            "zip": "00000", 
+            "contactEmail": "default@default.org", 
+            "state": "DF", 
+            "contactName": "Default", 
+            "address": "1 Default Dr."
         }
     }, 
     {
@@ -1854,6 +1872,20 @@
             "state": "", 
             "contactName": "Brian Spreeman", 
             "address": ""
+        }
+    },
+    {
+        "pk": 32, 
+        "model": "core.club", 
+        "fields": {
+            "city": "Highland Park", 
+            "contactPhone": "", 
+            "name": "Falcons Hockey Club", 
+            "zip": "60035", 
+            "contactEmail": "president@falconshockey.org", 
+            "state": "IL", 
+            "contactName": "Guy Considine", 
+            "address": "3100 Trailway Dr."
         }
     }
 ]
