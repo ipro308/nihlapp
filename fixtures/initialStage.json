@@ -1191,7 +1191,23 @@
         "fields": {
             "name": "Completed"
         }
-    }, 
+    },
+    {
+        "pk": 1,
+        "model": "core.season",
+        "fields": {
+            "seasonStatus": 1,
+            "seasonSchedDeadline": "2009-11-01",
+            "seedingStatDeadline": "2009-10-01",
+            "seasonStatDeadline": "2010-01-01",
+            "year": "Default",
+            "seedingBeginDate": "2009-08-01",
+            "seasonBeginDate": "2009-10-02",
+            "seedingSchedDeadline": "2009-09-01",
+            "seasonEnd": "2010-01-02",
+            "isCurrentSeason": true
+        }
+    },
     {
         "pk": 1, 
         "model": "core.parameter", 
