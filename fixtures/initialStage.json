@@ -1200,7 +1200,7 @@
             "seasonSchedDeadline": "2009-11-01",
             "seedingStatDeadline": "2009-10-01",
             "seasonStatDeadline": "2010-01-01",
-            "year": "Default",
+            "year": "0 - Default",
             "seedingBeginDate": "2009-08-01",
             "seasonBeginDate": "2009-10-02",
             "seedingSchedDeadline": "2009-09-01",
@@ -1297,7 +1297,7 @@
             "coachEmail": "default@default.org", 
             "division": 1, 
             "managerPhone": "", 
-            "name": "Default", 
+            "name": "0 - Default", 
             "club": 1, 
             "season": 1, 
             "coachPhone": "", 
@@ -1313,7 +1313,7 @@
         "fields": {
             "contactEmail": "", 
             "contactPhone": "", 
-            "name": "Default", 
+            "name": "0 - Default", 
             "contactName": ""
         }
     }, 
@@ -1396,7 +1396,7 @@
         "pk": 1, 
         "model": "core.skilllevel", 
         "fields": {
-            "name": "Default", 
+            "name": "0 - Default", 
             "weight": 1
         }
     }, 
@@ -1460,9 +1460,9 @@
         "pk": 1, 
         "model": "core.club", 
         "fields": {
-            "city": "Default", 
+            "city": "0 - Default", 
             "contactPhone": "", 
-            "name": "Default", 
+            "name": "0 - Default", 
             "zip": "00000", 
             "contactEmail": "default@default.org", 
             "state": "DF", 
