@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.views.generic.list_detail import object_list
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
@@ -7,8 +8,9 @@ from nihlapp.core.utils.Matchmaking import Matchmaking, Team as MatchmakingTeam
 @login_required
 def list(request, pagination_id = 1):
     
-    currentSeason = Season.objects.get(isCurrentSeason = True)
+    currentSeason = get_object_or_404(Season, isCurrentSeason = True)
     rinks_queryset = Rink.objects.all()
+    foo_bar = "this sucks"
     
     return object_list(
                        request, 
@@ -17,7 +19,7 @@ def list(request, pagination_id = 1):
                        allow_empty = True, 
                        page = pagination_id, 
                        template_name = 'core/season_list.html', 
-                       extra_context = {'currentSeason' : currentSeason, 'rinks_queryset' : rinks_queryset}
+                       #extra_context = {'currentSeason':currentSeason, 'rinks_queryset':rinks_queryset, "foo_bar":foo_bar}
                        )
 
 def stage1(request):

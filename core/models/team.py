@@ -29,10 +29,10 @@ class Team(models.Model):
 
 class CreateTeamForm(forms.Form):
 	name = forms.CharField(label="Team Name",max_length=50)
-	season = forms.ModelChoiceField(label="Season", queryset=Season.objects.all().order_by('year'))
-	division = forms.ModelChoiceField(label="Division", queryset=Division.objects.all().order_by('name'))
-	club = forms.ModelChoiceField(label="Club", queryset=Club.objects.all().order_by('name'))
-	skillLevel = forms.ModelChoiceField(label="Skill Level", queryset=SkillLevel.objects.all().order_by('name'))
+	season = forms.ModelChoiceField(label="Season", queryset=Season.objects.all().order_by('year'), initial=Season.objects.get(pk=1))
+	division = forms.ModelChoiceField(label="Division", queryset=Division.objects.all().order_by('name'), initial=Division.objects.get(pk=1))
+	club = forms.ModelChoiceField(label="Club", queryset=Club.objects.all().order_by('name'),initial=Club.objects.get(pk=1))
+	skillLevel = forms.ModelChoiceField(label="Skill Level", queryset=SkillLevel.objects.all().order_by('name'), initial=SkillLevel.objects.get(pk=1))
 	managerName = forms.CharField(label="Manager Name",max_length=50)
 	managerEmail = forms.EmailField(label="Manager Email")
 	managerPhone = forms.CharField(label="Manager Phone",max_length=15)

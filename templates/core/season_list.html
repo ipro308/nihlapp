@@ -10,7 +10,7 @@
 {% block extraContent %}
 <h3 class="subtitle">Current Season</h3>
 <p>
-	<span>Year: {{ currentSeason.year }}</span><br/>
+	<span>Year: {{ currentSeason.year }} {{foo_bar}} {{currentSeason}}</span><br/>
 	<span style="white-space: nowrap">
 		Status:
 		{% ifequal currentSeason.seasonStatus.name "Preparation" %}
