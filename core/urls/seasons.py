@@ -6,6 +6,7 @@ from nihlapp.core.models import Season
 
 urlpatterns = patterns('',
     (r'^/$', object_list, dict(queryset = Season.objects.all())),
+    (r'^/list$','nihlapp.core.views.seasons.seasons_list'),
     (r'^/detail/(?P<object_id>\d+)/?$', object_detail, dict(queryset = Season.objects.all())),
     (r'^/create/?$', 'django.views.generic.create_update.create_object',dict(model = Season, login_required = True)),
     (r'^/update/(?P<object_id>\d+)/?$', 'django.views.generic.create_update.update_object', dict(model = Season, login_required = True)),

@@ -2,12 +2,20 @@
 from django.views.generic.list_detail import object_list
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
+from django.shortcuts import get_object_or_404
+from django.template import RequestContext
 from nihlapp.core.models import Season, SeasonStatus, Division, SkillLevel, Team, Rink
 from nihlapp.core.utils.Matchmaking import Matchmaking, Team as MatchmakingTeam
+from django.shortcuts import get_object_or_404
 
 @login_required
 def list(request, pagination_id = 1):
-    
+    """
+    TODO: This view does not seem to work anymore, the syntax seems correct and so does the logic
+    however, the extra context variables are not being passed on to the template.
+    Therefore, this view has been replaced with the one below called seasons_list. It works but pagination
+    is not implmented yet
+    """
     currentSeason = get_object_or_404(Season, isCurrentSeason = True)
     rinks_queryset = Rink.objects.all()
     foo_bar = "this sucks"
@@ -19,8 +27,27 @@ def list(request, pagination_id = 1):
                        allow_empty = True, 
                        page = pagination_id, 
                        template_name = 'core/season_list.html', 
-                       #extra_context = {'currentSeason':currentSeason, 'rinks_queryset':rinks_queryset, "foo_bar":foo_bar}
+                       extra_context = {'currentSeason':currentSeason, 'rinks_queryset':rinks_queryset, "foo_bar":foo_bar}
                        )
+
+@login_required
+def seasons_list(request):
+    """
+    TODO: Implement Pagination for this particular view
+    """
+    currentSeason = get_object_or_404(Season, isCurrentSeason = True)
+    rinks_queryset = Rink.objects.all()
+    object_list = Season.objects.all()
+    allow_empty = True
+    paginate_by = 20
+    variables = RequestContext(request,{
+				'currentSeason':currentSeason,
+				'rinks_queryset':rinks_queryset,
+				'object_list':object_list
+				})
+    return render_to_response('core/season_list.html',
+				variables
+				)
 
 def stage1(request):
     
