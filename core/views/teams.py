@@ -24,6 +24,7 @@ def detail(request, team_id):
         extra_context = {"schedule_queryset" : list(), "stats_queryset" : list()}
     )
 
+
 def create_team(request):
 	msg = ''
 	if request.method == 'POST':

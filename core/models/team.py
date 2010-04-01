@@ -28,8 +28,9 @@ class Team(models.Model):
 		return "/%s/%s/%s" % ('teams', 'detail', self.pk)
 
 class CreateTeamForm(forms.Form):
+	
 	name = forms.CharField(label="Team Name",max_length=50)
-	season = forms.ModelChoiceField(label="Season", queryset=Season.objects.all().order_by('year'), initial=Season.objects.filter(pk=1))
+	season = forms.ModelChoiceField(label="Season", queryset=Season.objects.all().order_by('year'))
 	division = forms.ModelChoiceField(label="Division", queryset=Division.objects.all().order_by('name'), initial=Division.objects.filter(pk=1))
 	club = forms.ModelChoiceField(label="Club", queryset=Club.objects.all().order_by('name'),initial=Club.objects.filter(pk=1))
 	skillLevel = forms.ModelChoiceField(label="Skill Level", queryset=SkillLevel.objects.all().order_by('name'), initial=SkillLevel.objects.filter(pk=1))
@@ -39,6 +40,10 @@ class CreateTeamForm(forms.Form):
 	coachName = forms.CharField(label="Coach Name",max_length=50)
 	coachEmail = forms.EmailField(label="Coach Email")
 	coachPhone = forms.CharField(label="Coach Phone",max_length=15)
+
+	def __init__(self, *args, **kwargs):
+		super(CreateTeamForm, self).__init__(*args, **kwargs)
+		self.base_fields['season'].initial = Season.objects.filter(pk=1)
 
 	def save():
 		new_team = Team.objects.create_team(
