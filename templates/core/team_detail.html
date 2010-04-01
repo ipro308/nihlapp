@@ -10,30 +10,36 @@
 {% block detailView %}
 
 	<div id="teamStats" style="float:left; border:1px solid #ccc; width:59%;">
-		<h3 class="primary" style="font-weight:normal">Team Stats</h3>
-		<table>
-		{% for event in schedule_queryset %}
-			<tr><td style="font-weight:bold">Date</td><td>{{ event.dateTimeEvent }}</td></tr>
-			<tr><td style="font-weight:bold">Type</td><td>{{ event.eventType }}</td></tr>
-			<tr><td style="font-weight:bold">Rink</td><td>{{ event.rink }}</td></tr>
-			<tr><td style="font-weight:bold">Opponent</td><td>{{ event.awayTeam }}</td></tr>
+		<h3 class="primary" style="font-weight:normal">Win/Loss</h3>
+		<table style="margin-left:15px;">
+			<tr><td style="font-weight:bold">Games Won</td><td>{{ winner }}</td></tr>
+			<tr><td style="font-weight:bold">Games Lost</td><td>{{ loser }}</td></tr>
+		</table>
+		<br />
+		<h3 class="primary" style="font-weight:normal">Recent Games</h3>
+		<table style="margin-left:15px;">
+		{% for stat in stats_queryset %}
+			<tr><td style="font-weight:bold">Date</td><td>{{ stat.event }}</td></tr>
+			<tr><td style="font-weight:bold">Winner</td><td><a href="{{ stat.winner.get_absolute_url }}">{{ stat.winner.name }}</a></td></tr>
+			<tr><td style="font-weight:bold">Loser</td><td><a href="{{ stat.loser.get_absolute_url }}">{{ stat.loser.name }}</a></td></tr>
 		{% endfor %}
 		</table>
-		
+	<br />
 		<h3 class="primary" style="font-weight:normal">Upcoming Schedule</h3>
-		<table>
+		<table style="margin-left:15px;">
 		{% for event in schedule_queryset %}
 			<tr><td style="font-weight:bold">Date</td><td>{{ event.dateTimeEvent }}</td></tr>
 			<tr><td style="font-weight:bold">Type</td><td>{{ event.eventType }}</td></tr>
 			<tr><td style="font-weight:bold">Rink</td><td>{{ event.rink }}</td></tr>
 			<tr><td style="font-weight:bold">Opponent</td><td>{{ event.awayTeam }}</td></tr>
+			<tr><td><hr /></td><td><hr /></td></td>
 		{% endfor %}
 		</table>
 			
 	</div>
 
 	<div id="teamDetails" style="float:right; border:1px solid #ccc; width:40%;">
-		<!-- grab more images fromhttp://www.nihl.info/membersites.html if need! -->
+		<!-- grab more images from http://www.nihl.info/membersites.html if needed! -->
 		<img src="/static/images/teamImages/{{ object.name|numberStrip }}.jpg" style="float:right; margin-right:10px; margin-top:10px;" />
 		<h3 class="primary" style="font-weight:normal;">Team Detail</h3>
 		<table>
@@ -47,7 +53,7 @@
 		<h3 class="primary" style="font-weight:normal;">Season & Club</h3>
 		<table>
 			<tr><td style="font-weight:bold">Season:</td><td>{{ object.name }}</td></tr>
-			<tr><td style="font-weight:bold">Club:</td><td>{{ object.club }}</td></tr>
+			<tr><td style="font-weight:bold">Club:</td><td><a href="/clubs/detail/{{ object.club.id }}">{{ object.club }}</a></td></tr>
 		</table>
 		
 		<br />

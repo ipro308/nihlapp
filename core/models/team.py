@@ -45,7 +45,7 @@ class CreateTeamForm(forms.Form):
 		super(CreateTeamForm, self).__init__(*args, **kwargs)
 		self.base_fields['season'].initial = Season.objects.filter(pk=1)
 
-	def save():
+	def save(self):
 		new_team = Team.objects.create_team(
 			name = self.cleaned_data['name'],
 			season = self.cleaned_data['season'],
