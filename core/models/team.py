@@ -40,7 +40,6 @@ class CreateTeamForm(forms.Form):
 	coachName = forms.CharField(label="Coach Name",max_length=50)
 	coachEmail = forms.EmailField(label="Coach Email")
 	coachPhone = forms.CharField(label="Coach Phone",max_length=15)
-
 	def __init__(self, *args, **kwargs):
 		super(CreateTeamForm, self).__init__(*args, **kwargs)
 		self.base_fields['season'].initial = Season.objects.filter(pk=1)
