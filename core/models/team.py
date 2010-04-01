@@ -45,14 +45,14 @@ class CreateTeamForm(forms.Form):
 		self.base_fields['season'].initial = Season.objects.filter(pk=1)
 
 	def save(self):
-		new_team = Team.objects.create_team(
+		new_team = Team(
 			name = self.cleaned_data['name'],
 			season = self.cleaned_data['season'],
 			division = self.cleaned_data['division'],
 			club = self.cleaned_data['club'],
-			skilllevel = self.cleaned_data['skilllevel'],
+			skillLevel = self.cleaned_data['skillLevel'],
 			managerName = self.cleaned_data['managerName'],
-			manageEmail = self.cleaned_data['manageEmail'],
+			managerEmail = self.cleaned_data['managerEmail'],
 			managerPhone = self.cleaned_data['managerPhone'],
 			coachName = self.cleaned_data['coachName'],
 			coachEmail = self.cleaned_data['coachEmail'],
