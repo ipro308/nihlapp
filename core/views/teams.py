@@ -2,6 +2,9 @@
 from django.http import Http404
 from django.views.generic import list_detail
 from nihlapp.core.models import Team, Event, EventStats
+from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
 from nihlapp.core.models.team import CreateTeamForm
 from django.db.models import Q
 
@@ -32,12 +35,15 @@ def create_team(request):
 	if request.method == 'POST':
 		form = CreateTeamForm(request.POST)
 		if form.is_valid():
-			form.save()
+			new_team = form.save()
 			msg = "Team succesfully created."
-			if POST['submit'] == u'Create User':
+			print("post submit %s" % (request.POST['submit']))
+			if request.POST['submit'] == u'addmanager':
+				print("redirect to account creation")
 				HttpResponseRedirect('/accounts/create')
 			else:
-				HttpResponseRedirect('/teams/')
-	else:
-		form = CreateTeamForm()
+				print("return to teams list display")
+				print("team id: %s" % new_team.id)
+				HttpResponseRedirect(reverse('nihlapp.core.views.teams.detail', args=(new_team.id,)))
+	form = CreateTeamForm()
 	return render_to_response('core/custom_forms/team_create_form.html',{'form': form})
