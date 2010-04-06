@@ -6,7 +6,7 @@ from nihlapp.core.models import Team
 from nihlapp.core.views.teams import detail
 
 urlpatterns = patterns('',
-    (r'^/?$', object_list, 
+    (r'^/$', object_list,
 	dict(queryset = Team.objects.all())),
     (r'^/detail/(?P<team_id>\d+)/?$', detail),
     #(r'^/create/?$', 'django.views.generic.create_update.create_object', 

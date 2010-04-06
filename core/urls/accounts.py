@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.generic.list_detail import *
 
+
 urlpatterns = patterns('',
     (r'^/$', login_required(object_list), 
         dict(queryset = User.objects.all())),

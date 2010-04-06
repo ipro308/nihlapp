@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls.defaults import *
 from django.conf import settings
 #from django.contrib.comments.models import Comment
