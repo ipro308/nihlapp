@@ -37,13 +37,9 @@ def create_team(request):
 		if form.is_valid():
 			new_team = form.save()
 			msg = "Team succesfully created."
-			print("post submit %s" % (request.POST['submit']))
 			if request.POST['submit'] == u'addmanager':
-				print("redirect to account creation")
 				return HttpResponseRedirect('/accounts/create')
 			else:
-				print("return to teams list display")
-				print("team id: %s" % new_team.id)
 				return HttpResponseRedirect(reverse('nihlapp.core.views.teams.detail', args=(new_team.id,)))
 	form = CreateTeamForm()
 	return render_to_response('core/custom_forms/team_create_form.html',{'form': form})
