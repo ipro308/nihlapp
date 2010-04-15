@@ -77,9 +77,14 @@ def stage1(request):
                         teams.append(MatchmakingTeam(team.name, team.id, 8))
                             
                     # todo: move number 8 to a parameter.
+                    
+                    print "creating matchmaking object"
                     makeMe = Matchmaking(8, teams) 
+                    
+                    print "matching teams"
                     makeMe.generate()
         except Exception, error:
+            print error
             errorMessage = "Error has occured while matchmaking teams: %s." % error
         
         return render_to_response('core/season/stage1_done.html', {'user': request.user, 'errorMessage': errorMessage})

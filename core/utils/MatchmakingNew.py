@@ -25,11 +25,11 @@ class Matchmaking:
         # newGameLimit is the number of games to run,
         # teams is a list of local Team objects
         self.gameLimit = newGameLimit
-        #self.teamList = teams
+        
+        # start with a shuffled list
         self.teamList = random.shuffle(teams)
         self.storeMatches = False
         self.initMatchList
-        #self.assignedGame = 0 # games assigned per team
     
     def initMatchList(self):
         self.matchList = self.teams[:]
@@ -69,7 +69,7 @@ class Matchmaking:
     def main(self):
         currentTeam = None
         opponentTeam = None
-        if ( len(self.teamsList) > self.gameLimit ):
+        if ( len(self.teamList) > self.gameLimit ):
             self.linearMatch()
         else :
             self.recursiveMatch()
@@ -107,10 +107,10 @@ class Team:
     def getTeamID(self):
         return self.teamID
     
-    def getHomeSched(self)::
+    def getHomeSched(self):
         return self.homeSched
     
-    def getAwaySched(self)::
+    def getAwaySched(self):
         return self.awaySched
     
     def getHomeSlot(self,ind):
