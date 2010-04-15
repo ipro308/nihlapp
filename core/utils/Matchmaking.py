@@ -91,6 +91,9 @@ class Matchmaking:
                 
         for team in self.teamList:
             print team.scheduleInfo()
+            for homeGame in team.homeSched:
+                homeGame.store()
+            print "stored"
             
         print "linear match complete"
     
@@ -103,6 +106,8 @@ class Matchmaking:
         if ( len(self.teamList) > self.gameLimit ):
             self.linearMatch()
         else :
+            # skip recursive matching for now
+            return
             self.recursiveMatch()
         print "matching complete"
         return
@@ -133,7 +138,7 @@ class Team:
             if x == None:
                 return true
         return false
-        
+    
     def getName(self):
         return self.teamName
     
@@ -219,7 +224,7 @@ class Slot:
             matchup.awayTeam = TeamModel.objects.get(id = self.visitorID)
             matchup.save()
         except:
-            # silently fail
+            print "storing matchup failed"
             pass
     
     def mask(self):

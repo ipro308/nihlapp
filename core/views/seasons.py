@@ -83,6 +83,7 @@ def stage1(request):
                     
                     print "matching teams"
                     makeMe.generate()
+                    print "teams matched"
         except Exception, error:
             print error
             errorMessage = "Error has occured while matchmaking teams: %s." % error
