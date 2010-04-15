@@ -10,21 +10,14 @@
 <h2 class="title">NIHL Season Scheduling and Statistics</h2>
 
 <div id="rightColumn" style="float:right; width:30%; position:relative; margin-top:-20px;">
-	<h3 class="subtitle">Reminders</h3>
-	{% if user.is_authenticated %}
-		{% if reminders %}
-			<ul>
-				{% for object in reminders %}
-					<li><a href="{{ object.url }}">{{ object.note }}</a></li>
-				{% endfor %}
-				<li><a href="/schedule/create">Enter home rink schedule</a></li>
-			</ul>
-		{% else %}
-		You have no reminders.
-		{% endif %}
-	{% else %}
-	You are not logged in.
-	{% endif %}
+<h3 class="subtitle">Quick Links</h3>
+	<ul>
+		<li><a href="/schedule/matchups">View match ups and schedule games</a></li>
+		<li><a href="/stats">View team statistics</a></li>
+		<li><a href="/schedule">Browse upcoming games</a></li>
+		<li><a href="/schedule/recent">Browse recent games</a></li>
+		<li><a href="/help/faq">Read help pages</a></li>
+	</ul>
 </div>
 
 <div id="middleColumn" style="float:right; width: 40%; position:relative; margin-top:-20px;">
@@ -43,14 +36,28 @@
 </div>
 
 <div id="leftColumn" style="width:30%;">
-	<h3 class="subtitle">Quick Links</h3>
-	<ul>
-		<li><a href="/schedule/matchups">View match ups and schedule games</a></li>
-		<li><a href="/stats">View team statistics</a></li>
-		<li><a href="/schedule">Browse upcoming games</a></li>
-		<li><a href="/schedule/recent">Browse recent games</a></li>
-		<li><a href="/help/faq">Read help pages</a></li>
-	</ul>
+	<h3 class="subtitle">Reminders</h3>
+	{% if user.is_authenticated %}
+		{% if reminders %}
+			<ul>
+				{% for object in reminders %}
+					<li><a href="{{ object.url }}">{{ object.note }}</a></li>
+				{% endfor %}
+				<li><a href="/schedule/create">Enter home rink schedule</a></li>
+			</ul>
+		{% else %}
+		You have no reminders.
+		{% endif %}
+	{% else %}
+		<form class="styled validate" method="post" action="{% url django.contrib.auth.views.login %}">
+		<!--<legend class="primary first">Please Login</legend><br />-->
+			<label for="id_username">Username</label><input id="id_username" type="text" name="username" maxlength="30" style="width:50%"/><br />
+			<label for="id_password">Password</label> <input type="password" name="password" id="id_password"  style="width:50%"/><br />
+			<a style="color:#104CA6;" href="/accounts/password_reset">Lost your password?</a><br />
+			<input type="submit" value="Login" />
+			<input type="hidden" name="next" value="{{ next }}" />         	
+		</form>
+	{% endif %}
 </div>
 
 <br />
