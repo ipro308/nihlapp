@@ -19,7 +19,12 @@
 		<h3 class="primary" style="font-weight:normal;">Rink Address</h3>
 		<table>
 			<tr><td style="font-weight:bold">Address:</td><td>{{ object.address }}, {{ object.state }} {{ object.zip }}</td></tr>
-			<tr><td style="font-weight:bold">Map:</td><td><a href="{{ object.arenaMapsURL }}" title="Map Link">Link</a></td></tr>
+			{% ifnotequal object.arenaMapsURL "" %}
+				<tr><td style="font-weight:bold">Map:</td><td><a href="{{ object.arenaMapsURL }}" title="Map Link">Link</a></td></tr>
+			{% else %}
+				<tr><td style="font-weight:bold">Map:</td><td>No Map Provided</a></td></tr>
+			{% endifnotequal %}
+
 		</table>
 		
 	

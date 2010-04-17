@@ -49,6 +49,10 @@ def seasons_list(request):
 				variables
 				)
 
+def confirm(request, season_id):
+     print season_id;
+     return render_to_response('core/season/confirm.html',{'user': request.user})
+
 def stage1(request):
     
     if request.method == 'GET':
