@@ -9,10 +9,11 @@ urlpatterns = patterns('',
         dict(queryset = Club.objects.all())),
     (r'^/detail/(?P<object_id>\d+)/?$', detail),
     (r'^/create/?$', 'django.views.generic.create_update.create_object', 
-        dict(model = Club, login_required = True)),
+        dict(model = Club, login_required = True, post_save_redirect='/clubs/confirm/create/%(object_id)s/')),
     (r'^/update/(?P<object_id>\d+)/?$', 'django.views.generic.create_update.update_object', 
         dict(model = Club, login_required = True)),
     (r'^/delete/(?P<object_id>\d+)/?$', 'django.views.generic.create_update.delete_object', 
         dict(model = Club, login_required = True, post_delete_redirect = "/clubs")),
+    (r'^/confirm/create/(?P<object_id>\d+)/?$', 'nihlapp.core.views.clubs.confirm'),
 )
 	

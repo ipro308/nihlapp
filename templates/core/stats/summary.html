@@ -1,4 +1,5 @@
 {% extends "core/stats.html" %}
+{% load coretags %}
 
 {% block selectedTab1 %} class="tabs-selected"{% endblock %}
 
@@ -89,6 +90,13 @@
 {% for club in clubs %}
 <div style="width:445px; height:175px; float:{% cycle 'left' 'right' %};">
 <h3 style="text-align:center; border-bottom:1px solid #cccccc;">{{ club.name }}</h3>
+{% comment %}
+<h3>div: {{ division_filter.0 }} - lev: {{ level_filter.0 }}</h3>
+{% endcomment %}
+{% comment %}
+<h3>listBuild: {{ division_filter.0|listBuild:level_filter.0 }}</h3>
+<h3>teamCount: {{ club.id|teamCount:division_filter.0|listBuild:level_filter.0 }}</h3>
+{% endcomment %}
 <table style="width:425px; margin: 5px" class="records">
 	<tr>
 		<th style="width:30%;"><span title="Team Name">Team</span></th>

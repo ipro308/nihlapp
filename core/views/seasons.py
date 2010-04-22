@@ -49,9 +49,8 @@ def seasons_list(request):
 				variables
 				)
 
-def confirm(request, season_id):
-     print season_id;
-     return render_to_response('core/season/confirm.html',{'user': request.user})
+def confirm(request, object_id):
+     return render_to_response('core/season/confirm.html',{'object_id': object_id})
 
 def stage1(request):
     

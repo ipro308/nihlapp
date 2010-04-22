@@ -32,14 +32,25 @@ def numberStrip(input):
 #what i'm trying to do:
 #split the array apart and use it as two arguments, but it ain't working
 @register.filter("teamCount")
-def teamCount(input, args):
-        list = eval(str(args))
-        #a = [int(s) for s in str(args).split()]
-        #team_count = Team.objects.filter(club__id = input, division = a[0], skillLevel = a[1]).count()
-        return list
+def teamCount(clubId, divLev):
+        #list = eval(str(divLev));
+        #test = [int(s) for s in str(divLev).split(":")]
+        #a, _, b = str(divLev).partition(" ")
+        #test = [a, b]
+        #print "divLev = " + str(divLev)
+        #print "test = " + str(test)
+        #print "test[0] = " + str(test[0])
+        #print "test[1] = " + str(test[1])
+        #team_count = Team.objects.filter(club__id = clubId, division = test[0], skillLevel = test[1]).count()
+        print divLev
+        return divLev
+        #return a + " - " + b
+        #return "a: " + a + " --b: " + b + " --tc: " + str(team_count) + " .."
 
-@register.filter("argCrap")
-def argCrap(arg1, arg2):
-        test = '[' + str(arg1) + ', ' + str(arg2) + ']'
-        return str(test)
+@register.filter("listBuild")
+def listBuild(division, level):
+        test = '[' + str(division) + ', ' + str(level) + ']'
+        testTwo = str(division)+":"+str(level)
+        li = [division, level]
+        return str(testTwo)
 

@@ -43,3 +43,7 @@ def create_team(request):
 				return HttpResponseRedirect(reverse('nihlapp.core.views.teams.detail', args=(new_team.id,)))
 	form = CreateTeamForm()
 	return render_to_response('core/custom_forms/team_create_form.html',{'form': form})
+
+def confirm(request, object_id):
+				return render_to_response('core/team/confirm.html', {'object_id': object_id})
+
