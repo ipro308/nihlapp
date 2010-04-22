@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Rinks{% endblock %}
+{% block createTitle %}Rink State Change{% endblock %}
+
+{% block selectedTabRinks %} class="selected"{% endblock %}
+
+{% block content %}
+
+<meta http-equiv="refresh" content="5;url=/rinks/detail/{{ object_id }}" />
+
+<h3 class="subtitle">Rink Created!</h3>
+	<p>
+		<span>Rink created!  Redirecting to <a href="/rinks/detail/{{ object_id }}">rinks detail page</a> in 5 seconds..</span>
+	</p>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Accounts{% endblock %}
+{% block createTitle %}Account State Change{% endblock %}
+
+{% block selectedTabAccounts %} class="selected"{% endblock %}
+
+{% block content %}
+
+<meta http-equiv="refresh" content="5;url=/accounts/detail/{{ object_id }}" />
+
+<h3 class="subtitle">Account Created!</h3>
+	<p>
+		<span>Account created!  Redirecting to <a href="/accounts/detail/{{ object_id }}">accounts detail page</a> in 5 seconds..</span>
+	</p>
+
+{% endblock %}

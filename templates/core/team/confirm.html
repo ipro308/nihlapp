@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Teams{% endblock %}
+{% block createTitle %}Team State Change{% endblock %}
+
+{% block selectedTabTeams %} class="selected"{% endblock %}
+
+{% block content %}
+
+<meta http-equiv="refresh" content="5;url=/teams/detail/{{ object_id }}" />
+
+<h3 class="subtitle">Team Created!</h3>
+	<p>
+		<span>Team created!  Redirecting to <a href="/teams/detail/{{ object_id }}">teams detail page</a> in 5 seconds..</span>
+	</p>
+
+{% endblock %}

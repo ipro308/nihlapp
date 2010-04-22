@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Clubs{% endblock %}
+{% block createTitle %}Club State Change{% endblock %}
+
+{% block selectedTabClubs %} class="selected"{% endblock %}
+
+{% block content %}
+
+<meta http-equiv="refresh" content="5;url=/clubs/detail/{{ object_id }}" />
+
+<h3 class="subtitle">Club Created!</h3>
+	<p>
+		<span>Club created!  Redirecting to <a href="/clubs/detail/{{ object_id }}">club detail page</a> in 5 seconds..</span>
+	</p>
+
+{% endblock %}

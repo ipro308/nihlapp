@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Divisions{% endblock %}
+{% block createTitle %}Division State Change{% endblock %}
+
+{% block selectedTabDivisions %} class="selected"{% endblock %}
+
+{% block content %}
+
+<meta http-equiv="refresh" content="5;url=/divisions/detail/{{ object_id }}" />
+
+<h3 class="subtitle">Division Created!</h3>
+	<p>
+		<span>Division created!  Redirecting to <a href="/divisions/detail/{{ object_id }}">divisions detail page</a> in 5 seconds..</span>
+	</p>
+
+{% endblock %}

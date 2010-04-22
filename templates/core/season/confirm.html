@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Seasons{% endblock %}
+{% block createTitle %}Season State Change{% endblock %}
+
+{% block selectedTabSeasons %} class="selected"{% endblock %}
+
+{% block content %}
+
+<meta http-equiv="refresh" content="5;url=/seasons/detail/{{ object_id }}" />
+
+<h3 class="subtitle">Season Created!</h3>
+	<p>
+		<span>Season created!  Redirecting to <a href="/seasons/detail/{{ object_id }}">seasons detail page</a> in 5 seconds..</span>
+	</p>
+
+{% endblock %}
