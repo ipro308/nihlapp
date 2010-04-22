@@ -32,25 +32,30 @@ def numberStrip(input):
 #what i'm trying to do:
 #split the array apart and use it as two arguments, but it ain't working
 @register.filter("teamCount")
-def teamCount(clubId, divLev):
-        #list = eval(str(divLev));
-        #test = [int(s) for s in str(divLev).split(":")]
-        #a, _, b = str(divLev).partition(" ")
-        #test = [a, b]
-        #print "divLev = " + str(divLev)
-        #print "test = " + str(test)
-        #print "test[0] = " + str(test[0])
-        #print "test[1] = " + str(test[1])
-        #team_count = Team.objects.filter(club__id = clubId, division = test[0], skillLevel = test[1]).count()
-        print divLev
-        return divLev
-        #return a + " - " + b
-        #return "a: " + a + " --b: " + b + " --tc: " + str(team_count) + " .."
+def teamCount(divLev, clubId):
+        #print "div\tLev\tclubF\ttest"
+        test = [int(s) for s in str(divLev).split("s")]
+        #print str(test[0]) + "\t" + str(test[1]) + "\t" + str(test[2]) + "\t" + str(test) + "\n--\n"
+        #print test
+        if test[2] == clubId:
+            team_count = Team.objects.filter(club__id = clubId, division = test[0], skillLevel = test[1]).count()
+        elif test[2] == 0:
+             team_count = Team.objects.filter(club__id = clubId, division = test[0], skillLevel = test[1]).count()
+        else:
+             team_count = 0
+        #print "tc: " + str(team_count)
+        return team_count
+
+@register.filter("addClub")
+def addClub(divLev, clubId):
+        #print str(divLev) + "s" + str(clubId)
+        return str(divLev) + "s" + str(clubId)
 
 @register.filter("listBuild")
 def listBuild(division, level):
-        test = '[' + str(division) + ', ' + str(level) + ']'
-        testTwo = str(division)+":"+str(level)
-        li = [division, level]
-        return str(testTwo)
+        #test = '[' + str(division) + ', ' + str(level) + ']'
+        testTwo = str(division) + "s" + str(level)
+        #print "div\tlev\tt2\tli"
+        #print str(division) + "\t" + str(level) + "\t" + str(testTwo) + "\t" + str(li) + ""
+        return testTwo
 

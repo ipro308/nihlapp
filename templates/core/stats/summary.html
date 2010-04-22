@@ -88,6 +88,7 @@
 </div>
 {% else %}
 {% for club in clubs %}
+{% ifnotequal division_filter.0|listBuild:level_filter.0|addClub:club_filter.0|teamCount:club.id 0 %}
 <div style="width:445px; height:175px; float:{% cycle 'left' 'right' %};">
 <h3 style="text-align:center; border-bottom:1px solid #cccccc;">{{ club.name }}</h3>
 {% comment %}
@@ -124,6 +125,7 @@
 </table>
 </div>
 </div>
+{% endifnotequal %}
 {% endfor %}
 
 <!--<div style="text-align:center;margin-top:50px;">
