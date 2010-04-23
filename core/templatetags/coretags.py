@@ -33,16 +33,30 @@ def numberStrip(input):
 #split the array apart and use it as two arguments, but it ain't working
 @register.filter("teamCount")
 def teamCount(divLev, clubId):
-        #print "div\tLev\tclubF\ttest"
+								#print "div\tLev\tclubF\ttest"
         test = [int(s) for s in str(divLev).split("s")]
         #print str(test[0]) + "\t" + str(test[1]) + "\t" + str(test[2]) + "\t" + str(test) + "\n--\n"
         #print test
-        if test[2] == clubId:
-            team_count = Team.objects.filter(club__id = clubId, division = test[0], skillLevel = test[1]).count()
-        elif test[2] == 0:
-             team_count = Team.objects.filter(club__id = clubId, division = test[0], skillLevel = test[1]).count()
-        else:
-             team_count = 0
+        division = test[0]
+        skill = test[1]
+        club = test[2]
+        if (division != 0) and (skill != 0):
+												team_count = Team.objects.filter(club__id = clubId, division = division, skillLevel = skill).count()
+        if (division == 0) and (skill != 0):
+            team_count = Team.objects.filter(club__id = clubId, skillLevel = skill).count()
+        if (division != 0) and (skill == 0):
+            team_count = Team.objects.filter(club__id = clubId, division = division).count()
+        if (division == 0) and (skill == 0):
+            team_count = Team.objects.filter(club__id = clubId).count()
+
+        if (club != 0) and (club != clubId):
+            team_count = 0
+        #if club == clubId:
+        #    team_count = Team.objects.filter(club__id = clubId, division = division, skillLevel = skill).count()
+        #elif club == 0:
+        #     team_count = Team.objects.filter(club__id = clubId, division = division, skillLevel = skill).count()
+        #else:
+        #     team_count = 0
         #print "tc: " + str(team_count)
         return team_count
 

@@ -36,8 +36,9 @@
 </div>
 
 <div id="leftColumn" style="width:30%;">
-	<h3 class="subtitle">Reminders</h3>
+
 	{% if user.is_authenticated %}
+	<h3 class="subtitle">Reminders</h3>
 		{% if reminders %}
 			<ul>
 				{% for object in reminders %}
@@ -49,6 +50,7 @@
 		You have no reminders.
 		{% endif %}
 	{% else %}
+	<h3 class="subtitle">Login</h3>
 		<form class="styled validate" method="post" action="{% url django.contrib.auth.views.login %}">
 		<!--<legend class="primary first">Please Login</legend><br />-->
 			<label for="id_username">Username</label><input id="id_username" type="text" name="username" maxlength="30" style="width:50%"/><br />
