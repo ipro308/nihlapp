@@ -33,12 +33,12 @@ urlpatterns = patterns('',
     {'document_root': settings.STATIC_DOC_ROOT}),
 
     # authentication and account management
-    (r'^accounts/login/$', 'django.contrib.auth.views.login'),
-    (r'^accounts/logout/$', 'django.contrib.auth.views.logout'),
-    (r'^accounts/password_reset/$', 'django.contrib.auth.views.password_reset'),
-    (r'^accounts/password_reset_done/$', 'django.contrib.auth.views.password_reset_done'),
-    (r'^accounts/password_reset_confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm'),
-    (r'^accounts/password_reset_complete/$', 'django.contrib.auth.views.password_reset_complete'),
+    (r'^accounts/login/?$', 'django.contrib.auth.views.login'),
+    (r'^accounts/logout/?$', 'django.contrib.auth.views.logout',{'next_page': '/accounts/login/'}),
+    (r'^accounts/password_reset/?$', 'django.contrib.auth.views.password_reset'),
+    (r'^accounts/password_reset_done/?$', 'django.contrib.auth.views.password_reset_done'),
+    (r'^accounts/password_reset_confirm/?(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm'),
+    (r'^accounts/password_reset_complete/?$', 'django.contrib.auth.views.password_reset_complete'),
     (r'^accounts', include('nihlapp.core.urls.accounts')),
 
     # generic views for models
@@ -77,7 +77,9 @@ urlpatterns = patterns('',
     
     # invitations
     (r'^invitation/(?P<key>[0-9A-Za-z]+)/$', 'nihlapp.core.views.invitations.invitation'),
-    (r'^invitation/generate$', 'nihlapp.core.views.invitations.generate'),  
+    (r'^invitation/generate$', 'nihlapp.core.views.invitations.generate'),
+    (r'^invitation/edit/?$', 'nihlapp.core.views.invitations.edit_invite'),
+    (r'^invitation/send/(?P<invite_id>\d+)?$', 'nihlapp.core.utils.email.new_send_invitation'),
     (r'^invitation/done/(?P<user_profile_id>\d+)/?$', 'nihlapp.core.views.invitations.invitation_done'),  
     (r'^confirm/(?P<key>[0-9A-Za-z]+)/$', 'nihlapp.core.views.invitations.confirm_email'),    
     

@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
 from django.db import models
+from django import forms
+from django.contrib.localflavor.us.forms import *
 #from nihlapp.core.models import *
 
 class Rink(models.Model):
@@ -20,3 +23,30 @@ class Rink(models.Model):
     
     def get_absolute_url(self):
         return "/%s/%s/%s" % ('rinks', 'detail', self.pk)
+
+class CreateRinkForm(forms.Form):
+	name = forms.CharField(label="Rink Name")
+	address = forms.CharField(label="Address")
+	city = forms.CharField(label="City")
+	state = USStateField(label="State",widget=USStateSelect)
+	zip = USZipCodeField()
+	contactName = forms.CharField(label="Contact Name")
+	contactEmail = forms.EmailField(label="Contact Email")
+	contactPhone = forms.CharField(label="Contact Phone")
+	arenaMapsURL = forms.CharField(label="Arenamaps.com URL")
+		
+	def save(self):
+		new_rink= Rink(
+		name = self.cleaned_data['name'],
+		address = self.cleaned_data['address'],
+		city = self.cleaned_data['city'],
+		state = self.cleaned_data['state'],
+		zip = self.cleaned_data['zip'],
+		contactName = self.cleaned_data['contactName'],
+		contactEmail = self.cleaned_data['contactEmail'],
+		contactPhone = self.cleaned_data['contactPhone'],
+		arenaMapsURL = self.cleaned_data['arenaMapsURL'],
+		)
+		new_rink.save()
+		return new_rink
+			

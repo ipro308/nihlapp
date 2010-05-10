@@ -31,11 +31,14 @@
 	{% for object in object_list %}
 	<tr class="{% cycle 'row1' 'row2' %}">
 		<td class="object-list-item-menu-td">
-			<span class="object-list-item-menu">
-				<a href="detail/{{ object.pk }}"><img src="/static/images/icons/eye.png" title="View" /></a>
+		{% if user.is_authenticated %}
+
+		<span class="object-list-item-menu">
+		<a href="detail/{{ object.pk }}"><img src="/static/images/icons/eye.png" title="View" /></a>
                 <a href="update/{{ object.pk }}"><img src="/static/images/icons/application_form_edit.png" title="Update" /></a>
                 <a href="delete/{{ object.pk }}"><img src="/static/images/icons/cross.png" title="Delete" /></a>
-			</span>
+		</span>
+		{% endif %}
 		</td>
 		{% block listRow %}{% endblock %}
 	</tr>	

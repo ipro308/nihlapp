@@ -123,3 +123,10 @@ def update(request, object_id):
         'form': form, 'user': request.user, 'object': data
     })
 
+def confirm(request, object_id):
+	return render_to_response('core/account/confirm.html', {'object_id': object_id})
+
+def logout(request):
+	response = logout(request, next_page='/accounts/logout/')
+	return response
+	# Redirect to a success page.

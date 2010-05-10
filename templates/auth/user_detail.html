@@ -4,11 +4,9 @@
 {% block title %}User Detail: {{ object.first_name }} {{ object.last_name }}{% endblock %}
 
 {% block content %}
-
 	<p class="title">User Detail: {{ object.first_name }} {{ object.last_name }}</p>
 	<div class="view">
         <div class="view_container" name="objectView" id="objectView">
-  
             <fieldset>
                 <legend class="primary first">User Information</legend>
 			    <ul>
@@ -17,15 +15,12 @@
                     <li><label>Last Name:</label><span>{{ object.last_name }}</span><div class="vd" /></li>
                     <li><label>Email:</label><span>{{ object.email }}</span></li>
 		        </ul>
-	        </fieldset> 	
-	        
+	        </fieldset>    
             <div class="actions">
                 <p class="action-links">
-                    <a href="/admin/auth/user/add/">Create User</a> | <a href="/admin/auth/user/{{ object.pk }}">Update User</a> | <a href="..">List Users</a>
+                    <a href="/accounts/create/">Create User</a> | <a href="/accounts/update/{{ object.pk }}">Update User</a> | <a href="..">List Users</a>
                 </p>
             </div>
-
     	</div>
 	</div>
-
 {% endblock %}

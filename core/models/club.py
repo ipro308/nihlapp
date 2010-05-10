@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
 from django.db import models
+from django import forms
+from django.contrib.localflavor.us.forms import *
 #from nihlapp.core.models import *
 
 class Club(models.Model):
@@ -20,3 +23,28 @@ class Club(models.Model):
     
     def get_absolute_url(self):
         return "/%s/%s/%s" % ('clubs', 'detail', self.pk)
+
+class CreateClubForm(forms.Form):
+	name = forms.CharField(label="Name")
+	address = forms.CharField(label="Address")
+	city = forms.CharField(label="City")
+	state = USStateField(label="State",widget=USStateSelect)
+	zip = USZipCodeField()
+	contactName = forms.CharField(label="Contact Name")
+	contactEmail = forms.EmailField(label="Contact Email")
+	contactPhone = forms.CharField(label="Contact Phone")
+	
+	def save(self):
+		new_club= Club(
+		name = self.cleaned_data['name'],
+		address = self.cleaned_data['address'],
+		city = self.cleaned_data['city'],
+		state = self.cleaned_data['state'],
+		zip = self.cleaned_data['zip'],
+		contactName = self.cleaned_data['contactName'],
+		contactEmail = self.cleaned_data['contactEmail'],
+		contactPhone = self.cleaned_data['contactPhone'],
+		)
+		new_club.save()
+		return new_club
+		

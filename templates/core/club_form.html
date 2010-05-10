@@ -1,4 +1,4 @@
-{% extends "core/generic_form.html" %}
+{% extends "core/generic_form_template.html" %}
 
 {% block section %}Clubs{% endblock %}
 {% block updateTitle %}Update Club{% endblock %}
@@ -6,5 +6,8 @@
 {% block updateHeader %}Update Club{% endblock %}
 {% block createHeader %}Create Club{% endblock %}
 {% block firstFieldsetTitle %}Club Information{% endblock %}
-
 {% block selectedTabClubs %} class="selected"{% endblock %}
+
+{% block custom_form %}
+   {{ form.as_ul }}
+{% endblock %}

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib.auth.models import Group
 from nihlapp.core.models import Invitation, Club, Team
 import hashlib

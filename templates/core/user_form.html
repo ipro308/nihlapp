@@ -11,17 +11,14 @@
 {% endblock %}
 
 {% block content %}
-
     {% if object %}
 	    <p class="title">{% block updateHeader %}Update User{% endblock %}: {{ object.firstName }} {{ object.lastName }} ({{ object.username }})</p>
     {% else %}
 	    <p class="title">{% block createHeader %}Create User{% endblock %}</p>
     {% endif %}
-
     {% if form.has_errors %}
         <h2>Please correct the following error{{ form.errors|pluralize }}:</h2>
     {% endif %}
-
     <div class='styled'>
     <form class="styled validate" method="POST" action="">
         <fieldset>
@@ -38,7 +35,7 @@
         </div>
     </form>
     </div>
-
+jkbkjhk
     <!--
 	    <p>{{ form.error_dict }}</p>
     -->

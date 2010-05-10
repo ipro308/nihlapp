@@ -6,36 +6,9 @@
 {% block title %}Summary{% endblock %}
 
 {% block content %}
+<div class="columns">
 
-<h2 class="title">NIHL Season Scheduling and Statistics</h2>
-
-<div id="rightColumn" style="float:right; width:30%; position:relative; margin-top:-20px;">
-<h3 class="subtitle">Quick Links</h3>
-	<ul>
-		<li><a href="/schedule/matchups">View match ups and schedule games</a></li>
-		<li><a href="/stats">View team statistics</a></li>
-		<li><a href="/schedule">Browse upcoming games</a></li>
-		<li><a href="/schedule/recent">Browse recent games</a></li>
-		<li><a href="/help/faq">Read help pages</a></li>
-	</ul>
-</div>
-
-<div id="middleColumn" style="float:right; width: 40%; position:relative; margin-top:-20px;">
-	<h3 class="subtitle">Season Information</h3>
-	<ul>
-		<li><strong>{{ currentSeason }}</strong> is currently in <strong>{{ currentSeason.seasonStatus }}</strong> phase.</li>
-		<li><b>{{ numTeams }}</b> team{% ifnotequal numTeams 1 %}s{% endifnotequal %} registered.</li>
-		<li><b>{{ numGames }}</b> game{% ifnotequal numGames 1 %}s{% endifnotequal %} played.</li>
-		{% if user.is_authenticated %}
-			<li>Your team is: <a href="{{ user.get_profile.team.get_absolute_url }}">{{ user.get_profile.team }}</a></li>
-		{% endif %}
-		{% if user.is_authenticated %}
-			<li>Your club is: <a href="{{ user.get_profile.club.get_absolute_url }}">{{ user.get_profile.club }}</a></li>
-		{% endif %}
-	</ul>
-</div>
-
-<div id="leftColumn" style="width:30%;">
+<div id="leftColumn" class="col">
 
 	{% if user.is_authenticated %}
 	<h3 class="subtitle">Reminders</h3>
@@ -51,19 +24,45 @@
 		{% endif %}
 	{% else %}
 	<h3 class="subtitle">Login</h3>
-		<form class="styled validate" method="post" action="{% url django.contrib.auth.views.login %}">
+		<form class="styled validate" method="post" action="/accounts/login/">
 		<!--<legend class="primary first">Please Login</legend><br />-->
 			<label for="id_username">Username</label><input id="id_username" type="text" name="username" maxlength="30" style="width:50%"/><br />
 			<label for="id_password">Password</label> <input type="password" name="password" id="id_password"  style="width:50%"/><br />
 			<a style="color:#104CA6;" href="/accounts/password_reset">Lost your password?</a><br />
 			<input type="submit" value="Login" />
-			<input type="hidden" name="next" value="{{ next }}" />         	
+			<input type="hidden" name="next" value="{{ next }}" />
 		</form>
 	{% endif %}
 </div>
+<div id="rightColumn" class="col">
+<h3 class="subtitle">Quick Links</h3>
+	<ul>
+		<li><a href="/schedule/matchups">View match ups and schedule games</a></li>
+		<li><a href="/stats">View team statistics</a></li>
+		<li><a href="/schedule">Browse upcoming games</a></li>
+		<li><a href="/schedule/recent">Browse recent games</a></li>
+		<li><a href="/help/faq">Read help pages</a></li>
+	</ul>
+</div>
 
-<br />
+<div id="middleColumn" class="col">
+	<h3 class="subtitle">Season Information</h3>
+	<ul>
+		<li><strong>{{ currentSeason }}</strong> is currently in <strong>{{ currentSeason.seasonStatus }}</strong> phase.</li>
+		<li><b>{{ numTeams }}</b> team{% ifnotequal numTeams 1 %}s{% endifnotequal %} registered.</li>
+		<li><b>{{ numGames }}</b> game{% ifnotequal numGames 1 %}s{% endifnotequal %} played.</li>
+		{% if user.is_authenticated %}
+			<li>Your team is: <a href="{{ user.get_profile.team.get_absolute_url }}">{{ user.get_profile.team }}</a></li>
+		{% endif %}
+		{% if user.is_authenticated %}
+			<li>Your club is: <a href="{{ user.get_profile.club.get_absolute_url }}">{{ user.get_profile.club }}</a></li>
+		{% endif %}
+	</ul>
+</div>
 
+</div>
+<div class="stat_table">
+<h2 class="title">NIHL Season Scheduling and Statistics</h2>
 <h3 class="subtitle">Recent Games</h3>
 {% if events %}
 <table style="width:100%;" class="records">
@@ -88,6 +87,6 @@
 {% else %}
 	No Recent Games
 {% endif %}
-
+</div>
 {% endblock %}
 

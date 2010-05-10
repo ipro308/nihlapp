@@ -5,6 +5,21 @@
 
 {% block content %}
 
-Invitation has been sent to <b>{{ name }}</b>, email address: <b>{{ email }}</b>.
+Invitation will be sent to <b>{{ name }}</b>, email address: <b>{{ email }}</b>.
+<div class='styled'>
+	<form class="styled validate" method="POST" action="/invitation/send/{{ invitation_id }} ">
+	<fieldset>
+	<legend class="primary first">Email Information</legend>
+	<ul>
+		{{ form.as_ul }}
+	</ul>
+	</fieldset>
+	<div class="submit">
+		<p class="submit-buttons">
 
+		<input type="submit" name="submit" value="Submit" />
+		</p>
+	</div>
+	</form>
+</div>
 {% endblock %}

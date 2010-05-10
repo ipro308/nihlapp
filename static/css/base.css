@@ -6,20 +6,20 @@
 html {
 	background-color:#EBEBEB;
 	height: 100%;
-	font-family:"Trebuchet MS",Verdana,"Lucida Grande",Georgia,Sans-Serif;
+	font-family: "Lucida Grande",Georgia,Sans-Serif;
 	font-size:10px;
 	font-size-adjust:none;
 	font-style:normal;
 	font-variant:normal;
 	font-weight:normal;
-	line-height:normal;	
+	line-height:normal;
 	border-top:3px solid #2B3240;
 }
 
 ul {
 	list-style-image:url('/static/images/ui/bullet.png');
 	list-style-type:circle;
-	margin-left:20px;	
+	margin-left:20px;
 	margin-top:10px;
 }
 
@@ -29,7 +29,7 @@ ul {
 
 .tooltip {
 	font-size: 12pt;
-	line-height: 14pt;	
+	line-height: 14pt;
 }
 
 body {
@@ -40,7 +40,7 @@ body {
 	background-repeat:repeat-y;
 	margin:0 auto;
 	padding:0;
-	width:1024px;	
+	width:1024px;
 }
 
 table tr th {
@@ -129,24 +129,24 @@ p.help {
 	padding: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	/*width: 100%;*/
 }
 
 h2.title {
 	color:#000000;
 	font-size:20px;
 	font-weight:normal;
-	margin:0.5em auto 1em;
+	margin:0.2em auto;
 	text-align:center;
 	width:100%;
 }
 
+
 h3.subtitle {
-	border-bottom: 2px solid #DDDDDD;
-	color: #999999;
-	font-size: 18px;
+	border-bottom: 1px solid #DDDDDD;
+	color: #3C3B3A;
+	font-size: 16px;
 	font-weight: normal;
-	margin:1.5em auto 8px;
+	margin:0.5em auto 8px;
 	padding-bottom: 4px;
 	text-align: left;
 	width: 100%;
@@ -155,7 +155,7 @@ h3.subtitle {
 table.object-list-table {
     width:100%;
 	border:1px;
-	border-collapse: collapse; 
+	border-collapse: collapse;
 }
 
 table.object-list-table td {
@@ -353,7 +353,7 @@ ul.comment li {
 
 dt {
     font-weight: bold;
-    font-family: Arial,Helvetica,sans-serif;
+    font-family: "Trebuchet MS",Helvetica,sans-serif;
     font-size: 1.1em;
     margin: 10px 0 5px 0;
 }
@@ -437,9 +437,9 @@ dt {
 }
 
 #navbar ul.left li {
-    font-family: Arial,Helvetica,sans-serif;
+    font-family: "Trebuchet MS",Helvetica,sans-serif;
     font-size: 1.1em;
-    font-weight: bold;
+    font-weight: normal;
     letter-spacing: 0.02em;
 }
 
@@ -512,7 +512,7 @@ dt {
     padding-top: 8px;
     line-height: 1em;
     font-size: 1.2em;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Lucida Grande","Trebuchet MS", Helvetica, sans-serif;
     letter-spacing: 0.02em;
 }
 #body .header h3 {
@@ -560,7 +560,7 @@ dt {
 #body .navmenu .sides div {
     margin-bottom: -5px;
 }
-#body .sides .foo { 
+#body .sides .foo {
     top: auto;
     left: 10px;
     right: 10px;
@@ -611,7 +611,7 @@ dt {
 }
 
 #content_area h1, #content_area h2, #content_area h3, #content_area h4 {
-    /*font-family: Arial,Helvetica,sans-serif;*/
+    /*font-family: "Trebuchet MS",Helvetica,sans-serif;*/
 }
 
 #body .footer .caps div {
@@ -1497,7 +1497,7 @@ div.vd {
 	background-color:#ECECEC !important;
 	color:#000000;
 	padding-bottom:2px;
-	padding-top:2px;	
+	padding-top:2px;
 }
 
 div#nav-container {
@@ -1549,7 +1549,7 @@ div#nav ul li a, div.nav ul li a:visited {
 	color:#ffffff;
 	font-weight:normal;
 	font-size:0.9em;
-	font-family:Arial, Helvetica, sans-serif;
+	font-family:"Trebuchet MS", Helvetica, sans-serif;
 }
 div#nav ul li a:hover {
 	background:transparent url('/static/images/ui/tab_right_over.jpg') no-repeat scroll right 9px;
@@ -1587,13 +1587,13 @@ div#nav ul.navlist li:hover ul.subnavlist li a
 	border: none;
 	padding: 2px;
 	font-size:1.3em;
-	margin-top:-5px; 
-	
+	margin-top:-5px;
+
 }
 
-div#nav ul.navlist li:hover ul.subnavlist li a:before 
+div#nav ul.navlist li:hover ul.subnavlist li a:before
 {
-	content: " >> "; 
+	content: " >> ";
 }
 
 div#login-panel {
@@ -1627,23 +1627,23 @@ div#login-panel {
 
 /*DROP DOWN MENU CSS*/
 #sddm
-{	
+{
 	margin: 0;
 	padding: 0;
 	z-index: 30;
 }
 
 #sddm li
-{	
+{
 	margin: 0;
 	padding: 0;
 	list-style: none;
 	float: left;
-	font: bold 11px arial;
+	font: bold 11px "Trebuchet MS";
 }
 
 #sddm li a
-{	
+{
 	display: block;
 	margin: 0 1px 0 0;
 	/*padding: 4px 10px;*/
@@ -1655,12 +1655,12 @@ div#login-panel {
 }
 
 #sddm li a:hover
-{	
+{
 	background: #49A3FF;
 }
 
 #sddm div
-{	
+{
 	position: relative;
 	visibility:hidden;
 	margin: 0;
@@ -1668,7 +1668,7 @@ div#login-panel {
 }
 
 #sddm div a
-{	
+{
 	position: relative;
 	display: block;
 	margin: 0;
@@ -1679,12 +1679,55 @@ div#login-panel {
 	text-decoration: none;
 	background: #2B3240;
 	color: #eee;
-	font: 11px arial;
+	font: 11px "Trebuchet MS";
 	top:-5px;
 }
 
 #sddm div a:hover
-{	
+{
 	background: #ccc;
 	color: #000;
+}
+
+.columns {
+padding-top: 20px;
+width :20%;
+float: left;
+border-right: 1px soild red;
+font-size: 12px;
+}
+.columns a {
+font-weight: normal;	
+}
+.stat_table{
+width: 78%;
+float: right;
+}
+
+input {
+ margin: 5px 4px 5px 4px;
+}
+h2, h3{
+margin: 3px 0 3px 0;
+}
+
+.footer2{
+border-top: 1px dashed #ccc;
+width:93%;
+margin: 0 auto;
+height: 50px;
+background-color: #EFEDE9;
+}
+
+.bottom-area, .bottom-area a{
+font-weight: normal;
+font-size: 11px;
+}
+
+.bottom-area-bg {
+	height:0px;
+}
+
+.col {
+margin-bottom: 10px;
 }

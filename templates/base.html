@@ -140,7 +140,11 @@ onmouseover="mcancelclosetime()"
 onmouseout="mclosetime()"
 style="float:left; left:307px; position:absolute; z-index:30;">
 <a href="/seasons">Seasons</a>
+{% if user.is_authenticated %}
+{% if user.is_superuser %}
 <a href="/seasons/create">Create Season</a>
+{% endif %}
+{% endif %}
 </div>
 </li>
 
@@ -150,7 +154,11 @@ onmouseover="mcancelclosetime()"
 onmouseout="mclosetime()"
 style="float:left; left:409px; position:absolute; z-index:30;">
 <a href="/teams">Teams</a>
+{% if user.is_authenticated %}
+{% if user.is_superuser %}
 <a href="/teams/create">Create Team</a>
+{% endif %}
+{% endif %}
 </div>
 </li>
 
@@ -160,7 +168,11 @@ onmouseover="mcancelclosetime()"
 onmouseout="mclosetime()"
 style="float:left; left:497px; position:absolute; z-index:30;">
 <a href="/clubs">Clubs</a>
+{% if user.is_authenticated %}
+{% if user.is_superuser %}
 <a href="/clubs/create">Create Club</a>
+{% endif %}
+{% endif %}
 </div>
 </li>
 
@@ -170,7 +182,11 @@ onmouseover="mcancelclosetime()"
 onmouseout="mclosetime()"
 style="float:left; left:577px; position:absolute; width:94px; z-index:30;">
 <a href="/divisions">Divisions</a>
+{% if user.is_authenticated %}
+{% if user.is_superuser %}
 <a href="/divisions/create">Create Division</a>
+{% endif %}
+{% endif %}
 </div>
 </li>
 
@@ -180,7 +196,11 @@ onmouseover="mcancelclosetime()"
 onmouseout="mclosetime()"
 style="float:left; left:681px; position:absolute;">
 <a href="/rinks">Rinks</a>
+{% if user.is_authenticated %}
+{% if user.is_superuser %}
 <a href="/rinks/create">Create Rink</a>
+{% endif %}
+{% endif %}
 </div>
 </li>
 
@@ -221,10 +241,14 @@ style="float:left; left:760px; position:absolute; z-index:30;">
             </div>
         </div>
     </div>
+
+
+</div>
+</div>
 <div class="bottom-area">
+<div class="footer2">
 <div>Copyright (C) 2009 <a href="http://www.iit.edu/">Illinois Institute of Technology</a>, <a href="http://www.nihl.info/">Northern Illinois Hockey League</a></div>
 <div><a href="/help">Help</a> | <a href="/help/faq">Frequently Asked Questions</a> | <a href="/notify">Contact League Administrators</a></div>
-</div>
 </div>
 </div>
 <div class="bottom-area-left-corner"></div>

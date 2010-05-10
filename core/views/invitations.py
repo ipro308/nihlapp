@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
@@ -6,6 +7,9 @@ from django.db.models import Q
 from nihlapp.core.utils.invitations import generate_invitation
 from nihlapp.core.utils.email import send_invitation, send_confirmation
 from django.contrib.auth.models import User, Group
+from nihlapp.core.models.userProfile import SendInviteForm
+from django.template import loader, Context
+from nihlapp.core.models import Parameter
 import hashlib
 
 def invitation(request, key):
@@ -132,3 +136,31 @@ def generate(request):
     return render_to_response('core/invitations/generate.html', {'name': invitation.name, 
                                                                  'email': invitation.email})
     
+@login_required
+def edit_invite(request):
+	
+	invitation_id = generate_invitation(request.GET['name'],
+					request.GET['email'],
+					Club.objects.get(id = request.GET['club_id']),
+					Team.objects.get(id = request.GET['team_id']))
+	
+	try:
+		invitation = Invitation.objects.get(id = invitation_id)
+	except:
+		raise Exception, "Unable to find invitation id: %s." % invitation_id
+	
+	template = loader.get_template('email/invitation.html')
+	context = Context({'siteHostname': Parameter.objects.get(name = "site.hostname"), 'invitation': invitation})
+	message = template.render(context)
+	name = request.GET['name']
+	email =request.GET['email']
+	data = {'name':name,'email':email,'message':message}
+	invitation_form = SendInviteForm(data)
+	invitation_id = generate_invitation(request.GET['name'],
+	request.GET['email'],
+	Club.objects.get(id = request.GET['club_id']),
+	Team.objects.get(id = request.GET['team_id']))
+
+	return render_to_response('core/invitations/generate.html', {'form' : invitation_form, 'invitation_id':invitation_id})
+
+	

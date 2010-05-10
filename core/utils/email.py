@@ -1,11 +1,38 @@
+# -*- coding: utf-8 -*-
 from django.template import loader, Context
 from django.core.mail import send_mail
 from django.db.models import Q
 from nihlapp.core.models import Invitation, Parameter, UserProfile, Event
+from django.shortcuts import render_to_response
 
 # 
 # Invitation into NIHL system.
 #
+
+def new_send_invitation(request,invite_id):
+	if request.method == 'POST':
+		message = request.POST['message'];
+		
+		try:
+			invitation = Invitation.objects.get(id = invite_id)
+		except:
+				raise Exception, "Unable to find invitation id: %s." % invitation_id
+		try:
+			send_mail('%s Please register with NIHL' % Parameter.objects.get(name = "email.prefix"),
+				message,
+				"%s <%s>" % (Parameter.objects.get(name = "email.from"), Parameter.objects.get(name = "email.noreply")),
+				[invitation.email],
+				fail_silently=False)
+				
+		except Exception, error:
+			raise Exception, "Unable to send invitation: %s." % error
+		
+		return render_to_response('core/invitations/confirm_send.html', {'name': invitation.name,
+										'email': invitation.email,
+										})
+	else:
+		raise Exception, "Unable to send invitation: %s." % error
+
 def send_invitation(invitation_id):
     
     try:

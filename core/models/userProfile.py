@@ -47,7 +47,6 @@ class CreateUserForm(forms.Form):
                 raise forms.ValidationError("This username is not available, please choose a different username for your account.")
             except User.DoesNotExist:
                 pass
-        
         return data
 
     def clean(self):
@@ -61,5 +60,10 @@ class CreateUserForm(forms.Form):
         
         return cleaned_data
 
-    
+class SendInviteForm(forms.Form):
+	name = forms.CharField(label="Name")
+	email = forms.EmailField(label="Email")
+	message = forms.CharField(label="Message", widget=forms.widgets.Textarea())
+	club_id = forms.IntegerField(widget=forms.widgets.HiddenInput(),required = False)
+	team_id = forms.IntegerField(widget=forms.widgets.HiddenInput(),required = False)
 
