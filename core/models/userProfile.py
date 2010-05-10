@@ -66,4 +66,3 @@ class SendInviteForm(forms.Form):
 	message = forms.CharField(label="Message", widget=forms.widgets.Textarea())
 	club_id = forms.IntegerField(widget=forms.widgets.HiddenInput(),required = False)
 	team_id = forms.IntegerField(widget=forms.widgets.HiddenInput(),required = False)
-
