@@ -8,3 +8,16 @@
 {% block firstFieldsetTitle %}Season Information{% endblock %}
 
 {% block selectedTabSeasons %} class="selected"{% endblock %}
+{% block scripts %}
+<script>
+$(document).ready(function(){
+	$("#id_seedingBeginDate").datepicker({ dateFormat: 'yy-mm-dd', showOn: 'focus' });
+	$("#id_seedingSchedDeadline").datepicker({ dateFormat: 'yy-mm-dd', showOn: 'focus' });
+	$("#id_seedingStatDeadline").datepicker({ dateFormat: 'yy-mm-dd', showOn: 'focus' });
+	$("#id_seasonBeginDate").datepicker({ dateFormat: 'yy-mm-dd', showOn: 'focus' });
+	$("#id_seasonSchedDeadline").datepicker({ dateFormat: 'yy-mm-dd', showOn: 'focus' });
+	$("#id_seasonStatDeadline").datepicker({ dateFormat: 'yy-mm-dd', showOn: 'focus' });
+	$("#id_seasonEnd").datepicker({ dateFormat: 'yy-mm-dd', showOn: 'focus' });
+});
+</script>
+{% endblock %}

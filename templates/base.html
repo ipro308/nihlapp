@@ -14,14 +14,16 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/base.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="/static/css/jquery-ui-1.7.2.custom.css" media="all" />
 	{% block css %}{% endblock %}
-	
-	<!-- move this to the bottom -->
-	<script type="text/javascript" src="/static/js/jquery.js"></script>	
-	<script type="text/javascript" src="/static/js/jquery-ui-1.7.2.custom.min.js"></script>	
-	<script type="text/javascript" src="/static/js/jquery.tooltip.pack.js"></script>		
-	<script type="text/javascript" src="/static/js/base.js"></script>	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+	<!--
+	<script type="text/javascript" src="/static/js/jquery.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui-1.7.2.custom.min.js"></script>
+	-->
+	<script type="text/javascript" src="/static/js/jquery.tooltip.pack.js"></script>
+	<script type="text/javascript" src="/static/js/base.js"></script>
 	<script type="text/javascript" src="/static/js/dropdown.js"></script>
-	
+
 	<script type="text/javascript">
 	$(function() {
 		$('#id_username').focus()
@@ -37,8 +39,10 @@
         </div>
 
         <div id="login-panel">
+
+
 {% if user.is_authenticated %}
-<span style="font-size: 12px;">Logged in as <b>{{ user.first_name }} {{ user.last_name }}</b> [<i><a href="/accounts/detail/{{ user.pk }}">{{ user.username }}</a></i>]</a>, <a href="/accounts/logout">Logout</a></span>
+<span style="font-size: 12px;">Logged in as <b>{{ user.first_name }} {{ user.last_name }}</b> [<i><a href="/accounts/detail/{{ user.pk }}">{{ user.username }}</a></i>], <a href="/accounts/logout">Logout</a></span>
 {% else %}
 <span style="font-size: 14px;"><a href="/accounts/login">Login</a></span>
 {% endif %}
@@ -255,4 +259,5 @@ style="float:left; left:760px; position:absolute; z-index:30;">
 <div class="bottom-area-bg"></div>
 <div class="bottom-area-right-corner"></div>
 </body>
+{% block scripts %}{% endblock %}
 </html>
