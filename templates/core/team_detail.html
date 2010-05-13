@@ -61,7 +61,10 @@
 		<h3 class="primary" style="font-weight:normal;">Team Manager</h3>
 		<table>
 			<tr><td style="font-weight:bold">Manager Name:</td><td>{{ object.managerName }}</td></tr>
-			<tr><td style="font-weight:bold">Manager Email:</td><td>{{ object.managerEmail }} <a href="/invitation/edit?club_id={{ object.club.id }}&team_id={{ object.id }}&name={{ object.managerName }}&email={{ object.managerEmail }}"><img src="/static/images/icons/email_go.png" style="position:relative; top:3px;" /></a><div class="vd" /></td></tr>
+			<tr><td style="font-weight:bold">Manager Email:</td><td>{{ object.managerEmail }}</td></tr>
+			{% if user.is_authenticated %}
+			<tr><td style="font-weight:bold">Send invitation now: &nbsp; </td><td> <a href="/invitation/edit?club_id={{ object.club.id }}&team_id={{ object.id }}&name={{ object.managerName }}&email={{ object.managerEmail }}"><img src="/static/images/icons/email_go.png" style="position:relative; top:3px;" /></a></td></tr>
+			{% endif %}
 			<tr><td style="font-weight:bold">Manager Phone:</td><td>{{ object.managerPhone }}</td></tr>
 		</table>
 	
@@ -74,12 +77,13 @@
 			<tr><td style="font-weight:bold">Coach Phone:</td><td>{{ object.coachPhone }}</td></tr>
 		</table>
 	</div>
-	
+	{% if user.is_authenticated %}
 	<div class="actions">
 	    <p class="action-links">
 	        <a href="../create">Create Team</a> | <a href="../update/{{ object.pk }}">Update Team</a> | <a href="..">List Teams</a>
 	    </p>
 	</div>
+	{% endif %}
 
 
 	
