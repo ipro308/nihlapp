@@ -37,11 +37,12 @@
 			<tr><td style="font-weight:bold">Phone:</td><td>{{ object.contactPhone }}</td></tr>
 		</table>
 	</div>
-
+	{% if user.is_authenticated %}
 	<div class="actions">
 	    <p class="action-links">
 	        <a href="../create">Create Rink</a> | <a href="../update/{{ object.pk }}">Update Rink</a> | <a href="..">List Rinks</a>
 	    </p>
 	</div>
+	{% endif %}
 
 {% endblock %}

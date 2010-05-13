@@ -38,10 +38,11 @@
 			{% endfor %}
 		</table>
 </div>
-
+	{% if user.is_authenticated %}
 	<div class="actions">
 	    <p class="action-links">
 	        <a href="../create">Create Club</a> | <a href="../update/{{ object.pk }}">Update Club</a> | <a href="..">List Clubs</a>
 	    </p>
 	</div>
+	{% endif %}
 {% endblock %}

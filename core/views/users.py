@@ -6,7 +6,7 @@ from nihlapp.core.models import User, UserProfile, CreateUserForm, Team, Club
 from django.shortcuts import render_to_response
 
 @login_required
-def create(request):
+def create(request,team_id=None):
     if request.method == 'POST': # If the form has been submitted...
         form = CreateUserForm(request.POST) # A form bound to the POST data
         if form.is_valid():
@@ -33,8 +33,12 @@ def create(request):
             newprofile.save()
             return HttpResponseRedirect('/accounts/detail/%d' % newuser.id)
     else:
+	
         form = CreateUserForm() # An unbound form
-
+	if team_id:
+		team = Team.objects.get(id=team_id)
+		form = CreateUserForm(club_id=team.club.id,team_id=team.id)
+		
     return render_to_response('core/user_form.html', {
         'form': form, 'user': request.user
     })

@@ -37,8 +37,8 @@ def create_team(request):
 		if form.is_valid():
 			new_team = form.save()
 			msg = "Team succesfully created."
-			if request.POST['submit'] == u'addmanager':
-				return HttpResponseRedirect('/accounts/create')
+			if request.POST['submit'] == u'Add manager':
+				return HttpResponseRedirect('/accounts/create/%s' %new_team.id)
 			else:
 				return HttpResponseRedirect('/teams/confirm/create/%s' % new_team.id)
 	form = CreateTeamForm()

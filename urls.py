@@ -66,11 +66,10 @@ urlpatterns = patterns('',
   
     # databrowse
     (r'^db/(.*)', login_required(databrowse.site.root)),  
-  
-    # account management
-    (r'^accounts/create', 'nihlapp.core.views.users.create'),
-    (r'^accounts/update/(?P<object_id>\d+)/?$', 'nihlapp.core.views.users.update'), 
-  
+
+    (r'^accounts/create/(?P<team_id>\d+)?/?$', 'nihlapp.core.views.users.create'),
+    (r'^accounts/update/(?P<object_id>\d+)/?$', 'nihlapp.core.views.users.update'),
+
     # email notify
     (r'^notify/', 'nihlapp.core.views.notify.index'),    
     (r'^notify/send', 'nihlapp.core.views.notify.send'),   

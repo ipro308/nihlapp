@@ -29,13 +29,25 @@ class CreateUserForm(forms.Form):
     firstName = forms.CharField(max_length=30)
     lastName = forms.CharField(max_length=30)
     group = forms.ModelChoiceField(label='Group', queryset=Group.objects.all().order_by('name'),initial=Team.objects.filter(pk=1))
-    team = forms.ModelChoiceField(label='Team', queryset=Team.objects.all().order_by('name'), initial=Team.objects.filter(pk=2))
-    club = forms.ModelChoiceField(label='Club', queryset=Club.objects.all().order_by('name'),initial=Club.objects.filter(pk=1))
+    team = forms.ModelChoiceField(label='Team', queryset=Team.objects.all().order_by('name'))
+    club = forms.ModelChoiceField(label='Club', queryset=Club.objects.all().order_by('name'))
     email = forms.EmailField(max_length=50)
     phone = forms.CharField(max_length=10, required = False)
     password = forms.CharField(label='Password', widget=forms.PasswordInput(render_value=True))
     password_confirm = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(render_value=True))
     is_active = forms.BooleanField(label='Active', required = False)
+
+    def __init__(self,club_id=None,team_id=None, *args, **kwargs):
+        super(CreateUserForm, self).__init__(*args, **kwargs)
+        if club_id:
+		self.fields['club'].initial = Club.objects.get(pk=club_id)
+	else:
+		self.base_fields['club'].initial = Club.objects.filter(pk=1)
+	if team_id:
+		self.fields['club'].initial = Team.objects.get(pk=team_id)
+	else:
+		self.base_fields['team'].initial = Team.objects.filter(pk=1)
+
     
     def clean_username(self):
         data = self.cleaned_data['username']   

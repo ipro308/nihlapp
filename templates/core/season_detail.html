@@ -25,10 +25,11 @@
 	</fieldset> 	     	        
 	
 
-
+	{% if user.is_authenticated %}
 	<div class="actions">
 	    <p class="action-links">
 	        <a href="../create">Create Season</a> | <a href="../update/{{ object.pk }}">Update Season</a> | <a href="..">List Seasons</a>
 	    </p>
 	</div>
+	{% endif %}
 {% endblock %}

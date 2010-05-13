@@ -38,9 +38,11 @@
 		</table>
 	</div>
 
+	{% if user.is_authenticated %}
 	<div class="actions">
 	    <p class="action-links">
 	        <a href="../create">Create Division</a> | <a href="../update/{{ object.pk }}">Update Division</a> | <a href="..">List Divisions</a>
 	    </p>
 	</div>
+	{% endif %}
 {% endblock %}
