@@ -1,0 +1,31 @@
+NIHL APP BUGS
+Unauthorised access
+Disable parts of the site that should not be accessible to unauthorised users:currently, anyone who is logged in can modify areas they are not supposed to.
+	-For example, a team admin can create a season and delete a season
+
+Email Configuration file
+	-Depsite the fact that someone said that email was working, it does not seem to be working on either of the servers
+	(nihl.vidutis.com and nihlapp.ath.cx).
+	-Email is hardcoded into application and the is no way to edit the message before it is sent.
+	-Copy of email is not sent to user
+Todo:   -Setup email configuration and test it for the ability to send messages
+	-Give the user the option to edit the message before sending it. 
+	
+
+User Interface Overhaul:
+	-Rewrite style sheet to display more appealing fonts with better color contrast and better positioning of elements on the page
+	-Place Login box in appropriate place
+	-Redesign list pages so that they do not show to the public the options to update, view or delete any entry. These option should only be
+	available once a user is logged in.
+	
+
+Usability
+	-Automatically Redirect to Login page once user logs out
+	-Add drop down boxes for State and City in All forms
+	-Add email address verification to registration pages tp avoid bogus email input
+
+Logic
+	-Create team bug on anthony's server url error: page will not load
+	-Login link bug: the linking on the firms is flawed in such away that if the application is being deployed, the home page won't load
+	-Updating and managing a user's account redirects to the wrong administration page if done from the user's profile page. It is supposed to
+		redirect to a new form
