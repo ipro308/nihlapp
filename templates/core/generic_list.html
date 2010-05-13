@@ -11,14 +11,20 @@
 
 {% block extraContent %}{% endblock %}
 
+{% if user.is_authenticated %}
 <div class="rounded-corner-container" style="cursor:pointer;width:150px;float:right;margin-bottom:10px;" onClick="window.location='create/'" title="Create">
 	<b class="rt"><b class="r1"></b> <b class="r2"></b> <b class="r3"></b> <b class="r4"></b></b>
 	<a href="create/" style="display:block;">
-		<div class="object-list-menu">
-			<a href="create/" title="Create"><img src="/static/images/icons/application_form_add.png" title="Create" /></a> <a href="create/" title="Create">{% block createTitle %}Create Model{% endblock %}</a>
-		</div>
+	<div class="object-list-menu">
+	<a href="create/" title="Create"><img src="/static/images/icons/application_form_add.png" title="Create" />
+	</a>
+	<a href="create/" title="Create">{% block createTitle %}Create Model{% endblock %}</a>
+	</div>
+	</a>
 	<b class="rb"><b class="r4"></b> <b class="r3"></b> <b class="r2"></b> <b class="r1"></b></b>
 </div>
+{% endif %}
+
 <p class="clearing"></p>
 
 <table class="records">

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
@@ -71,7 +72,8 @@ def summary(request):
                                       homeTeam = request.user.get_profile().team)
         if len(events) > 0:
             reminders.append({'url': '/stats/record', 'note': 'Enter game statistics'})
-    
+
+  
     return render_to_response('core/home/summary.html', {'user': request.user, 
                                                          'currentSeason': currentSeason,
                                                          'numTeams': numTeams,
@@ -80,7 +82,7 @@ def summary(request):
                                                          'reminders': reminders})
 
 def deadlines(request):
-    return render_to_response('core/home/deadlines.html', {'user': request.user, 
+    return render_to_response('core/home/deadlines.html', {'user': request.user,
                                                            'currentSeason': Season.objects.get(isCurrentSeason = True)})
 
 def teams(request):

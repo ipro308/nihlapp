@@ -133,7 +133,9 @@ onmouseout="mclosetime()"
 style="float:left; left:202px; position:absolute; z-index:30;">
 <a href="/schedule">Upcoming Games</a>
 <a href="/schedule/recent">Recent Games</a>
+{% if user.is_authenticated %}
 <a href="/schedule/matchups">My Team's Matchups</a>
+{% endif %}
 <a href="/schedule/create">Home Rink Schedule</a>
 </div>
 </li>

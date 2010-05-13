@@ -38,7 +38,9 @@
 <h3 class="subtitle">Quick Links</h3>
 	<ul>
 		<li><a href="/schedule/matchups">View match ups and schedule games</a></li>
+		 {% if user.is_authenticated %}
 		<li><a href="/stats">View team statistics</a></li>
+		 {% endif %}
 		<li><a href="/schedule">Browse upcoming games</a></li>
 		<li><a href="/schedule/recent">Browse recent games</a></li>
 		<li><a href="/help/faq">Read help pages</a></li>
