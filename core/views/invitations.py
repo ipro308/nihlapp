@@ -155,12 +155,13 @@ def edit_invite(request):
 	name = request.GET['name']
 	email =request.GET['email']
 	data = {'name':name,'email':email,'message':message}
+	print data
 	invitation_form = SendInviteForm(data)
-	invitation_id = generate_invitation(request.GET['name'],
-	request.GET['email'],
-	Club.objects.get(id = request.GET['club_id']),
-	Team.objects.get(id = request.GET['team_id']))
-
-	return render_to_response('core/invitations/generate.html', {'form' : invitation_form, 'invitation_id':invitation_id})
+	invitation_id = generate_invitation(
+			request.GET['name'],
+			request.GET['email'],
+			Club.objects.get(id = request.GET['club_id']),
+			Team.objects.get(id = request.GET['team_id']))
+	return render_to_response('core/invitations/generate.html', {'name': name, 'email': email, 'form' : invitation_form, 'invitation_id':invitation_id})
 
 	
